@@ -18,6 +18,8 @@
 ###########
 .gradle
 build
+.idea
+.pyc
 
 # Gradle #
 ##########
