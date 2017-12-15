@@ -16,8 +16,8 @@
 
 # Folders #
 ###########
-/build/
 .gradle
+build
 
 # Gradle #
 ##########
