@@ -31,9 +31,9 @@ class robotDrive(port: Int) : SubsystemBase() {
 
     fun tankDrive(xbox: Input) {
         if (reverse) {
-            autoDrive(xbox.joystickRightYAxis, xbox.joystickLeftYAxis)
+            autoDrive(-1 * xbox.joystickRightYAxis, xbox.joystickLeftYAxis)
         } else
-            autoDrive(xbox.joystickLeftYAxis, xbox.joystickRightYAxis)
+            autoDrive(-1 * xbox.joystickLeftYAxis, xbox.joystickRightYAxis)
     }
 
 
