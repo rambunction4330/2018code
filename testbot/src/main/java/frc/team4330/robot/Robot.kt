@@ -1,17 +1,21 @@
 package frc.team4330.robot
 
 import edu.wpi.first.wpilibj.IterativeRobot
-import edu.wpi.first.wpilibj.Joystick
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
-import edu.wpi.first.wpilibj.CameraServer
 import edu.wpi.first.wpilibj.command.Scheduler
+import frc.team4330.robot.IO.Input
 import frc.team4330.robot.IO.RobotMap
+import frc.team4330.robot.subsystems.Tank
 
 class Robot : IterativeRobot() {
-    override fun robotInit() {
-        CameraServer.getInstance().startAutomaticCapture()
+
+    companion object {
+        val xbox: Input = Input(RobotMap.DRIVE_JOYSTICK)
 
     }
+
+    private lateinit var scheduler: Scheduler
+
+    override fun robotInit() {}
 
     override fun disabledInit() {}
 
@@ -26,7 +30,9 @@ class Robot : IterativeRobot() {
 
     override fun autonomousPeriodic() {}
 
-    override fun teleopPeriodic() {}
+    override fun teleopPeriodic() {
+        Tank().drive(xbox.joystickLeftYAxis, xbox.joystickRightYAxis)
+    }
 
     override fun testPeriodic() {}
 }
