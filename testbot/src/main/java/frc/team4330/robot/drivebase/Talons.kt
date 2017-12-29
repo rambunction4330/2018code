@@ -14,4 +14,6 @@ class Talons (port: Int) : motors(){
         else{
             canTalon.set(speed)
         }
+
+
 }

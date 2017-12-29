@@ -5,7 +5,7 @@ import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.drivebase.Talons
 import frc.team4330.robot.drivebase.Victor
 
-class robotDrive(port: Int) : SubsystemBase() {
+class robotDrive : SubsystemBase() {
 
     private val rightTal: Talons
     private val leftTal: Talons
@@ -22,8 +22,8 @@ class robotDrive(port: Int) : SubsystemBase() {
     }
 
     fun autoDrive(left: Double, right: Double) {
-        leftTal.speed = left
-        leftVic.speed = left
+        leftTal.speed = left * -1.0
+        leftVic.speed = left * -1.0
 
         rightTal.speed = right
         rightVic.speed = right
@@ -31,9 +31,9 @@ class robotDrive(port: Int) : SubsystemBase() {
 
     fun tankDrive(xbox: Input) {
         if (reverse) {
-            autoDrive(-1 * xbox.joystickRightYAxis, xbox.joystickLeftYAxis)
+            autoDrive(xbox.joystickRightYAxis, xbox.joystickLeftYAxis)
         } else
-            autoDrive(-1 * xbox.joystickLeftYAxis, xbox.joystickRightYAxis)
+            autoDrive(xbox.joystickLeftYAxis, xbox.joystickRightYAxis)
     }
 
 

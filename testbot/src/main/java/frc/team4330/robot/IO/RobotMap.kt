@@ -13,4 +13,6 @@ object RobotMap {
     val RIGHT_ENCODER2 = 9
     val LEFT_ENCODER1 = 6
     val LEFT_ENCODER2 = 7
+
+    val PCM_CAN = 0
 }
