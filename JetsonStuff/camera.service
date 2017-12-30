@@ -1,0 +1,10 @@
+[Unit]
+Description=CameraServer
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/nvidia/Documents/2018code/JetsonStuff/cameras.py
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
