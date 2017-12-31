@@ -12,5 +12,4 @@ class Victor(port: Int) : motors() {
         } else {
             pwmVictor.set(speed)
         }
-
 }

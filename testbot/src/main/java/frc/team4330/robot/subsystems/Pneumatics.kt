@@ -12,8 +12,9 @@ class Pneumatics(canID: Int) : SubsystemBase() {
 
     fun init() {
         comp.start()
-
     }
 
-
+    fun stop() {
+        comp.stop()
+    }
 }

@@ -23,7 +23,9 @@ class Robot : IterativeRobot() {
         comp.init()
     }
 
-    override fun disabledInit() {}
+    override fun disabledInit() {
+        comp.stop()
+    }
 
     override fun autonomousInit() {}
 
