@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 import socketserver
-import threading
+from threading import Thread
 
 cap = cv2.VideoCapture(0)
 cv2.namedWindow('frame')
@@ -31,24 +31,27 @@ while(1):
     ll = cv2.getTrackbarPos('highl', 'frame')
     ss = cv2.getTrackbarPos('highs', 'frame')
     # Our operations on the frame come here
-    hls = cv2.cvtColor(frame, cv2.COLOR_BGR2HLS)
-    low = np.array([h+10, l+10, s+10])
-    high = np.array([hh+10, ll+10, ss+10])
-    cvt = cv2.inRange(hls, low, high)
-    res = cv2.bitwise_and(frame,frame, mask= cvt)
+    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    low = np.array([h, l, s])
+    high = np.array([hh, ll, ss])
+    cvt = cv2.inRange(hsv, low, high)
+    #res = cv2.bitwise_and(frame,frame, mask= cvt)
     # Display the resulting frame
-    contours, im2, hierarchy = cv2.findContours(cvt, cv2.RETR_LIST, cv2.CHAIN_APPROX_NONE)
+    im2, contours, hierarchy = cv2.findContours(cvt, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     minArea = 300
 
     cnt = contours[0]
     moms = cv2.moments(cnt)
     print(moms['m00'])
     print(moms['m01'])
-    cx = int(moms['m10']/moms['m00'])
-    cy = int(moms['m01']/moms['m00'])
+    if moms["m00"] != 0:
+        cx = int(moms['m10']/moms['m00'])
+        cy = int(moms['m01']/moms['m00'])
+    else:
+        cx, cy = 0, 0
+    area = cv2.contourArea(cnt)
     for i in range(len(contours)):
 
-        area = cv2.contourArea(cnt)
         if area < minArea:
             continue
         rect = cv2.boundingRect(contours[i])
@@ -67,7 +70,7 @@ while(1):
 
 
     cv2.imshow('frame', cvt)
-    cv2.imshow('dab', res)
+    #cv2.imshow('dab', res)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 

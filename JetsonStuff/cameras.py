@@ -1,4 +1,5 @@
 from cscore import CameraServer, UsbCamera
+import cv2
 
 cs = CameraServer.getInstance()
 cs.enableLogging()

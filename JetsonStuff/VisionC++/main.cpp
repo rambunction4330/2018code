@@ -125,7 +125,7 @@ int main(int argc , char** argv)
 
 void *capture(void *arg) {  
 
-  VideoCapture capture(1);
+  VideoCapture capture(0);
   capture.set(CV_CAP_PROP_FRAME_WIDTH, xres);
   capture.set(CV_CAP_PROP_FRAME_HEIGHT, yres);
   if(!capture.isOpened()) {
@@ -135,9 +135,6 @@ void *capture(void *arg) {
   
   //Ideal shape of high goal reflective tape.
   vector<Point> shape;
-  //GpuMat src_gpu, cvt_gpu, thr_gpu, dst_gpu, norm_gpu;
-  //double minVal; double maxVal; Point minLoc; Point maxLoc;
-  //Point matchLoc;
   
   while(true) {
 		
@@ -145,25 +142,7 @@ void *capture(void *arg) {
     if(dst.empty()) {
       //cout << "failed to capture an image" << endl;
     }
-    // GpuMat src_gpu, cvt_gpu, thr_gpu, dst_gpu;
-    //src_gpu.upload(frame);
-    //resize(dst ,frame, frame.size(), .35, .35, INTER_AREA);   
     cvtColor(frame, hsv, CV_BGR2HLS);
-    //cvtColor(frame, dst, CV_BGR2GRAY);
-    //blur(dst, hsv , Size(3,3));
-    //Canny(hsv, binary, 20 , 60, 3);
-    //gpu::threshold(cvt_gpu, thr_gpu, 65, 255, 0);
-    //cvtColor(frame, hsv, CV_BGR2HSV);
-    //cvtColor(frame, dst, CV_BGR2GRAY);
-    //blur(dst, hsv , Size(3,3));
-    //Canny(hsv, binary, 20 , 60, 3);
-    //threshold(dst, binary, 65, 255, 0);
-    //gpu::matchTemplate(thr_gpu, src_d, dst_gpu , CV_TM_SQDIFF_NORMED);
-    
-    //cuda::normalize( dst_gpu, norm_gpu, 0, 1, NORM_MINMAX, -1, GpuMat() );
-    //cuda::minMaxLoc( norm_gpu, &minVal, &maxVal, &minLoc, &maxLoc, GpuMat() );
-    //matchLoc = minLoc;
-    //thr_gpu.download(binary);
      inRange(hsv, Scalar(40,47,40), Scalar(88,115,255), binary);
 
     std::vector < std::vector<Point> > contours;
