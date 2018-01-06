@@ -15,4 +15,11 @@ object RobotMap {
     val LEFT_ENCODER2 = 7
 
     val PCM_CAN = 0
+
+    val PISTON_ONE_0 = 0
+    val PISTON_ONE_1 = 1
+
+    val PISTON_TWO_0 = 2
+    val PISTON_TWO_1 = 3
+
 }

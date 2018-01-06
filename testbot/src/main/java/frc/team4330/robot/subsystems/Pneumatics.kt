@@ -1,20 +1,15 @@
 package frc.team4330.robot.subsystems
 
-import edu.wpi.first.wpilibj.Compressor
+import frc.team4330.robot.IO.RobotMap
 
-class Pneumatics(canID: Int) : SubsystemBase() {
-
-    val comp: Compressor
+class Pneumatics : SubsystemBase() {
+    val p1: DoubleSolenoid
+    val p2: DoubleSolenoid
 
     init {
-        comp = Compressor(canID)
+        p1 = DoubleSolenoid(RobotMap.PISTON_ONE_0, RobotMap.PISTON_ONE_1)
+        p2 = DoubleSolenoid(RobotMap.PISTON_TWO_0, RobotMap.PISTON_TWO_1)
     }
 
-    fun init() {
-        comp.start()
-    }
 
-    fun stop() {
-        comp.stop()
-    }
 }
