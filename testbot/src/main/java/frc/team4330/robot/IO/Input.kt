@@ -25,5 +25,8 @@ class Input(port: Int) {
     val rightTriggerAxis: Double
         get() = xbox.getTriggerAxis(Hand.kRight)
 
+    val joystickLeftPress: Boolean
+        get() = xbox.getStickButton(Hand.kLeft)
+
 
 }

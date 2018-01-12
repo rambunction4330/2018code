@@ -12,7 +12,7 @@ plugins {
     id "java"
     id "eclipse"
     id "idea"
-    id "jaci.openrio.gradle.GradleRIO" version "2018.01.06"
+    id "jaci.openrio.gradle.GradleRIO" version "2018.01.11"
 }
 
 apply plugin: "kotlin"
@@ -47,6 +47,7 @@ dependencies {
     compile ctre()
     compile navx()
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile pathfinder()
 }
 
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')

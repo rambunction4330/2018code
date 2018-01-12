@@ -1,40 +1,46 @@
 package frc.team4330.robot.subsystems
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX
+import edu.wpi.first.wpilibj.SpeedControllerGroup
+import edu.wpi.first.wpilibj.drive.DifferentialDrive
 import frc.team4330.robot.IO.Input
 import frc.team4330.robot.IO.RobotMap
-import frc.team4330.robot.drivebase.Talon
-import frc.team4330.robot.drivebase.Talons
-import frc.team4330.robot.drivebase.Victor
+import jaci.pathfinder.Pathfinder
+import jaci.pathfinder.Trajectory
+import jaci.pathfinder.Waypoint
+
 
 class robotDrive : SubsystemBase() {
 
-    private val rightTal: Talon
-    private val leftTal: Talon
-    private val rightVic: Victor
-    private val leftVic: Victor
+    private val rightTal: WPI_TalonSRX
+    private val leftTal: WPI_TalonSRX
+    private val rightVic: WPI_VictorSPX
+    private val leftVic: WPI_VictorSPX
     private var reverse: Boolean = false
+    private val mLeft: SpeedControllerGroup
+    private val mRight: SpeedControllerGroup
+    private val mDrive: DifferentialDrive
 
     init {
-        rightVic = Victor(RobotMap.RIGHT_VICTOR_PWM)
-        rightTal = Talon(RobotMap.RIGHT_TALON)
+        rightVic = WPI_VictorSPX(RobotMap.RIGHT_VICTOR_1)
+        rightTal = WPI_TalonSRX(RobotMap.RIGHT_TALON)
 
-        leftVic = Victor(RobotMap.LEFT_VICTOR_PWM)
-        leftTal = Talon(RobotMap.LEFT_TALON)
+        leftVic = WPI_VictorSPX(RobotMap.LEFT_VICTOR_1)
+        leftTal = WPI_TalonSRX(RobotMap.LEFT_TALON)
+
+        mLeft = SpeedControllerGroup(leftTal, leftVic)
+        mRight = SpeedControllerGroup(rightTal, rightVic)
+
+        mDrive = DifferentialDrive(mLeft, mRight)
+
     }
 
-    fun autoDrive(left: Double, right: Double) {
-        leftTal.speed = left * -1.0
-        leftVic.speed = left * -1.0
-
-        rightTal.speed = right
-        rightVic.speed = right
+    fun autoDrive(xbox: Input) {
+       mDrive.curvatureDrive(xbox.joystickLeftYAxis, xbox.joystickLeftXAxis, xbox.joystickLeftPress)
     }
 
-    fun tankDrive(xbox: Input) {
-        if (reverse) {
-            autoDrive(xbox.joystickRightYAxis, xbox.joystickLeftYAxis)
-        } else
-            autoDrive(xbox.joystickLeftYAxis, xbox.joystickRightYAxis)
-    }
+    fun pathgen() {
 
+    }
 }
