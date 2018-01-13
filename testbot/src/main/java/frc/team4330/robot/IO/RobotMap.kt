@@ -2,10 +2,10 @@ package frc.team4330.robot.IO
 
 
 object RobotMap {
-    val RIGHT_VICTOR_PWM = 4
-    val LEFT_VICTOR_PWM = 5
+    val RIGHT_VICTOR_PWM = 0
+    val LEFT_VICTOR_PWM = 3
     val LEFT_TALON = 2
-    val RIGHT_TALON = 3
+    val RIGHT_TALON = 1
 
     val DRIVE_JOYSTICK = 0
 

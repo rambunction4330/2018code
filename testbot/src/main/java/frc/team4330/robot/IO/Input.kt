@@ -25,5 +25,12 @@ class Input(port: Int) {
     val rightTriggerAxis: Double
         get() = xbox.getTriggerAxis(Hand.kRight)
 
+    val aButton: Boolean
+        get() = xbox.aButton
+
+    fun ifTriggerPressed(): Boolean {
+        return rightTriggerAxis > 0 || rightTriggerAxis < 0
+    }
+
 
 }
