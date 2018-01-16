@@ -2,7 +2,7 @@ package frc.team4330.robot.subsystems
 
 import frc.team4330.robot.IO.RobotMap
 
-class Pneumatics : SubsystemBase() {
+class Pneumatics {
     val p1: DoubleSolenoid
     val p2: DoubleSolenoid
 

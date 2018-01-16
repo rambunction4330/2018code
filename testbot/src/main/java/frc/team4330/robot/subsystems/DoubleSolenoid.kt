@@ -2,7 +2,7 @@ package frc.team4330.robot.subsystems
 
 import edu.wpi.first.wpilibj.DoubleSolenoid
 
-class DoubleSolenoid(port1: Int, port2: Int) : SubsystemBase() {
+class DoubleSolenoid(port1: Int, port2: Int) {
     val solenoid: DoubleSolenoid = DoubleSolenoid(port1, port2)
 
     fun forward() {

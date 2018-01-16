@@ -2,7 +2,7 @@ package frc.team4330.robot.subsystems
 
 import edu.wpi.first.wpilibj.Compressor
 
-class Compressor(canID: Int) : SubsystemBase() {
+class Compressor(canID: Int) {
 
     val comp: Compressor
 

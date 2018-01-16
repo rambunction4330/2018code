@@ -42,7 +42,7 @@ class Robot : IterativeRobot() {
     override fun autonomousPeriodic() {}
 
     override fun teleopPeriodic() {
-        tank.tankDrive(xbox)
+        tank.curveDrive(xbox)
     }
 
     override fun testPeriodic() {}
