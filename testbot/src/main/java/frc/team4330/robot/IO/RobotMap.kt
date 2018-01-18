@@ -2,8 +2,8 @@ package frc.team4330.robot.IO
 
 
 object RobotMap {
-    val RIGHT_VICTOR_PWM = 4
-    val LEFT_VICTOR_PWM = 5
+    val RIGHT_VICTOR_PWM = 5
+    val LEFT_VICTOR_PWM = 4
     val LEFT_TALON = 2
     val RIGHT_TALON = 3
 

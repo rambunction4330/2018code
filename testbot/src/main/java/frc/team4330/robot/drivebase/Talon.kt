@@ -12,6 +12,6 @@ class Talon(port: Int) : motors() {
             throw IllegalArgumentException("Speed must be between -1 and 1")
         }
         else{
-            canTalon.set(ControlMode.PercentOutput, speed)
+            canTalon.set(ControlMode.Velocity, speed)
         }
 }

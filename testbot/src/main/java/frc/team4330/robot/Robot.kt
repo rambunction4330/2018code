@@ -1,10 +1,12 @@
 package frc.team4330.robot
 
+import edu.wpi.first.wpilibj.CameraServer
 import edu.wpi.first.wpilibj.IterativeRobot
 import edu.wpi.first.wpilibj.command.Scheduler
 import frc.team4330.robot.IO.Input
 import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.subsystems.Compressor
+import frc.team4330.robot.subsystems.NavX
 import frc.team4330.robot.subsystems.robotDrive
 
 class Robot : IterativeRobot() {
@@ -15,12 +17,16 @@ class Robot : IterativeRobot() {
         var tank: robotDrive = robotDrive()
 
         var comp: Compressor = Compressor(RobotMap.PCM_CAN)
+
+        val gyro: NavX = NavX()
+
     }
 
     private lateinit var scheduler: Scheduler
 
     override fun robotInit() {
         comp.init()
+        CameraServer.getInstance().startAutomaticCapture()
     }
 
     override fun disabledInit() {
@@ -42,7 +48,8 @@ class Robot : IterativeRobot() {
     override fun autonomousPeriodic() {}
 
     override fun teleopPeriodic() {
-        tank.tankDrive(xbox)
+        tank.curveDrive(xbox)
+
     }
 
     override fun testPeriodic() {}
