@@ -1,11 +1,14 @@
 package frc.team4330.robot.IO
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX
+
 
 object RobotMap {
-    val RIGHT_VICTOR_PWM = 5
-    val LEFT_VICTOR_PWM = 4
-    val LEFT_TALON = 2
-    val RIGHT_TALON = 3
+    val RIGHT_VICTOR: WPI_VictorSPX = WPI_VictorSPX(5)
+    val LEFT_VICTOR: WPI_VictorSPX = WPI_VictorSPX(4)
+    val LEFT_TALON: WPI_TalonSRX = WPI_TalonSRX(2)
+    val RIGHT_TALON: WPI_TalonSRX = WPI_TalonSRX(3)
 
     val DRIVE_JOYSTICK = 0
 
