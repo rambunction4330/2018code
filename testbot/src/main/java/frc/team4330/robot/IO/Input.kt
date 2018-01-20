@@ -25,6 +25,12 @@ class Input(port: Int) {
     val rightTriggerAxis: Double
         get() = xbox.getTriggerAxis(Hand.kRight)
 
+    val rightBumper: Boolean
+        get() = xbox.getBumper(Hand.kRight)
+
+    val leftBumper: Boolean
+        get() = xbox.getBumper(Hand.kLeft)
+
     fun isRightTriggerPressed(): Boolean {
         return rightTriggerAxis != 0.0
     }
