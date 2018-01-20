@@ -16,6 +16,11 @@ class prototypes : SubsystemBase() {
             RobotMap.CLIMB_LEFT.set(-Constants.CLIMB_SPEED)
             RobotMap.CLIMB_RIGHT.set(Constants.CLIMB_SPEED)
         }
+
+        if (xbox.aButton) {
+            RobotMap.SPOOL1.set(Constants.SPOOL_SPEED)
+            RobotMap.SPOOL2.set(Constants.SPOOL_SPEED)
+        }
     }
 
 }

@@ -14,6 +14,9 @@ object RobotMap {
     val CLIMB_RIGHT: VictorSP = VictorSP(8)
     val CLIMB_LEFT: VictorSP = VictorSP(9)
 
+    val SPOOL1: VictorSP = VictorSP(0)
+    val SPOOL2: VictorSP = VictorSP(1)
+
     val DRIVE_JOYSTICK = 0
 
     val RIGHT_ENCODER1 = 8
