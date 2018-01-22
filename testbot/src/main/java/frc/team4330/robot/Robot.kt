@@ -37,8 +37,13 @@ class Robot : IterativeRobot() {
         RobotMap.LEFT_TALON.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10)
 
         SmartDashboard.putNumber("Right Sensor Position", RobotMap.RIGHT_TALON.getSelectedSensorPosition(0).toDouble())
+        SmartDashboard.putNumber("Left Sensor Position", RobotMap.LEFT_TALON.getSelectedSensorPosition(0).toDouble())
 
 
+        SmartDashboard.putNumber("Right Sensor Velocity", RobotMap.RIGHT_TALON.getSelectedSensorVelocity(0).toDouble())
+        SmartDashboard.putNumber("Left Sensor Velocity", RobotMap.LEFT_TALON.getSelectedSensorVelocity(0).toDouble())
+
+        
 
     }
 
