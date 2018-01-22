@@ -7,7 +7,6 @@ import frc.team4330.robot.subsystems.prototypes
 class Climber : Command() {
 
     val climb: prototypes
-
     init {
         climb = prototypes()
     }
@@ -19,7 +18,7 @@ class Climber : Command() {
     }
 
     override fun isFinished(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return false
     }
 
 }
