@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = "1.2.10"
+    ext.kotlin_version = "1.2.21"
     repositories {
         mavenCentral()
     }
@@ -12,7 +12,7 @@ plugins {
     id "java"
     id "eclipse"
     id "idea"
-    id "jaci.openrio.gradle.GradleRIO" version "2018.01.15"
+    id "jaci.openrio.gradle.GradleRIO" version "2018.01.22"
 }
 
 apply plugin: "kotlin"
@@ -56,4 +56,8 @@ dependencies {
 jar {
     from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     manifest jaci.openrio.gradle.GradleRIOPlugin.javaManifest(ROBOT_CLASS)
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.4'
 }

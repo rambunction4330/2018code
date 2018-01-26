@@ -2,7 +2,7 @@ package frc.team4330.robot.subsystems
 
 import edu.wpi.first.wpilibj.Solenoid
 
-class SingleSolenoid(port1: Int, port2: Int) {
+class SingleSolenoid(port1: Int) {
     val solenoid: Solenoid = Solenoid(port1)
 
     fun forward() {

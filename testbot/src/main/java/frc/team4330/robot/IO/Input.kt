@@ -28,5 +28,11 @@ class Input(port: Int) {
     val joystickLeftPress: Boolean
         get() = xbox.getStickButton(Hand.kLeft)
 
+    val aButton: Boolean
+        get() = xbox.aButton
+
+    val bButton: Boolean
+        get() = xbox.bButton
+
 
 }
