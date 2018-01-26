@@ -10,8 +10,8 @@ class robotDrive {
 
     init {
 
-        RobotMap.RIGHT_VICTOR_1.configOpenloopRamp(.6, 0)
-        RobotMap.LEFT_VICTOR_1.configOpenloopRamp(.6, 0)
+        RobotMap.RIGHT_VICTOR_1.configOpenloopRamp(.5, 0)
+        RobotMap.LEFT_VICTOR_1.configOpenloopRamp(.5, 0)
         RobotMap.RIGHT_VICTOR_2.follow(RobotMap.RIGHT_VICTOR_1)
         RobotMap.LEFT_VICTOR_2.follow(RobotMap.LEFT_VICTOR_1)
 

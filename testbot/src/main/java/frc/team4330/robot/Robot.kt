@@ -1,5 +1,6 @@
 package frc.team4330.robot
 
+import edu.wpi.first.wpilibj.CameraServer
 import edu.wpi.first.wpilibj.IterativeRobot
 import edu.wpi.first.wpilibj.command.Scheduler
 import frc.team4330.robot.IO.Input
@@ -22,6 +23,7 @@ class Robot : IterativeRobot() {
     private lateinit var scheduler: Scheduler
 
     override fun robotInit() {
+        CameraServer.getInstance().startAutomaticCapture()
     }
 
     override fun disabledInit() {
