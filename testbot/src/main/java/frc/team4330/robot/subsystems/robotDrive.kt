@@ -31,5 +31,9 @@ class robotDrive : SubsystemBase() {
         mDrive.curvatureDrive(.8 * xbox.joystickLeftYAxis, xbox.joystickRightXAxis, xbox.isRightTriggerPressed())
     }
 
+    fun testDrive(xbox: Input) {
+
+    }
+
    
 }
