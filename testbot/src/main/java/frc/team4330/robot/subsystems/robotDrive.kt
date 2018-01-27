@@ -19,7 +19,7 @@ class robotDrive {
     }
 
     fun tankDrive(xbox: Input) {
-        mDrive.arcadeDrive(xbox.joystickLeftYAxis, xbox.joystickRightXAxis, false)
+        mDrive.arcadeDrive(xbox.joystickLeftYAxis, .7 * xbox.joystickRightXAxis, false)
     }
 
 }
