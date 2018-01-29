@@ -1,6 +1,6 @@
 package frc.team4330.robot.IO
 
-import edu.wpi.first.wpilibj.GenericHID.Hand
+import  edu.wpi.first.wpilibj.GenericHID.Hand
 import edu.wpi.first.wpilibj.XboxController
 
 class Input(port: Int) {
