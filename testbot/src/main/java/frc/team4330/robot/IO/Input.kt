@@ -37,6 +37,12 @@ class Input(port: Int) {
     val bButton: Boolean
         get() = xbox.bButton
 
+    val xButton: Boolean
+        get() = xbox.xButton
+
+    val yButton: Boolean
+        get() = xbox.yButton
+
     fun isRightTriggerPressed(): Boolean {
         return rightTriggerAxis != 0.0
     }
