@@ -6,9 +6,8 @@
 /*----------------------------------------------------------------------------*/
 package frc.team4330.robot.drivebase
 
-import edu.wpi.first.wpilibj.drive.RobotDriveBase
-import edu.wpi.first.wpilibj.SpeedControllerGroup
 import edu.wpi.first.wpilibj.SpeedController
+import edu.wpi.first.wpilibj.drive.RobotDriveBase
 import edu.wpi.first.wpilibj.hal.FRCNetComm.tInstances
 import edu.wpi.first.wpilibj.hal.FRCNetComm.tResourceType
 import edu.wpi.first.wpilibj.hal.HAL

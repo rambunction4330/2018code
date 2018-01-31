@@ -20,14 +20,23 @@ class prototypes : SubsystemBase() {
     }
 
     fun move(xbox: Input) {
-        if (xbox.rightBumper) {
-            RobotMap.CLIMB_LEFT.set(ControlMode.PercentOutput, Constants.CLIMB_SPEED)
-        } else if (xbox.leftBumper) {
-            RobotMap.CLIMB_LEFT.set(ControlMode.PercentOutput, -Constants.CLIMB_SPEED)
-        } else if (xbox.aButton) {
-            RobotMap.SPOOL1.set(ControlMode.PercentOutput, Constants.SPOOL_SPEED)
-        } else if (xbox.bButton) {
-            RobotMap.SPOOL1.set(ControlMode.PercentOutput, -Constants.SPOOL_SPEED)
+
+        when {
+            xbox.rightBumper -> RobotMap.CLIMB_LEFT.set(ControlMode.PercentOutput, Constants.CLIMB_SPEED)
+            xbox.leftBumper -> RobotMap.CLIMB_LEFT.set(ControlMode.PercentOutput, -Constants.CLIMB_SPEED)
+            xbox.aButton -> {
+                RobotMap.SPOOL1.set(ControlMode.PercentOutput, Constants.SPOOL_SPEED)
+                RobotMap.SPOOL2.set(ControlMode.PercentOutput, Constants.SPOOL_SPEED)
+            }
+            xbox.bButton -> {
+                RobotMap.SPOOL1.set(ControlMode.PercentOutput, -Constants.SPOOL_SPEED)
+                RobotMap.SPOOL2.set(ControlMode.PercentOutput, -Constants.SPOOL_SPEED)
+            }
+            else -> {
+                RobotMap.CLIMB_LEFT.set(ControlMode.PercentOutput, 0.0)
+                RobotMap.SPOOL2.set(ControlMode.PercentOutput, 0.0)
+                RobotMap.SPOOL1.set(ControlMode.PercentOutput, 0.0)
+            }
         }
     }
 

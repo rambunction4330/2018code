@@ -4,8 +4,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX
 import com.ctre.phoenix.motorcontrol.can.VictorSPX
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX
-import edu.wpi.first.wpilibj.Spark
-import edu.wpi.first.wpilibj.VictorSP
 
 
 object RobotMap {
@@ -14,10 +12,10 @@ object RobotMap {
     val LEFT_TALON: WPI_TalonSRX = WPI_TalonSRX(2)
     val RIGHT_TALON: WPI_TalonSRX = WPI_TalonSRX(3)
 
-    val CLIMB_LEFT: TalonSRX = TalonSRX(7)
+    val CLIMB_LEFT: TalonSRX = TalonSRX(8)
 
-    val SPOOL1: TalonSRX = TalonSRX(8)
-    val SPOOL2: VictorSPX = VictorSPX(9)
+    val SPOOL1: TalonSRX = TalonSRX(6)
+    val SPOOL2: VictorSPX = VictorSPX(7)
 
     val DRIVE_JOYSTICK = 0
 
