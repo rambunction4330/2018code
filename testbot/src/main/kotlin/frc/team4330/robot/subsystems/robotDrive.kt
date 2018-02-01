@@ -14,6 +14,7 @@ class robotDrive : SubsystemBase() {
     private val mLeft: SpeedControllerGroup
 //    private val right: EncoderFollower
 //    private val left: EncoderFollower
+private var shifted: Boolean
 
     init {
 //        rightVic.follow(rightTal)
@@ -26,17 +27,18 @@ class robotDrive : SubsystemBase() {
 
 //        right = EncoderFollower()
 //        left = EncoderFollower()
+        shifted = false
     }
 
     fun curveDrive(xbox: Input) {
         mDrive.curvatureDrive(.8 * xbox.joystickLeftYAxis, xbox.joystickRightXAxis, xbox.isRightTriggerPressed())
     }
 
-    fun testDrive(xbox: Input) {
-
-
-
+    fun upShift() {
+        if (!shifted) RobotMap.rightShift.forward(); shifted = true
     }
 
-   
+    fun downShift() {
+        if (shifted) RobotMap.rightShift.reverse(); shifted = false
+    }
 }
