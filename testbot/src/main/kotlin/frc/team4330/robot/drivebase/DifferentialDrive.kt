@@ -6,7 +6,8 @@
 /*----------------------------------------------------------------------------*/
 package frc.team4330.robot.drivebase
 
-import edu.wpi.first.wpilibj.SpeedController
+import com.ctre.phoenix.motorcontrol.ControlMode
+import com.ctre.phoenix.motorcontrol.IMotorController
 import edu.wpi.first.wpilibj.drive.RobotDriveBase
 import edu.wpi.first.wpilibj.hal.FRCNetComm.tInstances
 import edu.wpi.first.wpilibj.hal.FRCNetComm.tResourceType
@@ -108,7 +109,7 @@ class DifferentialDrive
  * To pass multiple motors per side, use a [SpeedControllerGroup]. If a motor needs to be
  * inverted, do so before passing it in.
  */
-(private val m_leftMotor: SpeedController, private val m_rightMotor: SpeedController) : RobotDriveBase() {
+(private val m_leftMotor: IMotorController, private val m_rightMotor: IMotorController) : RobotDriveBase() {
 
     private var m_quickStopThreshold = kDefaultQuickStopThreshold
     private var m_quickStopAlpha = kDefaultQuickStopAlpha
@@ -177,8 +178,8 @@ class DifferentialDrive
             }
         }
 
-        m_leftMotor.set(limit(leftMotorOutput) * m_maxOutput)
-        m_rightMotor.set(-limit(rightMotorOutput) * m_maxOutput)
+        m_leftMotor.set(ControlMode.PercentOutput, limit(leftMotorOutput) * m_maxOutput)
+        m_rightMotor.set(ControlMode.PercentOutput, -limit(rightMotorOutput) * m_maxOutput)
 
         m_safetyHelper.feed()
     }
@@ -254,8 +255,8 @@ class DifferentialDrive
             }
         }
 
-        m_leftMotor.set(leftMotorOutput * m_maxOutput)
-        m_rightMotor.set(-rightMotorOutput * m_maxOutput)
+        m_leftMotor.set(ControlMode.PercentOutput, leftMotorOutput * m_maxOutput)
+        m_rightMotor.set(ControlMode.PercentOutput, -rightMotorOutput * m_maxOutput)
 
         m_safetyHelper.feed()
     }
@@ -291,8 +292,8 @@ class DifferentialDrive
             rightSpeed = Math.copySign(rightSpeed * rightSpeed, rightSpeed)
         }
 
-        m_leftMotor.set(leftSpeed * m_maxOutput)
-        m_rightMotor.set(-rightSpeed * m_maxOutput)
+        m_leftMotor.set(ControlMode.PercentOutput, leftSpeed * m_maxOutput)
+        m_rightMotor.set(ControlMode.PercentOutput, -rightSpeed * m_maxOutput)
 
         m_safetyHelper.feed()
     }
@@ -332,8 +333,8 @@ class DifferentialDrive
     }
 
     override fun stopMotor() {
-        m_leftMotor.stopMotor()
-        m_rightMotor.stopMotor()
+        m_leftMotor.set(ControlMode.PercentOutput, 0.0)
+        m_rightMotor.set(ControlMode.PercentOutput, 0.0)
         m_safetyHelper.feed()
     }
 
@@ -343,11 +344,11 @@ class DifferentialDrive
 
     override fun initSendable(builder: SendableBuilder) {
         builder.setSmartDashboardType("DifferentialDrive")
-        builder.addDoubleProperty("Left Motor Speed", m_leftMotor::get, m_leftMotor::set)
+        builder.addDoubleProperty("Left Motor Speed", { m_leftMotor.motorOutputPercent }, { x -> m_leftMotor.set(ControlMode.PercentOutput, x) })
         builder.addDoubleProperty(
                 "Right Motor Speed",
-                { -m_rightMotor.get() }
-        ) { x -> m_rightMotor.set(-x) }
+                { -m_rightMotor.motorOutputPercent }
+        ) { x -> m_rightMotor.set(ControlMode.PercentOutput, -x) }
     }
 
     companion object {

@@ -8,6 +8,8 @@
 package frc.team4330.robot.drivebase
 
 
+import com.ctre.phoenix.motorcontrol.ControlMode
+import com.ctre.phoenix.motorcontrol.IMotorController
 import edu.wpi.first.wpilibj.SendableBase
 import edu.wpi.first.wpilibj.SpeedController
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder
@@ -21,13 +23,13 @@ class SpeedControllerGroup
  *
  * @param speedControllers The SpeedControllers to add
  */
-(speedController: SpeedController,
- vararg speedControllers: SpeedController) : SendableBase(), SpeedController {
+(speedController: IMotorController,
+ vararg speedControllers: IMotorController) : SendableBase(), SpeedController {
     private var m_isInverted = false
-    private val m_speedControllers: Array<SpeedController?>
+    private val m_speedControllers: Array<IMotorController?>
 
     init {
-        m_speedControllers = arrayOfNulls<SpeedController>(speedControllers.size + 1)
+        m_speedControllers = arrayOfNulls<IMotorController>(speedControllers.size + 1)
         m_speedControllers[0] = speedController
         addChild(speedController)
         for (i in speedControllers.indices) {
@@ -40,13 +42,13 @@ class SpeedControllerGroup
 
     override fun set(speed: Double) {
         for (speedController in m_speedControllers) {
-            speedController?.set(if (m_isInverted) -speed else speed)
+            speedController?.set(ControlMode.PercentOutput, if (m_isInverted) -speed else speed)
         }
     }
 
     override fun get(): Double {
         return if (m_speedControllers.size > 0) {
-            m_speedControllers[0]?.get()!! * if (m_isInverted) -1 else 1
+            m_speedControllers[0]?.motorOutputPercent!! * if (m_isInverted) -1 else 1
         } else 0.0
     }
 
@@ -60,13 +62,13 @@ class SpeedControllerGroup
 
     override fun disable() {
         for (speedController in m_speedControllers) {
-            speedController?.disable()
+            speedController?.set(ControlMode.PercentOutput, 0.0)
         }
     }
 
     override fun stopMotor() {
         for (speedController in m_speedControllers) {
-            speedController?.stopMotor()
+            speedController?.set(ControlMode.PercentOutput, 0.0)
         }
     }
 

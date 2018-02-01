@@ -20,14 +20,16 @@ object RobotMap {
 
     val DRIVE_JOYSTICK = 0
 
-    val RIGHT_ENCODER1 = 8
-    val RIGHT_ENCODER2 = 9
-    val LEFT_ENCODER1 = 6
-    val LEFT_ENCODER2 = 7
-
     val PCM_CAN = 1
 
     val rightShift: SingleSolenoid = SingleSolenoid(1)
     val leftShift: SingleSolenoid = SingleSolenoid(2)
+
+    val rightEncPos = RIGHT_TALON.getSelectedSensorPosition(0)
+    val leftEncPos = LEFT_TALON.getSelectedSensorPosition(0)
+
+    val rightEncVel = RIGHT_TALON.getSelectedSensorVelocity(0)
+    val leftEncVel = LEFT_TALON.getSelectedSensorVelocity(0)
+
 
 }
