@@ -1,14 +1,15 @@
 package frc.team4330.robot
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice
+import com.kauailabs.navx.frc.AHRS
 import edu.wpi.first.wpilibj.CameraServer
+import edu.wpi.first.wpilibj.I2C
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.command.Scheduler
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import frc.team4330.robot.IO.Input
 import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.subsystems.Compressor
-import frc.team4330.robot.subsystems.NavX
 import frc.team4330.robot.subsystems.prototypes
 import frc.team4330.robot.subsystems.robotDrive
 
@@ -21,7 +22,9 @@ class Robot : TimedRobot() {
 
         var comp: Compressor = Compressor(RobotMap.PCM_CAN)
 
-        val gyro: NavX = NavX()
+        val gyro: AHRS = AHRS(I2C.Port.kMXP)
+
+
 
         val prototypes: prototypes = prototypes()
 
@@ -71,6 +74,9 @@ class Robot : TimedRobot() {
 
         SmartDashboard.putNumber("Right Sensor Velocity", Vel(RobotMap.RIGHT_TALON.getSelectedSensorVelocity(0).toDouble(), 10.71))
         SmartDashboard.putNumber("Left Sensor Velocity", Vel(RobotMap.LEFT_TALON.getSelectedSensorVelocity(0).toDouble(), 10.71))
+
+        print(gyro.angle)
+        SmartDashboard.putNumber("Gyro", gyro.angle)
 
     }
 

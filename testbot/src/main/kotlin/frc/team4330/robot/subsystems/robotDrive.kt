@@ -1,7 +1,6 @@
 package frc.team4330.robot.subsystems
 
 //import edu.wpi.first.wpilibj.drive.DifferentialDrive
-import edu.wpi.first.wpilibj.SpeedControllerGroup
 import frc.team4330.robot.IO.Input
 import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.drivebase.DifferentialDrive
@@ -10,8 +9,6 @@ class robotDrive : SubsystemBase() {
 
     private var reverse: Boolean = false
     private val mDrive: DifferentialDrive
-    private val mRight: SpeedControllerGroup
-    private val mLeft: SpeedControllerGroup
 //    private val right: EncoderFollower
 //    private val left: EncoderFollower
 private var shifted: Boolean
@@ -19,11 +16,10 @@ private var shifted: Boolean
     init {
 //        rightVic.follow(rightTal)
 //        leftVic.follow(leftTal)
+        RobotMap.RIGHT_VICTOR.follow(RobotMap.RIGHT_TALON)
+        RobotMap.LEFT_TALON.follow(RobotMap.LEFT_TALON)
 
-        mLeft = SpeedControllerGroup(RobotMap.LEFT_TALON, RobotMap.LEFT_VICTOR)
-        mRight = SpeedControllerGroup(RobotMap.RIGHT_TALON, RobotMap.RIGHT_VICTOR)
-
-        mDrive = DifferentialDrive(mLeft, mRight)
+        mDrive = DifferentialDrive(RobotMap.LEFT_TALON, RobotMap.RIGHT_TALON)
 
 //        right = EncoderFollower()
 //        left = EncoderFollower()
