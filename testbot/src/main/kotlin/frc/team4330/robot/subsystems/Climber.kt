@@ -5,7 +5,7 @@ import frc.team4330.robot.IO.Constants
 import frc.team4330.robot.IO.Input
 import frc.team4330.robot.IO.RobotMap
 
-class prototypes : SubsystemBase() {
+class Climber : SubsystemBase() {
 
     init {
         RobotMap.CLIMB_LEFT.configOpenloopRamp(.5, 10)

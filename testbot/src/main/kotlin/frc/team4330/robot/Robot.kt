@@ -6,12 +6,11 @@ import edu.wpi.first.wpilibj.CameraServer
 import edu.wpi.first.wpilibj.I2C
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.command.Scheduler
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import frc.team4330.robot.IO.Input
 import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.Pathfinder.motion
+import frc.team4330.robot.subsystems.Climber
 import frc.team4330.robot.subsystems.Compressor
-import frc.team4330.robot.subsystems.prototypes
 import frc.team4330.robot.subsystems.robotDrive
 
 class Robot : TimedRobot() {
@@ -27,7 +26,7 @@ class Robot : TimedRobot() {
 
         val MP: motion = motion()
 
-        val prototypes: prototypes = prototypes()
+        val Climber: Climber = Climber()
 
     }
 
@@ -64,7 +63,7 @@ class Robot : TimedRobot() {
 
     override fun teleopPeriodic() {
         tank.curveDrive(xbox)
-        prototypes.move(xbox)
+        Climber.move(xbox)
     }
 
     override fun testPeriodic() {}
