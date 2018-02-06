@@ -35,4 +35,9 @@ class motion {
         rightFollow.configurePIDVA(1.0, 0.0, 0.0, 1.0 / 18.0, 0.0)
 
     }
+
+    fun move() {
+        RobotMap.LEFT_TALON.set(l + turn)
+        RobotMap.RIGHT_TALON.set(r - turn)
+    }
 }
