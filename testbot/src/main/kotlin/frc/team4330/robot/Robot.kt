@@ -62,18 +62,6 @@ class Robot : TimedRobot() {
     override fun teleopPeriodic() {
         tank.curveDrive(xbox)
         prototypes.move(xbox)
-        var Vel = { a: Double, b: Double -> (a / b) / 12 / 6 }
-
-        SmartDashboard.putNumber("Right Sensor Position", RobotMap.RIGHT_TALON.getSelectedSensorPosition(0).toDouble())
-        SmartDashboard.putNumber("Left Sensor Position", RobotMap.LEFT_TALON.getSelectedSensorPosition(0).toDouble())
-
-
-        SmartDashboard.putNumber("Right Sensor Velocity", Vel(RobotMap.RIGHT_TALON.getSelectedSensorVelocity(0).toDouble(), 10.71))
-        SmartDashboard.putNumber("Left Sensor Velocity", Vel(RobotMap.LEFT_TALON.getSelectedSensorVelocity(0).toDouble(), 10.71))
-
-        print(gyro.angle)
-        SmartDashboard.putNumber("Gyro", gyro.angle)
-
     }
 
     override fun testPeriodic() {}
