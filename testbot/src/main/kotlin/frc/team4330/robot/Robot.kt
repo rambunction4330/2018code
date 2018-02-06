@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.command.Scheduler
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import frc.team4330.robot.IO.Input
 import frc.team4330.robot.IO.RobotMap
+import frc.team4330.robot.Pathfinder.motion
 import frc.team4330.robot.subsystems.Compressor
 import frc.team4330.robot.subsystems.prototypes
 import frc.team4330.robot.subsystems.robotDrive
@@ -24,7 +25,7 @@ class Robot : TimedRobot() {
 
         val gyro: AHRS = AHRS(I2C.Port.kMXP)
 
-
+        val MP: motion = motion()
 
         val prototypes: prototypes = prototypes()
 
@@ -57,7 +58,9 @@ class Robot : TimedRobot() {
 
     override fun disabledPeriodic() {}
 
-    override fun autonomousPeriodic() {}
+    override fun autonomousPeriodic() {
+        MP.move()
+    }
 
     override fun teleopPeriodic() {
         tank.curveDrive(xbox)
