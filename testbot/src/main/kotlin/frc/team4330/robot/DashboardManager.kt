@@ -3,6 +3,7 @@ package frc.team4330.robot
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import frc.team4330.robot.IO.RobotMap
+import frc.team4330.robot.subsystems.robotDrive
 
 class DashboardManager {
 
@@ -21,6 +22,8 @@ class DashboardManager {
 
         print(Robot.gyro.angle)
         SmartDashboard.putNumber("Gyro", Robot.gyro.angle)
+
+        SmartDashboard.putBoolean("Shifted", Robot.tank.shifted)
     }
 
     fun getStart() {

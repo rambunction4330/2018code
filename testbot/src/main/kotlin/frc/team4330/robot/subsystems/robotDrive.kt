@@ -11,7 +11,7 @@ class robotDrive : SubsystemBase() {
     private val mDrive: DifferentialDrive
 //    private val right: EncoderFollower
 //    private val left: EncoderFollower
-private var shifted: Boolean
+    var shifted: Boolean
 
     init {
 //        rightVic.follow(rightTal)

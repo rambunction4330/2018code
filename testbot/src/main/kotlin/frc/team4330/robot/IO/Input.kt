@@ -40,6 +40,9 @@ class Input(port: Int) {
     val xButton: Boolean
         get() = xbox.xButton
 
+    val xButtonPressed: Boolean
+        get() = xbox.xButtonPressed
+
     val yButton: Boolean
         get() = xbox.yButton
 
