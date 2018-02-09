@@ -17,6 +17,5 @@ class NavX : SubsystemBase() {
     }
 
     fun putToDash() {
-        SmartDashboard.putNumber("Gyro", angle())
     }
 }
