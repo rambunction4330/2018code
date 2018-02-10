@@ -7,6 +7,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX
 import com.kauailabs.navx.frc.AHRS
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader
 import edu.wpi.first.wpilibj.I2C
+import edu.wpi.first.wpilibj.NidecBrushless
 import frc.team4330.robot.subsystems.SingleSolenoid
 
 
@@ -43,4 +44,8 @@ object RobotMap {
     val leftEncVel = LEFT_TALON.getSelectedSensorVelocity(0)
 
     val gyro: AHRS = AHRS(I2C.Port.kMXP)
+
+    //Nidec Robot
+    val nidecMotor: NidecBrushless = NidecBrushless(1,5)
+
 }

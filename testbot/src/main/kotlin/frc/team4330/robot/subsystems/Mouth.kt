@@ -37,4 +37,12 @@ class Mouth : SubsystemBase() {
         RobotMap.LIP_LEFT.set(ControlMode.PercentOutput, 0.0 )
         RobotMap.LIP_RIGHT.set(ControlMode.PercentOutput,0.0 )
     }
+
+    fun openWide() {                   //opens "TEETH"
+        RobotMap.TEETH.forward()
+    }
+
+    fun closeMouth() {
+        RobotMap.TEETH.reverse()
+    }
 }

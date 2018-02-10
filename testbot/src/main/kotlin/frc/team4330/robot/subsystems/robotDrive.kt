@@ -30,6 +30,8 @@ class robotDrive : SubsystemBase() {
         mDrive.curvatureDrive(.8 * xbox.joystickLeftYAxis, xbox.joystickRightXAxis, xbox.isRightTriggerPressed())
     }
 
+
+
     fun upShift() {
         if (!shifted) RobotMap.rightShift.forward(); shifted = true
     }
