@@ -19,7 +19,14 @@ class robotDrive {
     }
 
     fun tankDrive(xbox: Input) {
-        mDrive.arcadeDrive(xbox.joystickLeftYAxis, .7 * xbox.joystickRightXAxis, false)
+        mDrive.arcadeDrive(xbox.joystickLeftYAxis * -1.0, xbox.joystickRightXAxis * 0.7, xbox.isTriggerPressed())
     }
 
+    fun autoDrive(speed: Double, rotation: Double, quickturn: Boolean) {
+        mDrive.curvatureDrive(speed, rotation, quickturn)
+    }
+
+    fun stop() {
+        mDrive.curvatureDrive(0.0,0.0,false)
+    }
 }

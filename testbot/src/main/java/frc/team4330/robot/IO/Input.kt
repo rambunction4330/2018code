@@ -34,5 +34,8 @@ class Input(port: Int) {
     val bButton: Boolean
         get() = xbox.bButton
 
+    fun isTriggerPressed(): Boolean {
+        return xbox.getTriggerAxis(Hand.kRight) != 0.0
+    }
 
 }
