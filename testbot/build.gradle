@@ -48,6 +48,7 @@ dependencies {
     compile navx()
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile pathfinder()
+    compile "org.apache.commons:commons-csv:1.5"
 }
 
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')
