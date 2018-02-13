@@ -6,10 +6,9 @@ import edu.wpi.first.wpilibj.CameraServer
 import edu.wpi.first.wpilibj.I2C
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.command.Scheduler
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import frc.team4330.robot.IO.Input
 import frc.team4330.robot.IO.RobotMap
-import frc.team4330.robot.Pathfinder.motion
-import frc.team4330.robot.subsystems.Climber
 import frc.team4330.robot.subsystems.Compressor
 import frc.team4330.robot.subsystems.Mouth
 import frc.team4330.robot.subsystems.robotDrive
@@ -25,11 +24,9 @@ class Robot : TimedRobot() {
 
         val gyro: AHRS = AHRS(I2C.Port.kMXP)
 
-        val MP: motion = motion()
-
-        val Climber: Climber = Climber()
-
         val mouth: Mouth = Mouth()
+
+     //   val prototypes: prototypes = prototypes()
 
     }
 
@@ -42,6 +39,9 @@ class Robot : TimedRobot() {
         RobotMap.RIGHT_TALON.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10)
         RobotMap.LEFT_TALON.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10)
         RobotMap.RIGHT_TALON.setSensorPhase(true)
+
+
+        
 
     }
 
@@ -61,13 +61,22 @@ class Robot : TimedRobot() {
 
     override fun disabledPeriodic() {}
 
-    override fun autonomousPeriodic() {
-        MP.move()
-    }
+    override fun autonomousPeriodic() {}
 
     override fun teleopPeriodic() {
         tank.curveDrive(xbox)
-        Climber.move(xbox)
+//        prototypes.move(xbox)
+        val Vel = { a: Double, b: Double -> (a / b) / 12 / 6 }
+
+        SmartDashboard.putNumber("Right Sensor Position", RobotMap.RIGHT_TALON.getSelectedSensorPosition(0).toDouble())
+        SmartDashboard.putNumber("Left Sensor Position", RobotMap.LEFT_TALON.getSelectedSensorPosition(0).toDouble())
+
+
+        SmartDashboard.putNumber("Right Sensor Velocity", Vel(RobotMap.RIGHT_TALON.getSelectedSensorVelocity(0).toDouble(), 10.71))
+        SmartDashboard.putNumber("Left Sensor Velocity", Vel(RobotMap.LEFT_TALON.getSelectedSensorVelocity(0).toDouble(), 10.71))
+
+        print(gyro.angle)
+        SmartDashboard.putNumber("Gyro", gyro.angle)
         comp.init()
     }
 
