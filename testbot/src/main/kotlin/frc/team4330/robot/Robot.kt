@@ -64,6 +64,7 @@ class Robot : TimedRobot() {
     override fun teleopPeriodic() {
         tank.curveDrive(xbox)
         Climber.move(xbox)
+        comp.init()
     }
 
     override fun testPeriodic() {}
