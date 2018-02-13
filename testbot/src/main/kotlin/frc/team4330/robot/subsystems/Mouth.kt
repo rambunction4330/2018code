@@ -22,6 +22,16 @@ class Mouth : SubsystemBase() {
             mouthUp = false
         }
     }
+    fun moveMouthUp() {            //moves mouth Up and down
+        if (!mouthUp) {
+            RobotMap.JAW.forward()
+            mouthUp = true
+        }
+        else {
+            RobotMap.JAW.reverse()
+            mouthUp = false
+        }
+    }
 
     fun succ() {                            //succs in cube
         RobotMap.LIP_LEFT.set(ControlMode.PercentOutput, 0.6)

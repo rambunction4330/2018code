@@ -11,6 +11,7 @@ import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.Pathfinder.motion
 import frc.team4330.robot.subsystems.Climber
 import frc.team4330.robot.subsystems.Compressor
+import frc.team4330.robot.subsystems.Mouth
 import frc.team4330.robot.subsystems.robotDrive
 
 class Robot : TimedRobot() {
@@ -28,6 +29,8 @@ class Robot : TimedRobot() {
 
         val Climber: Climber = Climber()
 
+        val mouth: Mouth = Mouth()
+
     }
 
     private lateinit var scheduler: Scheduler
@@ -39,6 +42,7 @@ class Robot : TimedRobot() {
         RobotMap.RIGHT_TALON.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10)
         RobotMap.LEFT_TALON.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10)
         RobotMap.RIGHT_TALON.setSensorPhase(true)
+
     }
 
     override fun disabledInit() {
