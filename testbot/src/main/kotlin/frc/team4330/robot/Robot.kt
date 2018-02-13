@@ -11,6 +11,7 @@ import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.Pathfinder.motion
 import frc.team4330.robot.subsystems.Climber
 import frc.team4330.robot.subsystems.Compressor
+import frc.team4330.robot.subsystems.Mouth
 import frc.team4330.robot.subsystems.robotDrive
 
 class Robot : TimedRobot() {
@@ -27,6 +28,8 @@ class Robot : TimedRobot() {
         val MP: motion = motion()
 
         val Climber: Climber = Climber()
+
+        val mouth: Mouth = Mouth()
 
     }
 
