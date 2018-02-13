@@ -42,6 +42,7 @@ class Robot : TimedRobot() {
         RobotMap.RIGHT_TALON.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10)
         RobotMap.LEFT_TALON.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10)
         RobotMap.RIGHT_TALON.setSensorPhase(true)
+
     }
 
     override fun disabledInit() {

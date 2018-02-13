@@ -7,6 +7,7 @@ class OutIntake : Command() {
 
     init {
         requires(Robot.mouth)
+        setTimeout(2.0)
     }
 
     override fun execute() {
@@ -15,7 +16,7 @@ class OutIntake : Command() {
     }
 
     override fun isFinished(): Boolean {
-        return true //TBC
+        return isTimedOut
     }
 
     override fun end() {

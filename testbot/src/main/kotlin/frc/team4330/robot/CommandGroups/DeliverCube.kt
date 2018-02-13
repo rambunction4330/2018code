@@ -8,9 +8,9 @@ import frc.team4330.robot.Commands.OutIntake
 class DeliverCube : CommandGroup() {
 
     init {
-        addSequential(InIntake, 0.5)
+        addSequential(InIntake(), 0.0)
         addSequential(WaitCommand(0.5))
-        addSequential(OutIntake,0.0)
+        addSequential(OutIntake(),0.0)
     }
 
 }
