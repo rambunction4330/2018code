@@ -15,15 +15,15 @@ class TestCommand : Command() {
 
     override fun execute() {
         System.out.println("Executing")
-        Robot.tank.curveDrive()
+ //       Robot.tank.curveDrive()
     }
 
     override fun isFinished(): Boolean {
-        return false
+        return isTimedOut
     }
 
     override fun end() {
-        Robot.tank
+        Robot.tank.stop()
     }
 
 

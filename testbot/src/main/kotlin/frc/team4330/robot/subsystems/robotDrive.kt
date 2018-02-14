@@ -28,11 +28,13 @@ class robotDrive : SubsystemBase() {
         if(xbox.xButton) downShift()
     }
 
-    fun driveForward() {
-        mDrive.curvatureDrive()
+    fun driveForward(speed: Double, rot: Double, isTriggerPressed: Boolean) {
+        mDrive.curvatureDrive(speed, rot, isTriggerPressed)
     }
 
-
+    fun stop() {
+        mDrive.curvatureDrive(0.0, 0.0, false)
+    }
 
     fun upShift() {
         if (!shifted) {
