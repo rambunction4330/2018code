@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice
 import com.kauailabs.navx.frc.AHRS
 import edu.wpi.first.wpilibj.CameraServer
 import edu.wpi.first.wpilibj.I2C
+import edu.wpi.first.wpilibj.IterativeRobot
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.command.Scheduler
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
@@ -14,7 +15,7 @@ import frc.team4330.robot.subsystems.Compressor
 import frc.team4330.robot.subsystems.Mouth
 import frc.team4330.robot.subsystems.robotDrive
 
-class Robot : TimedRobot() {
+class Robot : IterativeRobot() {
 
     companion object {
         val xbox: Input = Input(RobotMap.DRIVE_JOYSTICK)
@@ -54,6 +55,8 @@ class Robot : TimedRobot() {
         scheduler.removeAll()
         val test: DeliverCube = DeliverCube()
         test.start()
+        
+
     }
 
     override fun teleopInit() {
