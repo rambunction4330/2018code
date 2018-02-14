@@ -28,11 +28,13 @@ class Robot : IterativeRobot() {
 
         val mouth: Mouth = Mouth()
 
+        val mRobot: Scheduler = Scheduler.getInstance()
+
      //   val prototypes: prototypes = prototypes()
 
     }
 
-    private lateinit var scheduler: Scheduler
+//    private lateinit var scheduler: Scheduler
 
     override fun robotInit() {
         comp.init()
@@ -52,10 +54,10 @@ class Robot : IterativeRobot() {
     }
 
     override fun autonomousInit() {
-        scheduler.removeAll()
+        mRobot.removeAll()
         val test: DeliverCube = DeliverCube()
         test.start()
-        
+        mRobot.enable()
 
     }
 
