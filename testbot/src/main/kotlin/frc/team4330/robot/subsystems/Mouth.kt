@@ -24,11 +24,12 @@ class Mouth : SubsystemBase() {
     }
     fun moveMouthUp() {            //moves mouth Up and down
         if (!mouthUp) {
-            RobotMap.JAW.set(false)
+            RobotMap.JAW.set(true)
             mouthUp = true
         }
         else {
-            RobotMap.JAW.set(true)
+            print("Mouth HERE")
+            RobotMap.JAW.set(false)
             mouthUp = false
         }
     }
