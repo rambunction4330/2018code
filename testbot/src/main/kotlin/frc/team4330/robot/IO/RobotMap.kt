@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.NidecBrushless
 import frc.team4330.robot.subsystems.SingleSolenoid
 
 
+
 object RobotMap {
     // Drive motors
     val RIGHT_VICTOR: WPI_VictorSPX = WPI_VictorSPX(4)
@@ -32,10 +33,10 @@ object RobotMap {
 
     // Pneumatics
     val PCM_CAN = 7
-    val rightShift: SingleSolenoid = SingleSolenoid(1)
-    val leftShift: SingleSolenoid = SingleSolenoid(2)
-    val JAW: SingleSolenoid = SingleSolenoid(3)
-    val TEETH: SingleSolenoid = SingleSolenoid(4)
+    val rightShift: SingleSolenoid = SingleSolenoid(6)
+    val leftShift: SingleSolenoid = SingleSolenoid(7)
+    val JAW: SingleSolenoid = SingleSolenoid(4)
+    val TEETH: SingleSolenoid = SingleSolenoid(5)
 
     // Sensors
     val rightEncPos = RIGHT_TALON.getSelectedSensorPosition(0)

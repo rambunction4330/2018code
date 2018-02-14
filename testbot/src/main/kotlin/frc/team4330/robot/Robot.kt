@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.I2C
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.command.Scheduler
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
+import frc.team4330.robot.CommandGroups.DeliverCube
 import frc.team4330.robot.IO.Input
 import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.subsystems.Compressor
@@ -49,7 +50,11 @@ class Robot : TimedRobot() {
         comp.stop()
     }
 
-    override fun autonomousInit() {}
+    override fun autonomousInit() {
+        scheduler.removeAll()
+        val test: DeliverCube = DeliverCube()
+        test.start()
+    }
 
     override fun teleopInit() {
 

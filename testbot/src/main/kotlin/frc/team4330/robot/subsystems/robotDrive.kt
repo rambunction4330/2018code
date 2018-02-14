@@ -13,24 +13,37 @@ class robotDrive : SubsystemBase() {
 
     init {
         RobotMap.RIGHT_VICTOR.follow(RobotMap.RIGHT_TALON)
-        RobotMap.LEFT_TALON.follow(RobotMap.LEFT_TALON)
+        RobotMap.RIGHT_VICTOR2.follow(RobotMap.RIGHT_TALON)
+        RobotMap.LEFT_VICTOR.follow(RobotMap.LEFT_TALON)
+        RobotMap.LEFT_VICTOR2.follow(RobotMap.LEFT_TALON)
 
-        mDrive = DifferentialDrive(RobotMap.LEFT_TALON, RobotMap.RIGHT_TALON)
+        mDrive = DifferentialDrive(RobotMap.LEFT_TALON ,RobotMap.RIGHT_TALON )
 
         shifted = false
     }
 
     fun curveDrive(xbox: Input) {
-        mDrive.curvatureDrive(.8 * xbox.joystickLeftYAxis, xbox.joystickRightXAxis, xbox.isRightTriggerPressed())
+        mDrive.curvatureDrive(xbox.joystickLeftYAxis, -xbox.joystickRightXAxis, xbox.isRightTriggerPressed())
+        if(xbox.yButton) upShift()
+        if(xbox.xButton) downShift()
     }
 
 
 
     fun upShift() {
-        if (!shifted) RobotMap.rightShift.forward(); shifted = true
+        if (!shifted) {
+            RobotMap.rightShift.forward()
+            RobotMap.leftShift.forward()
+            shifted = true
+        }
+
     }
 
     fun downShift() {
-        if (shifted) RobotMap.rightShift.reverse(); shifted = false
+        if (shifted) {
+            RobotMap.rightShift.reverse()
+            RobotMap.leftShift.reverse()
+            shifted = false
+        }
     }
 }
