@@ -9,13 +9,12 @@ import frc.team4330.robot.Robot
 class TestCommand : Command() {
 
     init {
-        System.out.println("Commanding...")
         requires(Robot.tank)
+        setTimeout(2.0)
     }
 
     override fun execute() {
-        System.out.println("Executing")
- //       Robot.tank.curveDrive()
+        Robot.tank.driveForward(0.1, 0.0, false)
     }
 
     override fun isFinished(): Boolean {

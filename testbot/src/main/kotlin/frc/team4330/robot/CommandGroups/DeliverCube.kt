@@ -7,9 +7,9 @@ import frc.team4330.robot.Commands.*
 class DeliverCube : CommandGroup() {
 
     init {
-        addSequential(TestLipOpen(), 0.0)
+        addSequential(TestCommand(), 0.0)
         addSequential(WaitCommand(1.0))
-        addSequential(TestLipClose(),0.0)
+        addSequential(TestCommand(),0.0)
     }
 
 }
