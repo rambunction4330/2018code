@@ -36,9 +36,9 @@ object RobotMap {
     // Pneumatics
     val COMP: Compressor = Compressor(7)
     val rightShift: Solenoid = Solenoid(0)
-    val leftShift: Solenoid = Solenoid(1)
-    val JAW: Solenoid = Solenoid(2)
-    val TEETH: Solenoid = Solenoid(3)
+    val leftShift: Solenoid = Solenoid(2)
+    val JAW: Solenoid = Solenoid(3)
+    val TEETH: Solenoid = Solenoid(1)
 
     // Sensors
     val rightEncPos = RIGHT_TALON.getSelectedSensorPosition(0)

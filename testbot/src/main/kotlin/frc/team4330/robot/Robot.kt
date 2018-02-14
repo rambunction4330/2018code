@@ -84,8 +84,8 @@ class Robot : IterativeRobot() {
         print(gyro.angle)
         SmartDashboard.putNumber("Gyro", gyro.angle)
         RobotMap.COMP.start()
-        if (xbox.xButton) RobotMap.TEETH.set(true)
-        if (xbox.yButton) RobotMap.TEETH.set(false)
+        if (xbox.xButton) RobotMap.JAW.set(true)
+        if (xbox.yButton) RobotMap.JAW.set(false)
     }
 
     override fun testPeriodic() {}
