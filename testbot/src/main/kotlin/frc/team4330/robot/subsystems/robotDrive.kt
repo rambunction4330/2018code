@@ -28,12 +28,16 @@ class robotDrive : SubsystemBase() {
         if(xbox.xButton) downShift()
     }
 
+    fun driveForward() {
+        mDrive.curvatureDrive()
+    }
+
 
 
     fun upShift() {
         if (!shifted) {
-            RobotMap.rightShift.forward()
-            RobotMap.leftShift.forward()
+            RobotMap.rightShift.set(true)
+            RobotMap.leftShift.set(true)
             shifted = true
         }
 
@@ -41,8 +45,8 @@ class robotDrive : SubsystemBase() {
 
     fun downShift() {
         if (shifted) {
-            RobotMap.rightShift.reverse()
-            RobotMap.leftShift.reverse()
+            RobotMap.rightShift.set(false)
+            RobotMap.leftShift.set(false)
             shifted = false
         }
     }

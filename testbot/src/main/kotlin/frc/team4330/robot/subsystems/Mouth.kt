@@ -14,21 +14,21 @@ class Mouth : SubsystemBase() {
     }
     fun moveMouthUp(xbox: Input) {            //moves mouth Up and down with x button
         if (!mouthUp && xbox.xButtonPressed) {
-            RobotMap.JAW.forward()
+            RobotMap.JAW.set(true)
             mouthUp = true
         }
         else {
-            RobotMap.JAW.reverse()
+            RobotMap.JAW.set(false)
             mouthUp = false
         }
     }
     fun moveMouthUp() {            //moves mouth Up and down
         if (!mouthUp) {
-            RobotMap.JAW.forward()
+            RobotMap.JAW.set(false)
             mouthUp = true
         }
         else {
-            RobotMap.JAW.reverse()
+            RobotMap.JAW.set(true)
             mouthUp = false
         }
     }
@@ -49,10 +49,10 @@ class Mouth : SubsystemBase() {
     }
 
     fun openWide() {                   //opens "TEETH"
-        RobotMap.TEETH.forward()
+        RobotMap.TEETH.set(true)
     }
 
     fun closeMouth() {
-        RobotMap.TEETH.reverse()
+        RobotMap.TEETH.set(false)
     }
 }

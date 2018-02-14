@@ -15,7 +15,7 @@ class TestCommand : Command() {
 
     override fun execute() {
         System.out.println("Executing")
-       // Robot.tank.curveDrive()
+        Robot.tank.curveDrive()
     }
 
     override fun isFinished(): Boolean {

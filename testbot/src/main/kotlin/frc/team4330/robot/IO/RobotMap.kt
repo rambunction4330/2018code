@@ -5,8 +5,10 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX
 import com.kauailabs.navx.frc.AHRS
+import edu.wpi.first.wpilibj.Compressor
 import edu.wpi.first.wpilibj.I2C
 import edu.wpi.first.wpilibj.NidecBrushless
+import edu.wpi.first.wpilibj.Solenoid
 import frc.team4330.robot.subsystems.SingleSolenoid
 
 
@@ -32,11 +34,11 @@ object RobotMap {
     val DRIVE_JOYSTICK = 0
 
     // Pneumatics
-    val PCM_CAN = 7
-    val rightShift: SingleSolenoid = SingleSolenoid(6)
-    val leftShift: SingleSolenoid = SingleSolenoid(7)
-    val JAW: SingleSolenoid = SingleSolenoid(4)
-    val TEETH: SingleSolenoid = SingleSolenoid(5)
+    val COMP: Compressor = Compressor(7)
+    val rightShift: Solenoid = Solenoid(6)
+    val leftShift: Solenoid = Solenoid(7)
+    val JAW: Solenoid = Solenoid(4)
+    val TEETH: Solenoid = Solenoid(5)
 
     // Sensors
     val rightEncPos = RIGHT_TALON.getSelectedSensorPosition(0)

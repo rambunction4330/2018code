@@ -22,8 +22,6 @@ class Robot : IterativeRobot() {
 
         var tank: robotDrive = robotDrive()
 
-        var comp: Compressor = Compressor(RobotMap.PCM_CAN)
-
         val gyro: AHRS = AHRS(I2C.Port.kMXP)
 
         val mouth: Mouth = Mouth()
@@ -37,7 +35,6 @@ class Robot : IterativeRobot() {
 //    private lateinit var scheduler: Scheduler
 
     override fun robotInit() {
-        comp.init()
         CameraServer.getInstance().startAutomaticCapture()
 
         RobotMap.RIGHT_TALON.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10)
@@ -50,7 +47,7 @@ class Robot : IterativeRobot() {
     }
 
     override fun disabledInit() {
-        comp.stop()
+        RobotMap.COMP.stop()
     }
 
     override fun autonomousInit() {
@@ -71,7 +68,9 @@ class Robot : IterativeRobot() {
 
     override fun disabledPeriodic() {}
 
-    override fun autonomousPeriodic() {}
+    override fun autonomousPeriodic() {
+        RobotMap.COMP.start()
+    }
 
     override fun teleopPeriodic() {
         tank.curveDrive(xbox)
@@ -87,7 +86,9 @@ class Robot : IterativeRobot() {
 
         print(gyro.angle)
         SmartDashboard.putNumber("Gyro", gyro.angle)
-        comp.init()
+        RobotMap.COMP.start()
+        if (xbox.xButton) RobotMap.TEETH.set(true)
+        if (xbox.yButton) RobotMap.TEETH.set(false)
     }
 
     override fun testPeriodic() {}
