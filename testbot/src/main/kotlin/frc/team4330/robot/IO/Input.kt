@@ -49,4 +49,14 @@ class Input(port: Int) {
     fun isRightTriggerPressed(): Boolean {
         return rightTriggerAxis != 0.0
     }
+
+    fun isLeftTriggerPressed(): Boolean {
+        return leftTriggerAxis != 0.0
+    }
+
+    val startButton: Boolean
+        get() = xbox.startButton
+
+    val backButton: Boolean
+        get() = xbox.backButton
 }

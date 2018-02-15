@@ -5,13 +5,13 @@ import com.kauailabs.navx.frc.AHRS
 import edu.wpi.first.wpilibj.CameraServer
 import edu.wpi.first.wpilibj.I2C
 import edu.wpi.first.wpilibj.IterativeRobot
-import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.command.Scheduler
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import frc.team4330.robot.CommandGroups.DeliverCube
 import frc.team4330.robot.IO.Input
 import frc.team4330.robot.IO.RobotMap
-import frc.team4330.robot.subsystems.Compressor
+import frc.team4330.robot.Pathfinder.motion
+import frc.team4330.robot.subsystems.Climber
 import frc.team4330.robot.subsystems.Mouth
 import frc.team4330.robot.subsystems.robotDrive
 
@@ -27,6 +27,10 @@ class Robot : IterativeRobot() {
         val mouth: Mouth = Mouth()
 
         val mRobot: Scheduler = Scheduler.getInstance()
+
+        val climb: Climber = Climber()
+
+        val motion: motion = motion()
 
      //   val prototypes: prototypes = prototypes()
 
@@ -71,6 +75,7 @@ class Robot : IterativeRobot() {
 
     override fun teleopPeriodic() {
         tank.curveDrive(xbox)
+
 //        prototypes.move(xbox)
         val Vel = { a: Double, b: Double -> (a / b) / 12 / 6 }
 
@@ -84,9 +89,14 @@ class Robot : IterativeRobot() {
         print(gyro.angle)
         SmartDashboard.putNumber("Gyro", gyro.angle)
         RobotMap.COMP.start()
-        if (xbox.xButton) RobotMap.JAW.set(true)
-        if (xbox.yButton) RobotMap.JAW.set(false)
+        //   if (xbox.bButton) RobotMap.JAW.set(true)
+        //   if (xbox.aButton) RobotMap.JAW.set(false)
+        //climb.move(xbox)
+        if (xbox.aButton) RobotMap.JAW.set(true)
+        else if (xbox.bButton) RobotMap.JAW.set(false)
     }
 
-    override fun testPeriodic() {}
+    override fun testPeriodic() {
+        motion.move()
+    }
 }

@@ -19,14 +19,7 @@ class motion {
     var leftFollow: EncoderFollower = EncoderFollower(leftTraj)
     var rightFollow: EncoderFollower = EncoderFollower(rightTraj)
 
-    val l = leftFollow.calculate(RobotMap.leftEncPos)
-    val r = rightFollow.calculate(RobotMap.rightEncPos)
 
-    var heading = gyro.angle()
-    var desired_headingL = Pathfinder.r2d(leftFollow.heading)
-
-    var angleDifference = Pathfinder.boundHalfDegrees(desired_headingL - heading)
-    var turn = .8 * (-1.0 / 80) * angleDifference
 
     init {
         leftFollow.configureEncoder(RobotMap.leftEncPos, 1024, 0.1016)
@@ -37,6 +30,14 @@ class motion {
     }
 
     fun move() {
+        val l = leftFollow.calculate(RobotMap.leftEncPos)
+        val r = rightFollow.calculate(RobotMap.rightEncPos)
+
+        var heading = gyro.angle()
+        var desired_headingL = Pathfinder.r2d(leftFollow.heading)
+
+        var angleDifference = Pathfinder.boundHalfDegrees(desired_headingL - heading)
+        var turn = .8 * (-1.0 / 80) * angleDifference
         RobotMap.LEFT_TALON.set(l + turn)
         RobotMap.RIGHT_TALON.set(r - turn)
     }

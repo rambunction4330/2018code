@@ -23,10 +23,10 @@ class Climber : SubsystemBase() {
         when {
             xbox.rightBumper -> RobotMap.CLIMB_LEFT.set(ControlMode.PercentOutput, Constants.CLIMB_SPEED)
             xbox.leftBumper -> RobotMap.CLIMB_LEFT.set(ControlMode.PercentOutput, -Constants.CLIMB_SPEED)
-            xbox.aButton -> {
+            xbox.startButton -> {
                 RobotMap.SPOOL1.set(ControlMode.PercentOutput, Constants.SPOOL_SPEED)
             }
-            xbox.bButton -> {
+            xbox.backButton -> {
                 RobotMap.SPOOL1.set(ControlMode.PercentOutput, -Constants.SPOOL_SPEED)
             }
             else -> {

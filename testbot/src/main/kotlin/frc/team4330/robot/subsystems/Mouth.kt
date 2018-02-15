@@ -28,7 +28,6 @@ class Mouth : SubsystemBase() {
             mouthUp = true
         }
         else {
-            print("Mouth HERE")
             RobotMap.JAW.set(false)
             mouthUp = false
         }
@@ -36,12 +35,12 @@ class Mouth : SubsystemBase() {
 
     fun succ() {                            //succs in cube
         RobotMap.LIP_LEFT.set(ControlMode.PercentOutput, 0.6)
-        RobotMap.LIP_RIGHT.set(ControlMode.PercentOutput, 0.6)
+        RobotMap.LIP_RIGHT.set(ControlMode.PercentOutput, -0.6)
     }
 
     fun spit() {                            //spits out cube
         RobotMap.LIP_LEFT.set(ControlMode.PercentOutput, -0.6)
-        RobotMap.LIP_RIGHT.set(ControlMode.PercentOutput,-0.6 )
+        RobotMap.LIP_RIGHT.set(ControlMode.PercentOutput, 0.6)
     }
 
     fun stopLips() {
