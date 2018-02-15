@@ -1,28 +1,22 @@
 package frc.team4330.robot
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice
-import com.kauailabs.navx.frc.AHRS
 import edu.wpi.first.wpilibj.CameraServer
-import edu.wpi.first.wpilibj.I2C
-import edu.wpi.first.wpilibj.IterativeRobot
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.command.Scheduler
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import frc.team4330.robot.CommandGroups.DeliverCube
 import frc.team4330.robot.IO.Input
 import frc.team4330.robot.IO.RobotMap
-import frc.team4330.robot.subsystems.Compressor
 import frc.team4330.robot.subsystems.Mouth
 import frc.team4330.robot.subsystems.robotDrive
 
-class Robot : IterativeRobot() {
+class Robot : TimedRobot() {
 
     companion object {
         val xbox: Input = Input(RobotMap.DRIVE_JOYSTICK)
 
         var tank: robotDrive = robotDrive()
-
-        val gyro: AHRS = AHRS(I2C.Port.kMXP)
 
         val mouth: Mouth = Mouth()
 
@@ -81,11 +75,9 @@ class Robot : IterativeRobot() {
         SmartDashboard.putNumber("Right Sensor Velocity", Vel(RobotMap.RIGHT_TALON.getSelectedSensorVelocity(0).toDouble(), 10.71))
         SmartDashboard.putNumber("Left Sensor Velocity", Vel(RobotMap.LEFT_TALON.getSelectedSensorVelocity(0).toDouble(), 10.71))
 
-        print(gyro.angle)
-        SmartDashboard.putNumber("Gyro", gyro.angle)
         RobotMap.COMP.start()
-        if (xbox.xButton) RobotMap.JAW.set(true)
-        if (xbox.yButton) RobotMap.JAW.set(false)
+        if (xbox.aButton) RobotMap.JAW.set(true)
+        if (xbox.bButton) RobotMap.JAW.set(false)
     }
 
     override fun testPeriodic() {}
