@@ -1,5 +1,6 @@
 package frc.team4330.robot
 
+import com.ctre.phoenix.motorcontrol.ControlMode
 import com.ctre.phoenix.motorcontrol.FeedbackDevice
 import edu.wpi.first.wpilibj.CameraServer
 import edu.wpi.first.wpilibj.TimedRobot
@@ -79,7 +80,8 @@ class Robot : TimedRobot() {
         //   if (xbox.aButton) RobotMap.JAW.set(false)
         climb.move(xbox)
         if (xbox.aButton) RobotMap.JAW.set(true)
-        else if (xbox.bButton) RobotMap.JAW.set(false)
+        else if (xbox.bButton) RobotMap.nidecMotor.enable()
+        RobotMap.nidecMotor.set(ControlMode.PercentOutput(0.5))
     }
 
     override fun testPeriodic() {
