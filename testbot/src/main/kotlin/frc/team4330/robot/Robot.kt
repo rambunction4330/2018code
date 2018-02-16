@@ -65,6 +65,8 @@ class Robot : TimedRobot() {
 
     override fun autonomousPeriodic() {
         RobotMap.COMP.start()
+        test.start()
+        mRobot.enable()
     }
 
     override fun teleopPeriodic() {
