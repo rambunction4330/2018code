@@ -6,11 +6,9 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX
 import com.kauailabs.navx.frc.AHRS
 import edu.wpi.first.wpilibj.Compressor
-import edu.wpi.first.wpilibj.I2C
 import edu.wpi.first.wpilibj.NidecBrushless
+import edu.wpi.first.wpilibj.SPI
 import edu.wpi.first.wpilibj.Solenoid
-import frc.team4330.robot.subsystems.SingleSolenoid
-
 
 
 object RobotMap {
@@ -24,7 +22,7 @@ object RobotMap {
 
     // Climbing
     val CLIMB_LEFT: TalonSRX = TalonSRX(12)
-    val SPOOL1: TalonSRX = TalonSRX(1)
+    val SPOOL1: TalonSRX = TalonSRX(7)
 
     // Mouth
     val LIP_LEFT: VictorSPX = VictorSPX(11)
@@ -34,7 +32,7 @@ object RobotMap {
     val DRIVE_JOYSTICK = 0
 
     // Pneumatics
-    val COMP: Compressor = Compressor(7)
+    val COMP: Compressor = Compressor(0)
     val rightShift: Solenoid = Solenoid(0)
     val leftShift: Solenoid = Solenoid(2)
     val JAW: Solenoid = Solenoid(3)
@@ -46,7 +44,7 @@ object RobotMap {
     val rightEncVel = RIGHT_TALON.getSelectedSensorVelocity(0)
     val leftEncVel = LEFT_TALON.getSelectedSensorVelocity(0)
 
-    val gyro: AHRS = AHRS(I2C.Port.kMXP)
+    val gyro: AHRS = AHRS(SPI.Port.kMXP)
 
     //Nidec Robot
     val nidecMotor: NidecBrushless = NidecBrushless(1,5)

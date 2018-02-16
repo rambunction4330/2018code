@@ -9,6 +9,8 @@ import java.io.File
 
 class motion {
 
+//    var points: List<Waypoint> = List(3, )
+
     private val gyro: NavX = NavX()
     val fileleft: File = File("test2_left.csv")
     val fileright: File = File("test2_right.csv")
@@ -22,6 +24,7 @@ class motion {
 
 
     init {
+
         leftFollow.configureEncoder(RobotMap.leftEncPos, 1024, 0.1016)
         rightFollow.configureEncoder(RobotMap.rightEncPos, 1024, 0.1016)
         leftFollow.configurePIDVA(1.0, 0.0, 0.0, 1.0 / 18.0, 0.0)
