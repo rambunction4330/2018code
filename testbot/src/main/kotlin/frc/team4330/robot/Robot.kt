@@ -51,6 +51,8 @@ class Robot : TimedRobot() {
 
     override fun autonomousInit() {
         mRobot.removeAll()
+        test.start()
+        mRobot.enable()
     }
 
     override fun teleopInit() {
@@ -65,8 +67,7 @@ class Robot : TimedRobot() {
 
     override fun autonomousPeriodic() {
         RobotMap.COMP.start()
-        test.start()
-        mRobot.enable()
+        mRobot.run()
     }
 
     override fun teleopPeriodic() {
@@ -78,10 +79,10 @@ class Robot : TimedRobot() {
         //   if (xbox.bButton) RobotMap.JAW.set(true)
         //   if (xbox.aButton) RobotMap.JAW.set(false)
         climb.move(xbox)
-        // if (xbox.aButton) RobotMap.nidecMotor.set(-0.2)
-        // else if (xbox.bButton) RobotMap.nidecMotor.set(0.2)
-        if (xbox.aButton) tank.driveForward(0.5, 0.0, false)
-        else if (xbox.bButton) tank.stop()
+        if (xbox.aButton) RobotMap.nidecMotor.set(-0.2)
+        else if (xbox.bButton) RobotMap.nidecMotor.set(0.2)
+//        if (xbox.aButton) tank.driveForward(0.5, 0.0, false)
+//        else if (xbox.bButton) tank.stop()
 
         //    RobotMap.nidecMotor.set(ControlMode.PercentOutput(0.5))
     }

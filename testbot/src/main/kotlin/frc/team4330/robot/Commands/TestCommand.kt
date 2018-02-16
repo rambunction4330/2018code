@@ -7,8 +7,8 @@ import frc.team4330.robot.Robot
 class TestCommand : Command() {
 
     init {
-        requires(Robot.tank)
         setTimeout(5.0)
+        requires(Robot.tank)
     }
 
     override fun execute() {
