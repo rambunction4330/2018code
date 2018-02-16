@@ -2,8 +2,9 @@ package frc.team4330.robot
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice
 import edu.wpi.first.wpilibj.CameraServer
-import edu.wpi.first.wpilibj.IterativeRobot
+import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.command.Scheduler
+import frc.team4330.robot.CommandGroups.DeliverCube
 import frc.team4330.robot.IO.Input
 import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.Pathfinder.motion
@@ -11,7 +12,7 @@ import frc.team4330.robot.subsystems.Climber
 import frc.team4330.robot.subsystems.Mouth
 import frc.team4330.robot.subsystems.robotDrive
 
-class Robot : IterativeRobot() {
+class Robot : TimedRobot() {
 
     companion object {
         val xbox: Input = Input(RobotMap.DRIVE_JOYSTICK)
@@ -27,6 +28,8 @@ class Robot : IterativeRobot() {
         val climb: Climber = Climber()
 
         val motion: motion = motion()
+
+        val test: DeliverCube = DeliverCube()
     }
 
 //    private lateinit var scheduler: Scheduler
@@ -45,11 +48,9 @@ class Robot : IterativeRobot() {
     }
 
     override fun autonomousInit() {
-//        mRobot.removeAll()
-//        val test: DeliverCube = DeliverCube()
-//        test.start()
-//        mRobot.enable()
-
+        mRobot.removeAll()
+        test.start()
+        mRobot.enable()
     }
 
     override fun teleopInit() {
