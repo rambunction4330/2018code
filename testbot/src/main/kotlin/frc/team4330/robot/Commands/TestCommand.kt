@@ -12,10 +12,12 @@ class TestCommand : Command() {
     }
 
     override fun execute() {
+        print("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
         Robot.tank.driveForward(0.5, 0.0, false)
     }
 
     override fun isFinished(): Boolean {
+        print("IT JUST TIMED OUT")
         return isTimedOut
     }
 

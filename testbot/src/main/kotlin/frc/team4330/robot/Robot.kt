@@ -1,6 +1,5 @@
 package frc.team4330.robot
 
-import com.ctre.phoenix.motorcontrol.ControlMode
 import com.ctre.phoenix.motorcontrol.FeedbackDevice
 import edu.wpi.first.wpilibj.CameraServer
 import edu.wpi.first.wpilibj.TimedRobot
@@ -41,6 +40,8 @@ class Robot : TimedRobot() {
         RobotMap.RIGHT_TALON.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10)
         RobotMap.LEFT_TALON.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10)
         RobotMap.RIGHT_TALON.setSensorPhase(true)
+        RobotMap.RIGHT_TALON.configOpenloopRamp(.2, 10)
+        RobotMap.LEFT_TALON.configOpenloopRamp(.2, 10)
 
     }
 
@@ -50,8 +51,6 @@ class Robot : TimedRobot() {
 
     override fun autonomousInit() {
         mRobot.removeAll()
-        test.start()
-        mRobot.enable()
     }
 
     override fun teleopInit() {
@@ -75,13 +74,16 @@ class Robot : TimedRobot() {
         RobotMap.COMP.start()
         tank.curveDrive(xbox)
 
-
+        RobotMap.nidecMotor.enable()
         //   if (xbox.bButton) RobotMap.JAW.set(true)
         //   if (xbox.aButton) RobotMap.JAW.set(false)
         climb.move(xbox)
-        if (xbox.aButton) RobotMap.JAW.set(true)
-        else if (xbox.bButton) RobotMap.nidecMotor.enable()
-        RobotMap.nidecMotor.set(ControlMode.PercentOutput(0.5))
+        // if (xbox.aButton) RobotMap.nidecMotor.set(-0.2)
+        // else if (xbox.bButton) RobotMap.nidecMotor.set(0.2)
+        if (xbox.aButton) tank.driveForward(0.5, 0.0, false)
+        else if (xbox.bButton) tank.stop()
+
+        //    RobotMap.nidecMotor.set(ControlMode.PercentOutput(0.5))
     }
 
     override fun testPeriodic() {
