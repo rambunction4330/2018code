@@ -24,6 +24,7 @@ class robotDrive {
 
     fun autoDrive(speed: Double, rotation: Double, quickturn: Boolean) {
         mDrive.curvatureDrive(speed, rotation, quickturn)
+        
     }
 
     fun stop() {
