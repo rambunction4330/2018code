@@ -13,21 +13,23 @@ class motion {
     val config: Trajectory.Config
     val trajectory: Trajectory
     val modifier: TankModifier
+    var left: EncoderFollower
+    var right: EncoderFollower
 
     init {
         config = Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, .05, 1.8, 2.0, 60.0)
         trajectory = Pathfinder.generate(points, config)
         modifier = TankModifier(trajectory)
-
-    }
-
-    fun move() {
-        var left: EncoderFollower = EncoderFollower(modifier.leftTrajectory)
-        var right: EncoderFollower = EncoderFollower(modifier.rightTrajectory)
+        left = EncoderFollower(modifier.leftTrajectory)
+        right = EncoderFollower(modifier.rightTrajectory)
         left.configureEncoder(RobotMap.leftEncPos, 1024, .1016)
         right.configureEncoder(RobotMap.rightEncPos, 1024, .1016)
         left.configurePIDVA(1.0, 0.0, 0.0, 1 / 6.0, 0.0)
         right.configurePIDVA(1.0, 0.0, 0.0, 1 / 6.0, 0.0)
+    }
+
+    fun move() {
+
 //        var output = left.calculate(RobotMap.leftEncPos.toInt())
         var l = left.calculate(RobotMap.leftEncPos)
         var r = right.calculate(RobotMap.rightEncPos)
