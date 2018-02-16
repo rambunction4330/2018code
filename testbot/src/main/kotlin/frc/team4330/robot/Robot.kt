@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.IterativeRobot
 import edu.wpi.first.wpilibj.command.Scheduler
 import frc.team4330.robot.IO.Input
 import frc.team4330.robot.IO.RobotMap
+import frc.team4330.robot.Pathfinder.motion
 import frc.team4330.robot.subsystems.Climber
 import frc.team4330.robot.subsystems.Mouth
 import frc.team4330.robot.subsystems.robotDrive
@@ -25,7 +26,7 @@ class Robot : IterativeRobot() {
 
         val climb: Climber = Climber()
 
-//        val motion: motion = motion()
+        val motion: motion = motion()
     }
 
 //    private lateinit var scheduler: Scheduler
@@ -79,6 +80,6 @@ class Robot : IterativeRobot() {
     }
 
     override fun testPeriodic() {
-//        motion.move()
+        motion.move()
     }
 }

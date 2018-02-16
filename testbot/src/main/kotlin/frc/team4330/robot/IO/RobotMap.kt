@@ -44,6 +44,13 @@ object RobotMap {
     val rightEncVel = RIGHT_TALON.getSelectedSensorVelocity(0)
     val leftEncVel = LEFT_TALON.getSelectedSensorVelocity(0)
 
+    init {
+        RIGHT_TALON.setSensorPhase(true)
+        LEFT_TALON.setSensorPhase(true)
+        RIGHT_TALON.setSelectedSensorPosition(0, 0, 10)
+        LEFT_TALON.setSelectedSensorPosition(0, 0, 10)
+    }
+
     val gyro: AHRS = AHRS(SPI.Port.kMXP)
 
     //Nidec Robot

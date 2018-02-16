@@ -1,47 +1,45 @@
 package frc.team4330.robot.Pathfinder
 
 import frc.team4330.robot.IO.RobotMap
-import frc.team4330.robot.subsystems.NavX
 import jaci.pathfinder.Pathfinder
 import jaci.pathfinder.Trajectory
+import jaci.pathfinder.Waypoint
 import jaci.pathfinder.followers.EncoderFollower
-import java.io.File
+import jaci.pathfinder.modifiers.TankModifier
 
 class motion {
 
-//    var points: List<Waypoint> = List(3, )
-
-    private val gyro: NavX = NavX()
-    val fileleft: File = File("test2_left.csv")
-    val fileright: File = File("test2_right.csv")
-
-    val rightTraj: Trajectory = Pathfinder.readFromCSV(fileright)
-    val leftTraj: Trajectory = Pathfinder.readFromCSV(fileleft)
-
-    var leftFollow: EncoderFollower = EncoderFollower(leftTraj)
-    var rightFollow: EncoderFollower = EncoderFollower(rightTraj)
-
-
+    var points = arrayOf(Waypoint(-4.0, -2.0, Pathfinder.d2r(-45.0)), Waypoint(-2.0, -2.0, 0.0), Waypoint(0.0, 0.0, 0.0))
+    val config: Trajectory.Config
+    val trajectory: Trajectory
+    val modifier: TankModifier
 
     init {
-
-        leftFollow.configureEncoder(RobotMap.leftEncPos, 1024, 0.1016)
-        rightFollow.configureEncoder(RobotMap.rightEncPos, 1024, 0.1016)
-        leftFollow.configurePIDVA(1.0, 0.0, 0.0, 1.0 / 18.0, 0.0)
-        rightFollow.configurePIDVA(1.0, 0.0, 0.0, 1.0 / 18.0, 0.0)
+        config = Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, .05, 1.8, 2.0, 60.0)
+        trajectory = Pathfinder.generate(points, config)
+        modifier = TankModifier(trajectory)
 
     }
 
     fun move() {
-        val l = leftFollow.calculate(RobotMap.leftEncPos)
-        val r = rightFollow.calculate(RobotMap.rightEncPos)
+        var left: EncoderFollower = EncoderFollower(modifier.leftTrajectory)
+        var right: EncoderFollower = EncoderFollower(modifier.rightTrajectory)
+        left.configureEncoder(RobotMap.leftEncPos, 1024, .1016)
+        right.configureEncoder(RobotMap.rightEncPos, 1024, .1016)
+        left.configurePIDVA(1.0, 0.0, 0.0, 1 / 6.0, 0.0)
+        right.configurePIDVA(1.0, 0.0, 0.0, 1 / 6.0, 0.0)
+//        var output = left.calculate(RobotMap.leftEncPos.toInt())
+        var l = left.calculate(RobotMap.leftEncPos)
+        var r = right.calculate(RobotMap.rightEncPos)
+        var gyro_heading = RobotMap.gyro.angle
+        var desired_heading = Pathfinder.r2d(left.heading)
 
-        var heading = gyro.angle()
-        var desired_headingL = Pathfinder.r2d(leftFollow.heading)
+        var angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading)
+        var turn = 0.8 * (-1.0 / 80.0) * angleDifference
 
-        var angleDifference = Pathfinder.boundHalfDegrees(desired_headingL - heading)
-        var turn = .8 * (-1.0 / 80) * angleDifference
-        RobotMap.LEFT_TALON.set(l + turn)
         RobotMap.RIGHT_TALON.set(r - turn)
+        RobotMap.LEFT_TALON.set(l + turn)
     }
+
+
 }
