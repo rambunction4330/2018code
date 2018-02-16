@@ -79,12 +79,10 @@ class Robot : TimedRobot() {
         //   if (xbox.bButton) RobotMap.JAW.set(true)
         //   if (xbox.aButton) RobotMap.JAW.set(false)
         climb.move(xbox)
-        if (xbox.aButton) RobotMap.nidecMotor.set(-0.2)
-        else if (xbox.bButton) RobotMap.nidecMotor.set(0.2)
-//        if (xbox.aButton) tank.driveForward(0.5, 0.0, false)
-//        else if (xbox.bButton) tank.stop()
-
-        //    RobotMap.nidecMotor.set(ControlMode.PercentOutput(0.5))
+//        if (xbox.aButton) RobotMap.nidecMotor.set(0.001)
+//        else if (xbox.bButton) RobotMap.nidecMotor.stopMotor()//RobotMap.nidecMotor.set(0.000001)
+        if (xbox.aButton) tank.driveForward(0.5, 0.0, false)
+        else if (xbox.bButton) tank.stop()
     }
 
     override fun testPeriodic() {
