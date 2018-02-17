@@ -1,6 +1,8 @@
 package frc.team4330.robot
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice
+import edu.wpi.first.networktables.NetworkTable
+import edu.wpi.first.networktables.NetworkTableInstance
 import edu.wpi.first.wpilibj.CameraServer
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.command.Scheduler
@@ -35,6 +37,9 @@ class Robot : TimedRobot() {
 //    private lateinit var scheduler: Scheduler
 
     override fun robotInit() {
+
+        val inst: NetworkTableInstance = NetworkTableInstance.getDefault()
+        val table: NetworkTable = inst.getTable("datatable")
         CameraServer.getInstance().startAutomaticCapture()
 
         RobotMap.RIGHT_TALON.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10)
@@ -68,6 +73,7 @@ class Robot : TimedRobot() {
     override fun autonomousPeriodic() {
         RobotMap.COMP.start()
         mRobot.run()
+
     }
 
     override fun teleopPeriodic() {
@@ -83,9 +89,12 @@ class Robot : TimedRobot() {
 //        else if (xbox.bButton) RobotMap.nidecMotor.stopMotor()//RobotMap.nidecMotor.set(0.000001)
         if (xbox.aButton) tank.driveForward(0.5, 0.0, false)
         else if (xbox.bButton) tank.stop()
+
     }
 
     override fun testPeriodic() {
-        motion.move()
+//        motion.move()
+//        print("test")
+//        motion.test()
     }
 }
