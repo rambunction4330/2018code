@@ -7,12 +7,14 @@ import edu.wpi.first.wpilibj.CameraServer
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.command.Scheduler
 import frc.team4330.robot.CommandGroups.DeliverCube
+import frc.team4330.robot.Commands.TestCommand
 import frc.team4330.robot.IO.Input
 import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.Pathfinder.motion
 import frc.team4330.robot.subsystems.Climber
 import frc.team4330.robot.subsystems.Mouth
 import frc.team4330.robot.subsystems.robotDrive
+import openrio.powerup.MatchData
 
 class Robot : TimedRobot() {
 
@@ -73,7 +75,7 @@ class Robot : TimedRobot() {
     override fun autonomousPeriodic() {
         RobotMap.COMP.start()
         mRobot.run()
-
+        MatchData.
     }
 
     override fun teleopPeriodic() {
@@ -87,8 +89,9 @@ class Robot : TimedRobot() {
         climb.move(xbox)
 //        if (xbox.aButton) RobotMap.nidecMotor.set(0.001)
 //        else if (xbox.bButton) RobotMap.nidecMotor.stopMotor()//RobotMap.nidecMotor.set(0.000001)
-        if (xbox.aButton) tank.driveForward(0.5, 0.0, false)
+        if (xbox.aButton) TestCommand().start()
         else if (xbox.bButton) tank.stop()
+
 
     }
 
