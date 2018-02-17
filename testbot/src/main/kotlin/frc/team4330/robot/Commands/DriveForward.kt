@@ -9,11 +9,6 @@ class DriveForward : Command() {
         val motion: motion = motion()
     }
 
-    override fun start() {
-        super.start()
-        motion.init()
-    }
-
     override fun isFinished(): Boolean {
         return false
     }
