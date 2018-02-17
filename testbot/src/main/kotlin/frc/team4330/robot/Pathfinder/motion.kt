@@ -1,7 +1,11 @@
 package frc.team4330.robot.Pathfinder
 
 import frc.team4330.robot.subsystems.SubsystemBase
+import jaci.pathfinder.Pathfinder
 import jaci.pathfinder.Trajectory
+import jaci.pathfinder.Waypoint
+import jaci.pathfinder.followers.EncoderFollower
+import jaci.pathfinder.modifiers.TankModifier
 
 class motion : SubsystemBase() {
 
@@ -50,7 +54,16 @@ class motion : SubsystemBase() {
 //    }
 
     fun test() {
-        var config: Trajectory.Config
+        var config: Trajectory.Config = Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.05, 1.8, 2.0, 60.0)
+        var points = arrayOf(Waypoint(-4.0, -2.0, Pathfinder.d2r(-45.0)), Waypoint(-2.0, -2.0, 0.0), Waypoint(0.0, 0.0, 0.0))
+        var trajectory: Trajectory = Pathfinder.generate(points, config)
+        var modifier: TankModifier = TankModifier(trajectory).modify(.5)
+        var left: Trajectory = modifier.leftTrajectory
+        var right: Trajectory = modifier.rightTrajectory
+        var leftFollow: EncoderFollower = EncoderFollower(left)
+        var rightFollow: EncoderFollower = EncoderFollower(right)
+        print(rightFollow.segment.velocity)
+
     }
 
 

@@ -40,7 +40,7 @@ class Robot : TimedRobot() {
 
     override fun robotInit() {
 
-        val inst: NetworkTableInstance = NetworkTableInstance.getDefault()
+        val inst: NetworkTableInstance = NetworkTableInstance.create()
         val table: NetworkTable = inst.getTable("datatable")
         CameraServer.getInstance().startAutomaticCapture()
 
@@ -98,6 +98,6 @@ class Robot : TimedRobot() {
     override fun testPeriodic() {
 //        motion.move()
 //        print("test")
-//        motion.test()
+        motion.test()
     }
 }
