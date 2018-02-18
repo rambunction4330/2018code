@@ -6,17 +6,16 @@ import frc.team4330.robot.IO.RobotMap
 
 class DashboardManager {
 
-    val right: Int
-    private val left = 1
-    private val middle = 2
-    private val right = 3
+    val left = 1
+    val middle = 2
+    val right = 3
 
     fun getMethod() {
 
     }
 
     companion object {
-        val positionChooser: SendableChooser<Int> = SendableChooser<Int>()
+        val positionChooser: SendableChooser<Int> = SendableChooser()
     }
 
     init {
@@ -39,11 +38,12 @@ class DashboardManager {
 
 
         SmartDashboard.putBoolean("Shifted", Robot.tank.shifted)
+
+        SmartDashboard.putData("Autonomous Position", positionChooser)
     }
 
-    fun getStart() {
-
+    fun getStart(): Int {
+        return positionChooser.selected
     }
-
 
 }

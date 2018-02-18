@@ -6,15 +6,13 @@ import edu.wpi.first.networktables.NetworkTableInstance
 import edu.wpi.first.wpilibj.CameraServer
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.command.Scheduler
-import frc.team4330.robot.CommandGroups.DeliverCube
-import frc.team4330.robot.Commands.TestCommand
+import frc.team4330.robot.CommandGroups.TestMouth
 import frc.team4330.robot.IO.Input
 import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.Pathfinder.motion
 import frc.team4330.robot.subsystems.Climber
 import frc.team4330.robot.subsystems.Mouth
 import frc.team4330.robot.subsystems.robotDrive
-import openrio.powerup.MatchData
 
 class Robot : TimedRobot() {
 
@@ -33,7 +31,7 @@ class Robot : TimedRobot() {
 
         val motion: motion = motion()
 
-        val test: DeliverCube = DeliverCube()
+        val test: TestMouth = TestMouth()
     }
 
 //    private lateinit var scheduler: Scheduler
@@ -49,7 +47,6 @@ class Robot : TimedRobot() {
         RobotMap.RIGHT_TALON.setSensorPhase(true)
         RobotMap.RIGHT_TALON.configOpenloopRamp(.2, 10)
         RobotMap.LEFT_TALON.configOpenloopRamp(.2, 10)
-
     }
 
     override fun disabledInit() {
@@ -75,7 +72,6 @@ class Robot : TimedRobot() {
     override fun autonomousPeriodic() {
         RobotMap.COMP.start()
         mRobot.run()
-        MatchData.
     }
 
     override fun teleopPeriodic() {
@@ -89,8 +85,8 @@ class Robot : TimedRobot() {
         climb.move(xbox)
 //        if (xbox.aButton) RobotMap.nidecMotor.set(0.001)
 //        else if (xbox.bButton) RobotMap.nidecMotor.stopMotor()//RobotMap.nidecMotor.set(0.000001)
-        if (xbox.aButton) TestCommand().start()
-        else if (xbox.bButton) tank.stop()
+        if (xbox.aButton) Robot.mouth.moveMouthUp()
+        else if (xbox.bButton) Robot.mouth.moveMouthUp()
 
 
     }

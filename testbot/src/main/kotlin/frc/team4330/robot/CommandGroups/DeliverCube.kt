@@ -12,4 +12,4 @@ class DeliverCube : CommandGroup() {
         addSequential(TestCommand(), 1.0)
         addSequential(WaitCommand(2.0))
     }
-}8
+}
