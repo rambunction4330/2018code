@@ -91,6 +91,10 @@ class Robot : TimedRobot() {
         when {
             xbox.bButton -> mouth.closeMouth()//group.addSequential(TestLipSpinButton())
             xbox.aButton -> mouth.openWide()
+//            xbox.xButton -> mouth.moveMouthDown()
+//            xbox.yButton -> mouth.moveMouthUp()
+//            xbox.xButton -> mouth.succ()
+//            xbox.yButton -> mouth.spit()
         }
         mRobot.add(group)
         mRobot.run()

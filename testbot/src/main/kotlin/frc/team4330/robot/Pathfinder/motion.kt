@@ -1,6 +1,7 @@
 package frc.team4330.robot.Pathfinder
 
 import com.ctre.phoenix.motorcontrol.ControlMode
+import edu.wpi.first.wpilibj.command.WaitCommand
 import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.subsystems.SubsystemBase
 import jaci.pathfinder.Pathfinder
@@ -26,7 +27,7 @@ class motion : SubsystemBase() {
         rightFollow.configureEncoder(RobotMap.rightEncPos, 4096, .1016)
         leftFollow.configurePIDVA(1.0, 0.0, .01, 1 / 1.8, 0.0)
         rightFollow.configurePIDVA(1.0, 0.0, .01, 1 / 1.8, 0.0)
-        
+
         for (i in trajectory.segments) {
             var l = leftFollow.calculate(RobotMap.leftEncPos)
             var r = rightFollow.calculate(RobotMap.rightEncPos)
@@ -37,6 +38,7 @@ class motion : SubsystemBase() {
 
             RobotMap.RIGHT_TALON.set(ControlMode.PercentOutput, r - turn)
             RobotMap.LEFT_TALON.set(ControlMode.PercentOutput, l + turn)
+            WaitCommand(.001)
         }
 
 
