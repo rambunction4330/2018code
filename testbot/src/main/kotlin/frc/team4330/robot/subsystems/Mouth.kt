@@ -54,10 +54,10 @@ class Mouth : SubsystemBase() {
     }
 
     fun openWide() {                   //opens "TEETH"
-        RobotMap.TEETH.set(true)
+        RobotMap.TEETH.set(false)
     }
 
     fun closeMouth() {
-        RobotMap.TEETH.set(false)
+        RobotMap.TEETH.set(true)
     }
 }

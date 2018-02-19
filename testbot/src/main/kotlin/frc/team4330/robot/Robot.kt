@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.command.CommandGroup
 import edu.wpi.first.wpilibj.command.Scheduler
 import frc.team4330.robot.CommandGroups.TestMouth
+import frc.team4330.robot.Commands.TestJaw
+import frc.team4330.robot.Commands.TestJawDown
 import frc.team4330.robot.IO.Input
 import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.Pathfinder.motion
@@ -89,8 +91,8 @@ class Robot : TimedRobot() {
 
         var group: CommandGroup = CommandGroup()
         when {
-            xbox.bButton -> mouth.closeMouth()//group.addSequential(TestLipSpinButton())
-            xbox.aButton -> mouth.openWide()
+            xbox.bButton -> group.addSequential(TestJaw())//group.addSequential(OutIntake())
+            xbox.aButton -> group.addSequential(TestJawDown())//group.addSequential(InIntake())
         }
         mRobot.add(group)
         mRobot.run()

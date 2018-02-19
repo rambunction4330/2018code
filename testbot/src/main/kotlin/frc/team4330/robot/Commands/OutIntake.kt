@@ -7,12 +7,12 @@ class OutIntake : Command() {
 
     init {
         requires(Robot.mouth)
-        setTimeout(2.0)
+        setTimeout(6.0)
     }
 
     override fun execute() {
         Robot.mouth.moveMouthUp()
-        Robot.mouth.spit()
+        //      Robot.mouth.spit()
     }
 
     override fun isFinished(): Boolean {
@@ -21,7 +21,7 @@ class OutIntake : Command() {
 
     override fun end() {
         Robot.mouth.openWide()
-        Robot.mouth.stopLips()
+        //      Robot.mouth.stopLips()
         Robot.mouth.moveMouthDown()
     }
 }
