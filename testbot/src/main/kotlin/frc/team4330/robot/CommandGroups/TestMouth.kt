@@ -7,9 +7,9 @@ import frc.team4330.robot.Commands.OutIntake
 
 class TestMouth : CommandGroup() {
     init {
-        addSequential(InIntake(), 1.0)
+        addSequential(InIntake())
         addSequential(WaitCommand(1.0))
-        addSequential(OutIntake(), 1.0)
+        addSequential(OutIntake())
         addSequential(WaitCommand(1.0))
     }
 }

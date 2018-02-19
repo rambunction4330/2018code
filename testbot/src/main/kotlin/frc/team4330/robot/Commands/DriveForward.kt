@@ -13,10 +13,4 @@ class DriveForward : Command() {
         return false
     }
 
-    override fun execute() {
-        super.execute()
-        motion.test()
-
-    }
-
 }

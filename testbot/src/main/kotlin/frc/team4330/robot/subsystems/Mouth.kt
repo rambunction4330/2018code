@@ -12,6 +12,7 @@ class Mouth : SubsystemBase() {
     init {
         mouthUp = false
     }
+
     fun moveMouthUp(xbox: Input) {            //moves mouth Up and down with x button
         if (!mouthUp && xbox.xButtonPressed) {
             RobotMap.JAW.set(true)

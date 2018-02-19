@@ -14,7 +14,8 @@ class AutonomousManager {
     var phase: AutonomousPhase = AutonomousPhase.ONE
     var position = DashboardManager.positionChooser.selected
     var scheduler: Scheduler = Scheduler.getInstance()
-    fun init{
+
+    init {
         phase = AutonomousPhase.ONE
 
         val group = CommandGroup()
@@ -24,11 +25,10 @@ class AutonomousManager {
             2 -> println("Going to the RIGHT.")
             3 -> println("Going to the MIDDLE.")
         }
-        group.addSequential(WaitCommand(0.5)
-                group . addSequential (PhaseCompleteCommand(), 0.5)
-
-
-//        Scheduler.getInstance().enable()
+        group.addSequential(WaitCommand(0.5))
+        group.addSequential(PhaseCompleteCommand(), 0.5)
+        scheduler.add(group)
+        scheduler.enable()
     }
 
 

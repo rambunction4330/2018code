@@ -85,8 +85,8 @@ class Robot : TimedRobot() {
         climb.move(xbox)
 //        if (xbox.aButton) RobotMap.nidecMotor.set(0.001)
 //        else if (xbox.bButton) RobotMap.nidecMotor.stopMotor()//RobotMap.nidecMotor.set(0.000001)
-        if (xbox.aButton) Robot.mouth.moveMouthUp()
-        else if (xbox.bButton) Robot.mouth.moveMouthUp()
+        if (xbox.aButton) mouth.succ()
+        else if (xbox.bButton) mouth.stopLips()
 
 
     }
@@ -94,6 +94,6 @@ class Robot : TimedRobot() {
     override fun testPeriodic() {
 //        motion.move()
 //        print("test")
-        motion.test()
+        //    motion.test()
     }
 }
