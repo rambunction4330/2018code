@@ -34,18 +34,18 @@ class Mouth : SubsystemBase() {
     }
 
     fun succ() {                            //succs in cube
-        RobotMap.LIP_LEFT.set(ControlMode.PercentOutput, 0.6)
-        RobotMap.LIP_RIGHT.set(ControlMode.PercentOutput, -0.6)
+        RobotMap.LIP_LEFT.set(ControlMode.PercentOutput, -0.3)
+        RobotMap.LIP_RIGHT.set(ControlMode.PercentOutput, 0.3)
     }
 
     fun spit() {                            //spits out cube
-        RobotMap.LIP_LEFT.set(ControlMode.PercentOutput, -0.6)
-        RobotMap.LIP_RIGHT.set(ControlMode.PercentOutput, 0.6)
+        RobotMap.LIP_LEFT.set(ControlMode.PercentOutput, 0.3)
+        RobotMap.LIP_RIGHT.set(ControlMode.PercentOutput, -0.3)
     }
 
     fun stopLips() {
         RobotMap.LIP_LEFT.set(ControlMode.PercentOutput, 0.0 )
-        RobotMap.LIP_RIGHT.set(ControlMode.PercentOutput,0.0 )
+        RobotMap.LIP_RIGHT.set(ControlMode.PercentOutput, 0.0)
     }
 
     fun openWide() {                   //opens "TEETH"

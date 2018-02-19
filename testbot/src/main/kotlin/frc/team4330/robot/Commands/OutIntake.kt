@@ -7,7 +7,7 @@ class OutIntake : Command() {
 
     init {
         requires(Robot.mouth)
-        setTimeout(5.0)
+        setTimeout(2.0)
     }
 
     override fun execute() {

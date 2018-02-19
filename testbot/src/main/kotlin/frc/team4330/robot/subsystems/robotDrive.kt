@@ -29,7 +29,7 @@ class robotDrive : SubsystemBase() {
     }
 
     fun driveForward(speed: Double, rot: Double, isTriggerPressed: Boolean) {
-        mDrive.curvatureDrive(-speed, rot, isTriggerPressed)
+        mDrive.curvatureDrive(speed, rot, isTriggerPressed)
     }
 
     fun stop() {

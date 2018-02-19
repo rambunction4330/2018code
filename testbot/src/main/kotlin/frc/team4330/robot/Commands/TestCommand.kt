@@ -7,17 +7,15 @@ import frc.team4330.robot.Robot
 class TestCommand : Command() {
 
     init {
-        setTimeout(5.0)
+        setTimeout(2.0)
         requires(Robot.tank)
     }
 
     override fun execute() {
-        print("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
-        Robot.tank.driveForward(0.5, 0.0, false)
+        Robot.tank.driveForward(-0.3, 0.0, false)
     }
 
     override fun isFinished(): Boolean {
-        print("IT JUST TIMED OUT")
         return isTimedOut
     }
 
