@@ -95,6 +95,6 @@ class Robot : TimedRobot() {
     override fun testPeriodic() {
 //        motion.move()
 //        print("test")
-        motion.test()
+        motion.init()
     }
 }
