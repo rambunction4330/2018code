@@ -62,19 +62,29 @@ class motion : SubsystemBase() {
         var modifier: TankModifier = TankModifier(trajectory).modify(.5)
         var left: Trajectory = modifier.leftTrajectory
         var right: Trajectory = modifier.rightTrajectory
-        for (i in trajectory.segments) {
-            left = modifier.leftTrajectory
-            right = modifier.rightTrajectory
+        left = modifier.leftTrajectory
+        right = modifier.rightTrajectory
+        var leftFollow: EncoderFollower = EncoderFollower(left)
+        var rightFollow: EncoderFollower = EncoderFollower(right)
+        leftFollow.configureEncoder(RobotMap.leftEncPos, 4096, .1016)
+        rightFollow.configureEncoder(RobotMap.rightEncPos, 4096, .1016)
+        leftFollow.configurePIDVA(1.0, 0.0, .01, 1 / 1.8, 0.0)
+        rightFollow.configurePIDVA(1.0, 0.0, .01, 1 / 1.8, 0.0)
 
-            var leftFollow: EncoderFollower = EncoderFollower(left)
-            var rightFollow: EncoderFollower = EncoderFollower(right)
 
-            RobotMap.LEFT_TALON.set(ControlMode.Velocity, leftFollow.segment.velocity)
-            RobotMap.RIGHT_TALON.set(ControlMode.Velocity, rightFollow.segment.velocity)
-        }
 //        for (i in left.segments)
 //            i.velocity
+        for (i in trajectory.segments) {
+            var l = leftFollow.calculate(RobotMap.leftEncPos)
+            var r = rightFollow.calculate(RobotMap.rightEncPos)
+            var gyro_heading = RobotMap.gyro.angle
+            var desired_heading = Pathfinder.r2d(leftFollow.heading)
+            var angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading)
+            var turn = 0.8 * (-1.0 / 80) * angleDifference
 
+            RobotMap.RIGHT_TALON.set(ControlMode.PercentOutput, r - turn)
+            RobotMap.LEFT_TALON.set(ControlMode.PercentOutput, l + turn)
+        }
 
 
         
