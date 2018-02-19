@@ -24,14 +24,18 @@ class Mouth : SubsystemBase() {
         }
     }
     fun moveMouthUp() {            //moves mouth Up and down
-        if (!mouthUp) {
+        //    if (!mouthUp) {
             RobotMap.JAW.set(true)
-            mouthUp = true
-        }
-        else {
-            RobotMap.JAW.set(false)
-            mouthUp = false
-        }
+        //        mouthUp = true
+        //    }
+        //    else {
+        //        RobotMap.JAW.set(false)
+        //        mouthUp = false
+        //    }
+    }
+
+    fun moveMouthDown() {
+        RobotMap.JAW.set(false)
     }
 
     fun succ() {                            //succs in cube

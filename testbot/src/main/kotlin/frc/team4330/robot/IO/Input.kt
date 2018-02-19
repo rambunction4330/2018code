@@ -40,10 +40,10 @@ class Input(port: Int) {
     val xButton: Boolean
         get() = xbox.xButton
 
-//    val intake: Button = JoystickButton(xbox, 2)  //***********************************test button command
+//    val intake: Button = JoystickButton(xbox, 1)  //***********************************test button command
 //
 //    init {
-//        intake.whenPressed(InIntake())
+//        intake.whenPressed(TestLipSpinButton())
 //    }
 
     val xButtonPressed: Boolean
@@ -65,4 +65,5 @@ class Input(port: Int) {
 
     val backButton: Boolean
         get() = xbox.backButton
+
 }

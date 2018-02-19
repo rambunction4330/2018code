@@ -5,6 +5,7 @@ import edu.wpi.first.networktables.NetworkTable
 import edu.wpi.first.networktables.NetworkTableInstance
 import edu.wpi.first.wpilibj.CameraServer
 import edu.wpi.first.wpilibj.TimedRobot
+import edu.wpi.first.wpilibj.command.CommandGroup
 import edu.wpi.first.wpilibj.command.Scheduler
 import frc.team4330.robot.CommandGroups.TestMouth
 import frc.team4330.robot.IO.Input
@@ -17,7 +18,7 @@ import frc.team4330.robot.subsystems.robotDrive
 class Robot : TimedRobot() {
 
     companion object {
-        val xbox: Input = Input(RobotMap.DRIVE_JOYSTICK)
+        val xbox: Input = RobotMap.DRIVE_JOYSTICK
 
         var tank: robotDrive = robotDrive()
 
@@ -85,8 +86,14 @@ class Robot : TimedRobot() {
         climb.move(xbox)
 //        if (xbox.aButton) RobotMap.nidecMotor.set(0.001)
 //        else if (xbox.bButton) RobotMap.nidecMotor.stopMotor()//RobotMap.nidecMotor.set(0.000001)
-        if (xbox.aButton) mouth.succ()
-        else if (xbox.bButton) mouth.stopLips()
+
+        var group: CommandGroup = CommandGroup()
+        when {
+            xbox.bButton -> mouth.closeMouth()//group.addSequential(TestLipSpinButton())
+            xbox.aButton -> mouth.openWide()
+        }
+        mRobot.add(group)
+        mRobot.run()
 
 
     }
