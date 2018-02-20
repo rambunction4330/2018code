@@ -5,12 +5,10 @@ import edu.wpi.first.networktables.NetworkTable
 import edu.wpi.first.networktables.NetworkTableInstance
 import edu.wpi.first.wpilibj.CameraServer
 import edu.wpi.first.wpilibj.TimedRobot
-import edu.wpi.first.wpilibj.XboxController
 import edu.wpi.first.wpilibj.command.CommandGroup
 import edu.wpi.first.wpilibj.command.Scheduler
 import frc.team4330.robot.CommandGroups.TestMouth
-import frc.team4330.robot.Commands.TestJaw
-import frc.team4330.robot.Commands.TestJawDown
+import frc.team4330.robot.IO.Input
 import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.Pathfinder.motion
 import frc.team4330.robot.subsystems.Climber
@@ -20,7 +18,7 @@ import frc.team4330.robot.subsystems.robotDrive
 class Robot : TimedRobot() {
 
     companion object {
-        val xbox: XboxController = RobotMap.DRIVE_JOYSTICK
+        val xbox: Input = RobotMap.DRIVE_JOYSTICK
 
         var tank: robotDrive = robotDrive()
 
@@ -40,10 +38,6 @@ class Robot : TimedRobot() {
 //    private lateinit var scheduler: Scheduler
 
     override fun robotInit() {
-        RobotMap.RIGHT_VICTOR.follow(RobotMap.RIGHT_TALON)
-        RobotMap.RIGHT_VICTOR2.follow(RobotMap.RIGHT_TALON)
-        RobotMap.LEFT_VICTOR.follow(RobotMap.LEFT_TALON)
-        RobotMap.LEFT_VICTOR2.follow(RobotMap.LEFT_TALON)
 
         val inst: NetworkTableInstance = NetworkTableInstance.create()
         val table: NetworkTable = inst.getTable("datatable")
@@ -95,8 +89,12 @@ class Robot : TimedRobot() {
 
         var group: CommandGroup = CommandGroup()
         when {
-            xbox.bButton -> group.addSequential(TestJaw())//group.addSequential(OutIntake())
-            xbox.aButton -> group.addSequential(TestJawDown())//group.addSequential(InIntake())
+            xbox.bButton -> mouth.closeMouth()//group.addSequential(TestLipSpinButton())
+            xbox.aButton -> mouth.openWide()
+//            xbox.xButton -> mouth.moveMouthDown()
+//            xbox.yButton -> mouth.moveMouthUp()
+//            xbox.xButton -> mouth.succ()
+//            xbox.yButton -> mouth.spit()
         }
         mRobot.add(group)
         mRobot.run()
@@ -107,6 +105,6 @@ class Robot : TimedRobot() {
     override fun testPeriodic() {
 //        motion.move()
 //        print("test")
-        motion.init()
+        //    motion.test()
     }
 }

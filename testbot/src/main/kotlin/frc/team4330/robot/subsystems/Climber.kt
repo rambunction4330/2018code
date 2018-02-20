@@ -9,14 +9,14 @@ import frc.team4330.robot.IO.RobotMap
 class Climber : SubsystemBase() {
 
     init {
-        RobotMap.CLIMB_LEFT.configOpenloopRamp(.5, 10)
+        RobotMap.CLIMB_LEFT.configOpenloopRamp(.1, 10)
         RobotMap.CLIMB_LEFT.configPeakCurrentLimit(40, 10)
         RobotMap.CLIMB_LEFT.configPeakCurrentDuration(3000, 10)
-        RobotMap.CLIMB_LEFT.configContinuousCurrentLimit(25, 10)
-        RobotMap.SPOOL1.configContinuousCurrentLimit(25,10)
-        RobotMap.SPOOL1.configPeakCurrentDuration(1000, 10)
-        RobotMap.SPOOL1.configPeakCurrentLimit(35, 10)
-        RobotMap.SPOOL1.configOpenloopRamp(.5, 10)
+        RobotMap.CLIMB_LEFT.configContinuousCurrentLimit(35, 10)
+        RobotMap.SPOOL1.configContinuousCurrentLimit(35, 10)
+        RobotMap.SPOOL1.configPeakCurrentDuration(3000, 10)
+        RobotMap.SPOOL1.configPeakCurrentLimit(40, 10)
+        RobotMap.SPOOL1.configOpenloopRamp(.1, 10)
     }
 
     fun move(xbox: XboxController) {
