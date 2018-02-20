@@ -13,6 +13,7 @@ import jaci.pathfinder.modifiers.TankModifier
 class motion : SubsystemBase() {
 
     fun init() {
+
         var config: Trajectory.Config = Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.05, 1.8, 2.0, 60.0)
         var points = arrayOf(Waypoint(-4.0, -2.0, Pathfinder.d2r(-45.0)), Waypoint(-2.0, -2.0, 0.0), Waypoint(0.0, 0.0, 0.0))
         var trajectory: Trajectory = Pathfinder.generate(points, config)

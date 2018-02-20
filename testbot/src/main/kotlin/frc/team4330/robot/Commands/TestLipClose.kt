@@ -6,7 +6,7 @@ import frc.team4330.robot.Robot
 class TestLipClose : Command() {
     init {
         requires(Robot.mouth)
-        setTimeout(3.0)
+        setTimeout(2.0)
     }
 
     override fun execute() {
@@ -17,7 +17,4 @@ class TestLipClose : Command() {
         return isTimedOut
     }
 
-    override fun end() {
-        super.end()
-    }
 }

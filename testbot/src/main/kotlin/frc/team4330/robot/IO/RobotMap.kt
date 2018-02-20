@@ -26,9 +26,7 @@ object RobotMap {
     val LIP_RIGHT: VictorSPX = VictorSPX(10)
 
     // Controllers
-    val DRIVE_JOYSTICK = Input(0)
-    val INTAKE_JOYSTICK = Input(1)
-    val XBOX_CONTROLLER: XboxController = XboxController(0)
+    val DRIVE_JOYSTICK = XboxController(0)
 
 
     // Pneumatics
