@@ -5,10 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX
 import com.kauailabs.navx.frc.AHRS
-import edu.wpi.first.wpilibj.Compressor
-import edu.wpi.first.wpilibj.NidecBrushless
-import edu.wpi.first.wpilibj.SPI
-import edu.wpi.first.wpilibj.Solenoid
+import edu.wpi.first.wpilibj.*
 
 
 object RobotMap {
@@ -29,7 +26,7 @@ object RobotMap {
     val LIP_RIGHT: VictorSPX = VictorSPX(10)
 
     // Controllers
-    val DRIVE_JOYSTICK = Input(0)
+    val DRIVE_JOYSTICK = XboxController(0)
 
 
     // Pneumatics

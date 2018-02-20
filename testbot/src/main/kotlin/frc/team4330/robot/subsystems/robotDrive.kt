@@ -1,7 +1,8 @@
 package frc.team4330.robot.subsystems
 
 //import edu.wpi.first.wpilibj.drive.DifferentialDrive
-import frc.team4330.robot.IO.Input
+import edu.wpi.first.wpilibj.GenericHID
+import edu.wpi.first.wpilibj.XboxController
 import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.drivebase.DifferentialDrive
 
@@ -22,10 +23,9 @@ class robotDrive : SubsystemBase() {
         shifted = false
     }
 
-    fun curveDrive(xbox: Input) {
-        mDrive.curvatureDrive(xbox.joystickLeftYAxis, -xbox.joystickRightXAxis, xbox.isRightTriggerPressed())
-        if(xbox.yButton) upShift()
-        if(xbox.xButton) downShift()
+    fun curveDrive(xbox: XboxController) {
+        mDrive.curvatureDrive(xbox.getY(GenericHID.Hand.kLeft), -xbox.getX(GenericHID.Hand.kRight), xbox.getTriggerAxis(GenericHID.Hand.kRight) != 0.0)
+
     }
 
     fun driveForward(speed: Double, rot: Double, isTriggerPressed: Boolean) {
