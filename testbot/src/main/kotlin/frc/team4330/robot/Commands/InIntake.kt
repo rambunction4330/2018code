@@ -7,7 +7,7 @@ class InIntake : Command() {
 
     init {
         requires(Robot.mouth)
-        setTimeout(2.0)
+        setTimeout(1.0)
     }
 
     override fun execute() {

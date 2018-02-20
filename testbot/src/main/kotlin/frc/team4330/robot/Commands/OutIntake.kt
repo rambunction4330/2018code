@@ -7,21 +7,20 @@ class OutIntake : Command() {
 
     init {
         requires(Robot.mouth)
-        setTimeout(2.0)
+        // setTimeout(10.0)
     }
 
     override fun execute() {
+        Robot.mouth.closeMouth()
         Robot.mouth.moveMouthUp()
-        Robot.mouth.spit()
     }
 
     override fun isFinished(): Boolean {
-        return isTimedOut
+        return false//Robot.xboxOne. || isTimedOut
     }
 
     override fun end() {
-        Robot.mouth.openWide()
-        Robot.mouth.stopLips()
         Robot.mouth.moveMouthDown()
+        Robot.mouth.openWide()
     }
 }

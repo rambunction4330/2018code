@@ -5,9 +5,12 @@ import edu.wpi.first.networktables.NetworkTable
 import edu.wpi.first.networktables.NetworkTableInstance
 import edu.wpi.first.wpilibj.CameraServer
 import edu.wpi.first.wpilibj.TimedRobot
+import edu.wpi.first.wpilibj.XboxController
 import edu.wpi.first.wpilibj.command.CommandGroup
 import edu.wpi.first.wpilibj.command.Scheduler
 import frc.team4330.robot.CommandGroups.TestMouth
+import frc.team4330.robot.Commands.InIntake
+import frc.team4330.robot.Commands.OutIntake
 import frc.team4330.robot.IO.Input
 import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.Pathfinder.motion
@@ -19,6 +22,8 @@ class Robot : TimedRobot() {
 
     companion object {
         val xbox: Input = RobotMap.DRIVE_JOYSTICK
+        val xbox2: Input = RobotMap.INTAKE_JOYSTICK
+        val xboxOne: XboxController = RobotMap.XBOX_CONTROLLER
 
         var tank: robotDrive = robotDrive()
 
@@ -33,11 +38,15 @@ class Robot : TimedRobot() {
         val motion: motion = motion()
 
         val test: TestMouth = TestMouth()
+
+        lateinit var oi: OI
     }
 
 //    private lateinit var scheduler: Scheduler
 
     override fun robotInit() {
+        oi = OI()
+
 
         val inst: NetworkTableInstance = NetworkTableInstance.create()
         val table: NetworkTable = inst.getTable("datatable")
@@ -83,14 +92,17 @@ class Robot : TimedRobot() {
         RobotMap.nidecMotor.enable()
         //   if (xbox.bButton) RobotMap.JAW.set(true)
         //   if (xbox.aButton) RobotMap.JAW.set(false)
-        climb.move(xbox)
+//        climb.move(xbox)
 //        if (xbox.aButton) RobotMap.nidecMotor.set(0.001)
 //        else if (xbox.bButton) RobotMap.nidecMotor.stopMotor()//RobotMap.nidecMotor.set(0.000001)
 
         var group: CommandGroup = CommandGroup()
         when {
-            xbox.bButton -> mouth.closeMouth()//group.addSequential(TestLipSpinButton())
-            xbox.aButton -> mouth.openWide()
+            xbox2.yButton -> mouth.closeMouth()
+            xbox2.xButton -> group.addSequential(InIntake())
+            xbox2.aButton -> group.addSequential(OutIntake())
+            xbox2.bButton -> mouth.spit()
+//            xbox.isLeftTriggerPressed() -> mouth.spit()
 //            xbox.xButton -> mouth.moveMouthDown()
 //            xbox.yButton -> mouth.moveMouthUp()
 //            xbox.xButton -> mouth.succ()
