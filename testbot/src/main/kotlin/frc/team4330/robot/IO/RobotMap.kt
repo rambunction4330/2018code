@@ -27,6 +27,8 @@ object RobotMap {
 
     // Controllers
     val DRIVE_JOYSTICK = XboxController(0)
+    val INTAKE_JOYSTICK = XboxController(1)
+    val XBOX_OI = XboxController(0)
 
 
     // Pneumatics

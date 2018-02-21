@@ -25,7 +25,9 @@ class robotDrive : SubsystemBase() {
 
     fun curveDrive(xbox: XboxController) {
         mDrive.curvatureDrive(xbox.getY(GenericHID.Hand.kLeft), -xbox.getX(GenericHID.Hand.kRight), xbox.getTriggerAxis(GenericHID.Hand.kRight) != 0.0)
+        when {
 
+        }
     }
 
     fun driveForward(speed: Double, rot: Double, isTriggerPressed: Boolean) {

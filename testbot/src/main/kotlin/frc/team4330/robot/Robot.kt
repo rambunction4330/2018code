@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.command.Scheduler
 import frc.team4330.robot.CommandGroups.TestMouth
 import frc.team4330.robot.Commands.InIntake
 import frc.team4330.robot.Commands.OutIntake
-import frc.team4330.robot.IO.Input
 import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.Pathfinder.motion
 import frc.team4330.robot.subsystems.Climber
@@ -21,9 +20,9 @@ import frc.team4330.robot.subsystems.robotDrive
 class Robot : TimedRobot() {
 
     companion object {
-        val xbox: Input = RobotMap.DRIVE_JOYSTICK
-        val xbox2: Input = RobotMap.INTAKE_JOYSTICK
-        val xboxOne: XboxController = RobotMap.XBOX_CONTROLLER
+        val xbox: XboxController = RobotMap.DRIVE_JOYSTICK
+        val xbox2: XboxController = RobotMap.INTAKE_JOYSTICK
+//        val xboxOne: XboxController = RobotMap.XBOX_CONTROLLER
 
         var tank: robotDrive = robotDrive()
 
@@ -117,6 +116,6 @@ class Robot : TimedRobot() {
     override fun testPeriodic() {
 //        motion.move()
 //        print("test")
-        //    motion.test()
+        motion.init()
     }
 }
