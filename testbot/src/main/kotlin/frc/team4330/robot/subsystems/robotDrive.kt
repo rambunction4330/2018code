@@ -1,7 +1,8 @@
 package frc.team4330.robot.subsystems
 
 //import edu.wpi.first.wpilibj.drive.DifferentialDrive
-import frc.team4330.robot.IO.Input
+import edu.wpi.first.wpilibj.GenericHID
+import edu.wpi.first.wpilibj.XboxController
 import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.drivebase.DifferentialDrive
 
@@ -13,22 +14,44 @@ class robotDrive : SubsystemBase() {
 
     init {
         RobotMap.RIGHT_VICTOR.follow(RobotMap.RIGHT_TALON)
-        RobotMap.LEFT_TALON.follow(RobotMap.LEFT_TALON)
+        RobotMap.RIGHT_VICTOR2.follow(RobotMap.RIGHT_TALON)
+        RobotMap.LEFT_VICTOR.follow(RobotMap.LEFT_TALON)
+        RobotMap.LEFT_VICTOR2.follow(RobotMap.LEFT_TALON)
 
-        mDrive = DifferentialDrive(RobotMap.LEFT_TALON, RobotMap.RIGHT_TALON)
+        mDrive = DifferentialDrive(RobotMap.LEFT_TALON ,RobotMap.RIGHT_TALON )
 
         shifted = false
     }
 
-    fun curveDrive(xbox: Input) {
-        mDrive.curvatureDrive(.8 * xbox.joystickLeftYAxis, xbox.joystickRightXAxis, xbox.isRightTriggerPressed())
+    fun curveDrive(xbox: XboxController) {
+        mDrive.curvatureDrive(xbox.getY(GenericHID.Hand.kLeft), -xbox.getX(GenericHID.Hand.kRight), xbox.getTriggerAxis(GenericHID.Hand.kRight) != 0.0)
+        when {
+
+        }
+    }
+
+    fun driveForward(speed: Double, rot: Double, isTriggerPressed: Boolean) {
+        mDrive.curvatureDrive(speed, rot, isTriggerPressed)
+    }
+
+    fun stop() {
+        mDrive.curvatureDrive(0.0, 0.0, false)
     }
 
     fun upShift() {
-        if (!shifted) RobotMap.rightShift.forward(); shifted = true
+        if (!shifted) {
+            RobotMap.rightShift.set(true)
+            RobotMap.leftShift.set(true)
+            shifted = true
+        }
+
     }
 
     fun downShift() {
-        if (shifted) RobotMap.rightShift.reverse(); shifted = false
+        if (shifted) {
+            RobotMap.rightShift.set(false)
+            RobotMap.leftShift.set(false)
+            shifted = false
+        }
     }
 }

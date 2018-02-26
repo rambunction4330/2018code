@@ -16,6 +16,4 @@ class Encoders(A: Int, B: Int) {
         get() = encoder.get()
 
     fun reset() = encoder.reset()
-
-
 }

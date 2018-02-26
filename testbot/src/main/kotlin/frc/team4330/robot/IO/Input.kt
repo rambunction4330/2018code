@@ -1,6 +1,6 @@
 package frc.team4330.robot.IO
 
-import  edu.wpi.first.wpilibj.GenericHID.Hand
+import edu.wpi.first.wpilibj.GenericHID.Hand
 import edu.wpi.first.wpilibj.XboxController
 
 class Input(port: Int) {
@@ -40,6 +40,12 @@ class Input(port: Int) {
     val xButton: Boolean
         get() = xbox.xButton
 
+//    val intake: Button = JoystickButton(xbox, 1)  //***********************************test button command
+//
+//    init {
+//        intake.whenPressed(TestLipSpinButton())
+//    }
+
     val xButtonPressed: Boolean
         get() = xbox.xButtonPressed
 
@@ -49,4 +55,15 @@ class Input(port: Int) {
     fun isRightTriggerPressed(): Boolean {
         return rightTriggerAxis != 0.0
     }
+
+    fun isLeftTriggerPressed(): Boolean {
+        return leftTriggerAxis != 0.0
+    }
+
+    val startButton: Boolean
+        get() = xbox.startButton
+
+    val backButton: Boolean
+        get() = xbox.backButton
+
 }

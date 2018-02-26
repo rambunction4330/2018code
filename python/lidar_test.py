@@ -8,9 +8,9 @@ NetworkTables.initialize(server='10.43.30.2')
 connected = lidar.connect(1)
 
 if connected < -1:
-    print "Not Connected"
+    print ("Not Connected")
 else:
-    print "Connected"
+    print ("Connected")
 
 while 1:
     distance = lidar.getDistance()
