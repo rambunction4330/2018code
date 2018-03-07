@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = "1.2.21"
+    ext.kotlin_version = "1.2.30"
     repositories {
         mavenCentral()
     }
@@ -12,7 +12,7 @@ plugins {
     id "java"
     id "eclipse"
     id "idea"
-    id "jaci.openrio.gradle.GradleRIO" version "2018.02.17"
+    id "jaci.openrio.gradle.GradleRIO" version "2018.03.06"
 }
 
 apply plugin: "kotlin"
