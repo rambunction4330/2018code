@@ -20,7 +20,7 @@ class OutIntake : Command() {
     }
 
     override fun end() {
-        Robot.mouth.moveMouthDown()
-        Robot.mouth.openWide()
+        //  Robot.mouth.moveMouthDown()
+        //  Robot.mouth.openWide()
     }
 }

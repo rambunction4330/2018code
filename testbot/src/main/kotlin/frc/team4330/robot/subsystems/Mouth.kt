@@ -27,6 +27,7 @@ class Mouth : SubsystemBase() {
     fun moveMouthUp() {            //moves mouth Up and down
         //    if (!mouthUp) {
             RobotMap.JAW.set(true)
+        mouthUp = true
         //        mouthUp = true
         //    }
         //    else {
@@ -37,6 +38,7 @@ class Mouth : SubsystemBase() {
 
     fun moveMouthDown() {
         RobotMap.JAW.set(false)
+        mouthUp = false
     }
 
     fun moveMouth() { //toggle

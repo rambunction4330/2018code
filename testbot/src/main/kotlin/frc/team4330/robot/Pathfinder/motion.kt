@@ -41,15 +41,9 @@ class motion : SubsystemBase() {
             var angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading)
             var turn = 0.8 * (-1.0 / 80) * angleDifference
 
-            RobotMap.RIGHT_TALON.set(ControlMode.PercentOutput, r - turn)
+            RobotMap.RIGHT_TALON.set(ControlMode.PercentOutput, -(r - turn))
             RobotMap.LEFT_TALON.set(ControlMode.PercentOutput, l + turn)
-            WaitCommand(.001)
+            WaitCommand(.05)
         }
-
-
-        
-
     }
-
-
 }
