@@ -1,25 +1,45 @@
 package frc.team4330.robot
 
+import edu.wpi.first.wpilibj.XboxController
 import edu.wpi.first.wpilibj.buttons.Button
 import edu.wpi.first.wpilibj.buttons.JoystickButton
-import frc.team4330.robot.Commands.InIntake
+import frc.team4330.robot.Commands.*
 import frc.team4330.robot.IO.RobotMap
 
 
 class OI {
+    private val x: XboxController = RobotMap.XBOX_OI
+    private val y: XboxController = RobotMap.XBOX_INTAKE
 
-    private val x = RobotMap.XBOX_OI
+    //Drive Controls
+    val shifter: Button = JoystickButton(x, 5)
+    val shifterDown: Button = JoystickButton(x, 6)
+    val openCloseMouthButton: Button = JoystickButton(x, 1)//a
 
-    val intakeButton: Button = JoystickButton(x, 2) //x button
-    val outtakeButton: Button = JoystickButton(x, 3) //y button
-    val spitButton: Button = JoystickButton(x, x.getPOV(x.getPOV(1)))
-    val climberButton: Button = JoystickButton(x, 13) //left bumper?
-    val climberReverse: Button = JoystickButton(x, 14) //right bumper?
-    val spoolReel: Button = JoystickButton(x, 6) // back button
-    val spoolReelReverse: Button = JoystickButton(x, 7) //start button
+    //Controller 2
+    val succButton: Button = JoystickButton(y, 1)//a
+    val spitButton: Button = JoystickButton(y, 3) //x
+    val mouthmoveButton: Button = JoystickButton(y, 4) //y
+    val stopLipsButton: Button = JoystickButton(y, 2) //b
+//    val spoolReel: Button = JoystickButton(y, 7) // back button
+//    val spoolReelReverse: Button = JoystickButton(y, 8) //start button
+//    val climberButton: Button = JoystickButton(y, 5) //left bumper
+//    val climberReverse: Button = JoystickButton(y, 6) //right bumper
+    //val nidecRight: Button = JoystickButton(x, )
+    //val nidecLeft: Button = JoystickButton(x, )
 
 
-    init {
-        intakeButton.whenPressed(InIntake())
+    constructor() {
+        //Drive Controls
+        shifter.whenPressed(shiftup())
+        shifterDown.whenPressed(shiftdown())
+        openCloseMouthButton.whileHeld(CloseOpenMouth())
+
+        //Controller 2
+        spitButton.whileHeld(LipsSpit())
+        succButton.whileHeld(LipsSucc())
+        mouthmoveButton.whenPressed(MoveMouth())
+        stopLipsButton.cancelWhenPressed(LipsSpit())
+        stopLipsButton.cancelWhenPressed(LipsSucc())
     }
 }

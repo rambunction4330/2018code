@@ -6,11 +6,8 @@ import edu.wpi.first.networktables.NetworkTableInstance
 import edu.wpi.first.wpilibj.CameraServer
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.XboxController
-import edu.wpi.first.wpilibj.command.CommandGroup
 import edu.wpi.first.wpilibj.command.Scheduler
 import frc.team4330.robot.CommandGroups.TestMouth
-import frc.team4330.robot.Commands.InIntake
-import frc.team4330.robot.Commands.OutIntake
 import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.Pathfinder.motion
 import frc.team4330.robot.subsystems.Climber
@@ -20,13 +17,13 @@ import frc.team4330.robot.subsystems.robotDrive
 class Robot : TimedRobot() {
 
     companion object {
-        val xbox: XboxController = RobotMap.DRIVE_JOYSTICK
-        val xbox2: XboxController = RobotMap.INTAKE_JOYSTICK
-//        val xboxOne: XboxController = RobotMap.XBOX_CONTROLLER
+        //       val xbox: XboxController = RobotMap.DRIVE_JOYSTICK
+        val xbox2: XboxController = RobotMap.XBOX_INTAKE
+        val xboxOne: XboxController = RobotMap.XBOX_OI
 
         var tank: robotDrive = robotDrive()
 
-        val manager: DashboardManager = DashboardManager()
+        val dashManager: DashboardManager = DashboardManager()
 
         val mouth: Mouth = Mouth()
 
@@ -46,21 +43,20 @@ class Robot : TimedRobot() {
     override fun robotInit() {
         oi = OI()
 
-
         val inst: NetworkTableInstance = NetworkTableInstance.create()
         val table: NetworkTable = inst.getTable("datatable")
         CameraServer.getInstance().startAutomaticCapture()
 
         RobotMap.RIGHT_TALON.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10)
         RobotMap.LEFT_TALON.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10)
-        RobotMap.RIGHT_TALON.setSensorPhase(true)
+        RobotMap.RIGHT_TALON.setSensorPhase(false)
+        RobotMap.LEFT_TALON.setSensorPhase(true)
         RobotMap.RIGHT_TALON.configOpenloopRamp(.2, 10)
         RobotMap.LEFT_TALON.configOpenloopRamp(.2, 10)
     }
 
     override fun disabledInit() {
         RobotMap.COMP.stop()
-
     }
 
     override fun autonomousInit() {
@@ -85,37 +81,28 @@ class Robot : TimedRobot() {
     }
 
     override fun teleopPeriodic() {
-        manager.start()
+        dashManager.start()
         RobotMap.COMP.start()
-        tank.curveDrive(xbox)
+        tank.curveDrive(xboxOne) //dddddddddddddddddddddddddddddddddddddddddddddddddddddd
+        climb.move(xbox2)
 
-        RobotMap.nidecMotor.enable()
-        //   if (xbox.bButton) RobotMap.JAW.set(true)
-        //   if (xbox.aButton) RobotMap.JAW.set(false)
-//        climb.move(xbox)
-//        if (xbox.aButton) RobotMap.nidecMotor.set(0.001)
-//        else if (xbox.bButton) RobotMap.nidecMotor.stopMotor()//RobotMap.nidecMotor.set(0.000001)
-
-        var group: CommandGroup = CommandGroup()
-        when {
-            xbox2.yButton -> mouth.closeMouth()
-            xbox2.xButton -> group.addSequential(InIntake())
-            xbox2.aButton -> group.addSequential(OutIntake())
-            xbox2.bButton -> mouth.spit()
+//        var group: CommandGroup = CommandGroup()
+//        when {
+//            xbox2.yButton -> mouth.closeMouth()
+//            xbox2.xButton -> group.addSequential(InIntake())
+//            xbox2.aButton -> group.addSequential(OutIntake())
+//            xbox2.bButton -> mouth.spit()
 //            xbox.isLeftTriggerPressed() -> mouth.spit()
 //            xbox.xButton -> mouth.moveMouthDown()
 //            xbox.yButton -> mouth.moveMouthUp()
 //            xbox.xButton -> mouth.succ()
 //            xbox.yButton -> mouth.spit()
-        }
-        mRobot.add(group)
-        mRobot.run()
-
-
+//        }
+//        mRobot.add(group)
+//        mRobot.run()
     }
 
     override fun testPeriodic() {
-//        motion.move()
-//        print("test")
+
     }
 }
