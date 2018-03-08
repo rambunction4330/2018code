@@ -10,7 +10,6 @@ class CloseOpenMouth2 : Command() {
 
     override fun execute() {
         Robot.mouth.openWide()
-        Robot.mouth.succ()
     }
 
     override fun isFinished(): Boolean {
@@ -19,6 +18,5 @@ class CloseOpenMouth2 : Command() {
 
     override fun end() {
         Robot.mouth.closeMouth()
-        Robot.mouth.stopLips()
     }
 }

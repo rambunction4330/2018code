@@ -1,23 +1,28 @@
 package frc.team4330.robot.Commands
 
 import edu.wpi.first.wpilibj.command.Command
-import frc.team4330.robot.Robot
+import frc.team4330.robot.subsystems.Mouth
 
 class LipsSpit : Command() {
+    val mouth: Mouth
     init {
-        requires(Robot.mouth)
+
+        mouth = Mouth()
+        requires(mouth)
+        setTimeout(1.5)
     }
 
     override fun execute() {
-        Robot.mouth.spit()
+        mouth.spit()
 
     }
 
     override fun isFinished(): Boolean {
-        return false
+        return isTimedOut
     }
 
     override fun end() {
-        Robot.mouth.stopLips()
+        mouth.stopLips()
     }
+
 }

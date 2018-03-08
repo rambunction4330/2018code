@@ -35,29 +35,29 @@ deploy {
             targets << "roborio"
         }
 
-        artifact('left_switch', FileCollectionArtifact) {
-            files = project.fileTree(dir: 'src/main/paths/left_switch', include: '*.csv')
-            directory = '/home/lvuser/paths/left_switch/'
-            targets << "roborio"
-        }
-
-        artifact('right_switch', FileCollectionArtifact) {
-            files = project.fileTree(dir: 'src/main/paths/right_switch', include: '*.csv')
-            directory = '/home/lvuser/paths/right_switch/'
-            targets << "roborio"
-        }
-
-        artifact('center_left', FileCollectionArtifact) {
-            files = project.fileTree(dir: 'src/main/paths/center_left', include: '*.csv')
-            directory = '/home/lvuser/paths/center_left/'
-            targets << "roborio"
-        }
-
-        artifact('center_right', FileCollectionArtifact) {
-            files = project.fileTree(dir: 'src/main/paths/center_right', include: '*.csv')
-            directory = '/home/lvuser/paths/center_right/'
-            targets << "roborio"
-        }
+//        artifact('left_switch', FileCollectionArtifact) {
+//            files = project.fileTree(dir: 'src/main/paths/left_switch', include: '*.csv')
+//            directory = '/home/lvuser/paths/left_switch/'
+//            targets << "roborio"
+//        }
+//
+//        artifact('right_switch', FileCollectionArtifact) {
+//            files = project.fileTree(dir: 'src/main/paths/right_switch', include: '*.csv')
+//            directory = '/home/lvuser/paths/right_switch/'
+//            targets << "roborio"
+//        }
+//
+//        artifact('center_left', FileCollectionArtifact) {
+//            files = project.fileTree(dir: 'src/main/paths/center_left', include: '*.csv')
+//            directory = '/home/lvuser/paths/center_left/'
+//            targets << "roborio"
+//        }
+//
+//        artifact('center_right', FileCollectionArtifact) {
+//            files = project.fileTree(dir: 'src/main/paths/center_right', include: '*.csv')
+//            directory = '/home/lvuser/paths/center_right/'
+//            targets << "roborio"
+//        }
     }
 }
 

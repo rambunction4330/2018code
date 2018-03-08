@@ -17,5 +17,8 @@ class shiftup : Command() {
         mDrive.upShift()
     }
 
+    override fun end() {
+        mDrive.downShift()
+    }
 
 }

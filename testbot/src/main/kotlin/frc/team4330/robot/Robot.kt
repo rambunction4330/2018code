@@ -1,8 +1,6 @@
 package frc.team4330.robot
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice
-import edu.wpi.first.networktables.NetworkTable
-import edu.wpi.first.networktables.NetworkTableInstance
 import edu.wpi.first.wpilibj.CameraServer
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.XboxController
@@ -45,8 +43,8 @@ class Robot : TimedRobot() {
     override fun robotInit() {
         oi = OI()
 
-        val inst: NetworkTableInstance = NetworkTableInstance.create()
-        val table: NetworkTable = inst.getTable("datatable")
+//        val inst: NetworkTableInstance = NetworkTableInstance.create()
+//        val table: NetworkTable = inst.getTable("datatable")
         CameraServer.getInstance().startAutomaticCapture()
 
         RobotMap.RIGHT_TALON.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10)
@@ -72,6 +70,9 @@ class Robot : TimedRobot() {
     }
 
     override fun testInit() {
+        mRobot.removeAll()
+        var group: CommandGroup = DeliverCubeAuto()
+        mRobot.add(group)
     }
 
 
@@ -79,17 +80,17 @@ class Robot : TimedRobot() {
 
     override fun autonomousPeriodic() {
         RobotMap.COMP.start()
-        mRobot.add(DeliverCubeAuto())
+//        mRobot.add(drive())
         mRobot.run()
     }
 
     override fun teleopPeriodic() {
-        dashManager.start()
+//        dashManager.start()
         RobotMap.COMP.start()
         tank.curveDrive(xboxOne) //dddddddddddddddddddddddddddddddddddddddddddddddddddddd
-//        climb.move(xbox2)
+        climb.move(xbox2)
 
-        var group: CommandGroup = CommandGroup()
+//        var group: CommandGroup = CommandGroup()
 //        when {
 //            xbox2.yButton -> mouth.stopLips()
 //            xbox2.xButton -> group.addSequential(LipsSpit())
@@ -101,11 +102,12 @@ class Robot : TimedRobot() {
 ////            xbox.xButton -> mouth.succ()
 ////            xbox.yButton -> mouth.spit()
 //        }
-        mRobot.add(group)
+//        mRobot.add(group)
         mRobot.run()
     }
 
     override fun testPeriodic() {
-
+        mouth.openWide()
+        mouth.closeMouth()
     }
 }

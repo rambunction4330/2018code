@@ -31,7 +31,7 @@ class OI {
 
     constructor() {
         //Drive Controls
-        shifter.whenPressed(shiftup())
+        shifter.toggleWhenPressed(shiftup())
         shifterDown.whenPressed(shiftdown())
         openCloseMouthButton.toggleWhenPressed(CloseOpenMouth())
         openCloseMouth2Button.toggleWhenPressed(CloseOpenMouth2())
@@ -39,8 +39,8 @@ class OI {
         //Controller 2
         spitButton.whenPressed(LipsSpit())
         succButton.whenPressed(LipsSucc())
-        mouthmoveButton.whenPressed(MoveMouth())
-        stopLipsButton.cancelWhenPressed(LipsSpit())
+        mouthmoveButton.toggleWhenPressed(MoveMouth())
         stopLipsButton.cancelWhenPressed(LipsSucc())
+        stopLipsButton.cancelWhenPressed(LipsSpit())
     }
 }

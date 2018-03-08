@@ -1,23 +1,25 @@
 package frc.team4330.robot.Commands
 
 import edu.wpi.first.wpilibj.command.Command
-import frc.team4330.robot.Robot
+import frc.team4330.robot.subsystems.Mouth
 
 class LipsSucc : Command() {
+    val mouth: Mouth
     init {
-        requires(Robot.mouth)
-        //  setTimeout(2.0)
+        mouth = Mouth()
+        requires(mouth)
+        setTimeout(1.5)
     }
 
     override fun execute() {
-        Robot.mouth.succ()
+        mouth.succ()
     }
 
     override fun isFinished(): Boolean {
-        return false//isTimedOut//!Robot.xbox2.yButtonPressed
+        return isTimedOut
     }
 
     override fun end() {
-        Robot.mouth.stopLips()
+        mouth.stopLips()
     }
 }

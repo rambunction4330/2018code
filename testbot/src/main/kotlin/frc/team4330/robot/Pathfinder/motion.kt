@@ -23,9 +23,10 @@ class motion : SubsystemBase() {
 //        var points = arrayOf(Waypoint(0.0, 20.0, 0.0), Waypoint(7.0, 23.0, 0.0), Waypoint(14.0, 20.0, Pathfinder.d2r(-90.0)))
 //        var trajectory: Trajectory = Pathfinder.generate(points, config)
 //        var modifier: TankModifier = TankModifier(trajectory).modify(.5)
+        print("test")
         var left: Trajectory = paths.get(1)
         var right: Trajectory = paths.get(0)
-
+        print("testpath")
         var leftFollow: EncoderFollower = EncoderFollower(left)
         var rightFollow: EncoderFollower = EncoderFollower(right)
         leftFollow.configureEncoder(RobotMap.leftEncPos, 4096, Constants.ENCODER)

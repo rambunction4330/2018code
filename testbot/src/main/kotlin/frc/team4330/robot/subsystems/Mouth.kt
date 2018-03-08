@@ -41,10 +41,10 @@ class Mouth : SubsystemBase() {
         mouthUp = false
     }
 
-    fun moveMouth() { //toggle
-        mouthUp != mouthUp
-        RobotMap.JAW.set(mouthUp)
-    }
+//    fun moveMouth() { //toggle
+//        mouthUp != mouthUp
+//        RobotMap.JAW.set(mouthUp)
+//    }
 
 
     fun succ() {                            //succs in cube
