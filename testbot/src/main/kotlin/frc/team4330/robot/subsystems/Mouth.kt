@@ -7,11 +7,11 @@ import frc.team4330.robot.IO.RobotMap
 class Mouth : SubsystemBase() {
 
     private var mouthUp: Boolean
-    private var mouthOpen: Boolean
+//    private var mouthOpen: Boolean
 
     init {
         mouthUp = false
-        mouthOpen = false
+        //       mouthOpen = false
     }
 
     //    fun moveMouthUp(xbox: Input) {            //moves mouth Up and down with x button
@@ -26,7 +26,7 @@ class Mouth : SubsystemBase() {
 //    }
     fun moveMouthUp() {            //moves mouth Up and down
         //    if (!mouthUp) {
-            RobotMap.JAW.set(true)
+        RobotMap.JAW.set(true)
         mouthUp = true
         //        mouthUp = true
         //    }
@@ -70,8 +70,8 @@ class Mouth : SubsystemBase() {
         RobotMap.TEETH.set(true)
     }
 
-    fun openClose() {//toggle
-        mouthOpen != mouthOpen
-        RobotMap.TEETH.set(mouthOpen)
-    }
+//    fun openClose() {//toggle
+//        mouthOpen != mouthOpen
+//        RobotMap.TEETH.set(mouthOpen)
+//    }
 }

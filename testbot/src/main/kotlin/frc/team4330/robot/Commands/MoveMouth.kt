@@ -6,7 +6,7 @@ import frc.team4330.robot.Robot
 class MoveMouth : Command() {
     init {
         requires(Robot.mouth)
-        setTimeout(0.3)
+        setTimeout(0.5)
     }
 
     override fun execute() {

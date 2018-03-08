@@ -6,6 +6,7 @@ import frc.team4330.robot.Robot
 class LipsSucc : Command() {
     init {
         requires(Robot.mouth)
+        //  setTimeout(2.0)
     }
 
     override fun execute() {
@@ -13,7 +14,7 @@ class LipsSucc : Command() {
     }
 
     override fun isFinished(): Boolean {
-        return !Robot.xbox2.yButtonPressed
+        return false//isTimedOut//!Robot.xbox2.yButtonPressed
     }
 
     override fun end() {

@@ -6,7 +6,9 @@ import edu.wpi.first.networktables.NetworkTableInstance
 import edu.wpi.first.wpilibj.CameraServer
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.XboxController
+import edu.wpi.first.wpilibj.command.CommandGroup
 import edu.wpi.first.wpilibj.command.Scheduler
+import frc.team4330.robot.CommandGroups.DeliverCubeAuto
 import frc.team4330.robot.CommandGroups.TestMouth
 import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.Pathfinder.motion
@@ -77,6 +79,7 @@ class Robot : TimedRobot() {
 
     override fun autonomousPeriodic() {
         RobotMap.COMP.start()
+        mRobot.add(DeliverCubeAuto())
         mRobot.run()
     }
 
@@ -84,22 +87,22 @@ class Robot : TimedRobot() {
         dashManager.start()
         RobotMap.COMP.start()
         tank.curveDrive(xboxOne) //dddddddddddddddddddddddddddddddddddddddddddddddddddddd
-        climb.move(xbox2)
+//        climb.move(xbox2)
 
-//        var group: CommandGroup = CommandGroup()
+        var group: CommandGroup = CommandGroup()
 //        when {
-//            xbox2.yButton -> mouth.closeMouth()
-//            xbox2.xButton -> group.addSequential(InIntake())
-//            xbox2.aButton -> group.addSequential(OutIntake())
+//            xbox2.yButton -> mouth.stopLips()
+//            xbox2.xButton -> group.addSequential(LipsSpit())
+//            xbox2.aButton -> group.addSequential(LipsSucc())
 //            xbox2.bButton -> mouth.spit()
-//            xbox.isLeftTriggerPressed() -> mouth.spit()
-//            xbox.xButton -> mouth.moveMouthDown()
-//            xbox.yButton -> mouth.moveMouthUp()
-//            xbox.xButton -> mouth.succ()
-//            xbox.yButton -> mouth.spit()
+////            xbox.isLeftTriggerPressed() -> mouth.spit()
+////            xbox.xButton -> mouth.moveMouthDown()
+////            xbox.yButton -> mouth.moveMouthUp()
+////            xbox.xButton -> mouth.succ()
+////            xbox.yButton -> mouth.spit()
 //        }
-//        mRobot.add(group)
-//        mRobot.run()
+        mRobot.add(group)
+        mRobot.run()
     }
 
     override fun testPeriodic() {

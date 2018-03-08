@@ -3,14 +3,14 @@ package frc.team4330.robot.Commands
 import edu.wpi.first.wpilibj.command.Command
 import frc.team4330.robot.Robot
 
-class LipsSpit : Command() {
+class CloseOpenMouth2 : Command() {
     init {
         requires(Robot.mouth)
     }
 
     override fun execute() {
-        Robot.mouth.spit()
-
+        Robot.mouth.openWide()
+        Robot.mouth.succ()
     }
 
     override fun isFinished(): Boolean {
@@ -18,6 +18,7 @@ class LipsSpit : Command() {
     }
 
     override fun end() {
+        Robot.mouth.closeMouth()
         Robot.mouth.stopLips()
     }
 }

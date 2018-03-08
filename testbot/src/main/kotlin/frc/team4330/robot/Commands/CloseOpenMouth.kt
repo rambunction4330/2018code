@@ -6,14 +6,20 @@ import frc.team4330.robot.Robot
 class CloseOpenMouth : Command() {
     init {
         requires(Robot.mouth)
-        setTimeout(0.3)
     }
 
     override fun execute() {
-        Robot.mouth.openClose()
+        Robot.mouth.succ()
+        Robot.mouth.closeMouth()
+        print("OPEeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeN")
     }
 
     override fun isFinished(): Boolean {
-        return isTimedOut
+        return false
+    }
+
+    override fun end() {
+        Robot.mouth.openWide()
+        Robot.mouth.stopLips()
     }
 }
