@@ -13,9 +13,10 @@ class drive : Command() {
     init {
         motion = motion()
         automan = AutonomousManager()
+        setTimeout(15.0)
     }
     override fun isFinished(): Boolean {
-        return false
+        return isTimedOut
     }
 
     override fun execute() {

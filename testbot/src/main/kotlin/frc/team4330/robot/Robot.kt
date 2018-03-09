@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.XboxController
 import edu.wpi.first.wpilibj.command.CommandGroup
 import edu.wpi.first.wpilibj.command.Scheduler
 import frc.team4330.robot.CommandGroups.DeliverCubeAuto
-import frc.team4330.robot.CommandGroups.TestMouth
+import frc.team4330.robot.Commands.drive
 import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.Pathfinder.motion
 import frc.team4330.robot.subsystems.Climber
@@ -33,7 +33,7 @@ class Robot : TimedRobot() {
 
         val motion: motion = motion()
 
-        val test: TestMouth = TestMouth()
+//        val test: TestMouth = TestMouth()
 
         lateinit var oi: OI
     }
@@ -53,6 +53,8 @@ class Robot : TimedRobot() {
         RobotMap.LEFT_TALON.setSensorPhase(true)
         RobotMap.RIGHT_TALON.configOpenloopRamp(.2, 10)
         RobotMap.LEFT_TALON.configOpenloopRamp(.2, 10)
+        RobotMap.RIGHT_TALON.setSelectedSensorPosition(0, 0, 10)
+        RobotMap.LEFT_TALON.setSelectedSensorPosition(0, 0, 10)
     }
 
     override fun disabledInit() {
@@ -61,7 +63,7 @@ class Robot : TimedRobot() {
 
     override fun autonomousInit() {
         mRobot.removeAll()
-        test.start()
+//        test.start()
         mRobot.enable()
     }
 
@@ -76,10 +78,15 @@ class Robot : TimedRobot() {
     }
 
 
-    override fun disabledPeriodic() {}
+    override fun disabledPeriodic() {
+        RobotMap.RIGHT_TALON.set(0.0)
+        RobotMap.LEFT_TALON.set(0.0)
+    }
 
     override fun autonomousPeriodic() {
         RobotMap.COMP.start()
+//        motion.init(AutonomousManager().selection())
+        mRobot.add(drive())
 //        mRobot.add(drive())
         mRobot.run()
     }
@@ -107,7 +114,6 @@ class Robot : TimedRobot() {
     }
 
     override fun testPeriodic() {
-        mouth.openWide()
-        mouth.closeMouth()
+
     }
 }
