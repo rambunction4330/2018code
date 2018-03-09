@@ -7,11 +7,10 @@ class OutIntake : Command() {
 
     init {
         requires(Robot.mouth)
-        setTimeout(10.0)
+        setTimeout(6.0)
     }
 
     override fun execute() {
-        Robot.mouth.closeMouth()
         Robot.mouth.moveMouthUp()
     }
 

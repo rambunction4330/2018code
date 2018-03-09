@@ -13,9 +13,10 @@ class OI {
 
     //Drive Controls
     val shifter: Button = JoystickButton(x, 5)
-    val shifterDown: Button = JoystickButton(x, 6)
+    //val shifterDown: Button = JoystickButton(x, 6)
     val openCloseMouthButton: Button = JoystickButton(x, 1)//a
     val openCloseMouth2Button: Button = JoystickButton(x, 2) //b
+    val openCLoseMouth3: Button = JoystickButton(x, 6)
     //Controller 2
     val succButton: Button = JoystickButton(y, 1)//a
     val spitButton: Button = JoystickButton(y, 3) //x
@@ -32,7 +33,8 @@ class OI {
     constructor() {
         //Drive Controls
         shifter.toggleWhenPressed(shiftup())
-        shifterDown.whenPressed(shiftdown())
+        //  shifterDown.whenPressed(shiftdown())
+        openCLoseMouth3.toggleWhenPressed(CloseOpenMouth())
         openCloseMouthButton.toggleWhenPressed(CloseOpenMouth())
         openCloseMouth2Button.toggleWhenPressed(CloseOpenMouth2())
 

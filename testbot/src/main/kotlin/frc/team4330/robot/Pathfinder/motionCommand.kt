@@ -28,8 +28,8 @@ class motionCommand : Command {
 
     constructor(make: Array<Waypoint>) {
         mDrive = robotDrive()
-        config = Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.05, 1.8, 2.0, 60.0)
-        points = arrayOf(Waypoint(-4.0, -2.0, Pathfinder.d2r(-45.0)), Waypoint(-2.0, -2.0, 0.0), Waypoint(0.0, 0.0, 0.0))
+        config = Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.05, 1.5, 2.0, 60.0)
+        points = arrayOf(Waypoint(0.0, -0.0, 0.0), Waypoint(1.0, 0.0, 0.0), Waypoint(2.5, 0.0, 0.0))
         if (make.size != 0 || make != null) {
             points = make
         }

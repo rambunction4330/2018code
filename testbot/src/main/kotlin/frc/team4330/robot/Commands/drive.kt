@@ -20,7 +20,7 @@ class drive : Command() {
     }
 
     override fun execute() {
-        motion.init()
+
     }
 
     override fun end() {

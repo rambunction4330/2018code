@@ -45,7 +45,7 @@ class Robot : TimedRobot() {
 
     override fun robotInit() {
         oi = OI()
-        motion = motionCommand(automan.points)
+//        motion = motionCommand(automan.points)/
 
 //        val inst: NetworkTableInstance = NetworkTableInstance.create()
 //        val table: NetworkTable = inst.getTable("datatable")
@@ -55,8 +55,8 @@ class Robot : TimedRobot() {
         RobotMap.LEFT_TALON.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10)
         RobotMap.RIGHT_TALON.setSensorPhase(false)
         RobotMap.LEFT_TALON.setSensorPhase(true)
-        RobotMap.RIGHT_TALON.configOpenloopRamp(.2, 10)
-        RobotMap.LEFT_TALON.configOpenloopRamp(.2, 10)
+//        RobotMap.RIGHT_TALON.configOpenloopRamp(.2, 10)
+//        RobotMap.LEFT_TALON.configOpenloopRamp(.2, 10)
         RobotMap.RIGHT_TALON.setSelectedSensorPosition(0, 0, 10)
         RobotMap.LEFT_TALON.setSelectedSensorPosition(0, 0, 10)
     }
@@ -68,15 +68,18 @@ class Robot : TimedRobot() {
     }
 
     override fun autonomousInit() {
-        motion = motionCommand(automan.points)
+//        motion = motionCommand(automan.points)/
         mRobot.removeAll()
-        mRobot.add(motion)
+//        mRobot.add(motion)
         mRobot.add(WaitCommand(.1))
-        mRobot.add(DeliverCubeAuto())
+        //    mRobot.add(DeliverCubeAuto())
         mRobot.enable()
     }
 
     override fun teleopInit() {
+        mRobot.removeAll()
+        RobotMap.LEFT_TALON.set(0.0)
+        RobotMap.RIGHT_TALON.set(0.0)
 
     }
 
@@ -101,7 +104,8 @@ class Robot : TimedRobot() {
     }
 
     override fun teleopPeriodic() {
-//        dashManager.start()
+
+        dashManager.start()
         RobotMap.COMP.start()
         tank.curveDrive(xboxOne) //dddddddddddddddddddddddddddddddddddddddddddddddddddddd
         climb.move(xbox2)
