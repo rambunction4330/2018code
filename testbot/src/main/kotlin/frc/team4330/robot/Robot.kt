@@ -59,6 +59,8 @@ class Robot : TimedRobot() {
 
     override fun disabledInit() {
         RobotMap.COMP.stop()
+        RobotMap.RIGHT_TALON.setSelectedSensorPosition(0, 0, 10)
+        RobotMap.LEFT_TALON.setSelectedSensorPosition(0, 0, 10)
     }
 
     override fun autonomousInit() {
