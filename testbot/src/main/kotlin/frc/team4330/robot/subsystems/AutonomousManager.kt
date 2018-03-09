@@ -10,7 +10,6 @@ import frc.team4330.robot.util.AutonomousPhase
 import jaci.pathfinder.Pathfinder
 import jaci.pathfinder.Trajectory
 import jaci.pathfinder.Waypoint
-import jaci.pathfinder.modifiers.TankModifier
 import openrio.powerup.MatchData
 
 
@@ -58,7 +57,7 @@ class AutonomousManager : SubsystemBase() {
     }
 
 
-    fun selection(): TankModifier {
+    fun selection(): Array<Waypoint> {
         when (position) {
             1 -> points = arrayOf(Waypoint(0.0, 0.0, 0.0), Waypoint(1.5, -0.5, 0.0), Waypoint(3.3, -.8, Pathfinder.d2r(-90.0)))
 
@@ -68,10 +67,8 @@ class AutonomousManager : SubsystemBase() {
             }
             3 -> points = arrayOf(Waypoint(0.0, 0.0, 0.0), Waypoint(1.5, .5, 0.0), Waypoint(3.3, .8, Pathfinder.d2r(90.0)))
         }
-        var trajectory: Trajectory = Pathfinder.generate(points, config)
 
-        var modifier: TankModifier = TankModifier(trajectory).modify(.61)
-        return modifier
+        return points
 
 
     }

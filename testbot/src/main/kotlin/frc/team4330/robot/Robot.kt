@@ -6,10 +6,11 @@ import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.XboxController
 import edu.wpi.first.wpilibj.command.CommandGroup
 import edu.wpi.first.wpilibj.command.Scheduler
+import edu.wpi.first.wpilibj.command.WaitCommand
 import frc.team4330.robot.CommandGroups.DeliverCubeAuto
-import frc.team4330.robot.Commands.drive
 import frc.team4330.robot.IO.RobotMap
-import frc.team4330.robot.Pathfinder.motion
+import frc.team4330.robot.Pathfinder.motionCommand
+import frc.team4330.robot.subsystems.AutonomousManager
 import frc.team4330.robot.subsystems.Climber
 import frc.team4330.robot.subsystems.Mouth
 import frc.team4330.robot.subsystems.robotDrive
@@ -31,7 +32,9 @@ class Robot : TimedRobot() {
 
         val climb: Climber = Climber()
 
-        val motion: motion = motion()
+        lateinit var motion: motionCommand
+
+        val automan: AutonomousManager = AutonomousManager()
 
 //        val test: TestMouth = TestMouth()
 
@@ -42,6 +45,7 @@ class Robot : TimedRobot() {
 
     override fun robotInit() {
         oi = OI()
+        motion = motionCommand(automan.points)
 
 //        val inst: NetworkTableInstance = NetworkTableInstance.create()
 //        val table: NetworkTable = inst.getTable("datatable")
@@ -64,8 +68,11 @@ class Robot : TimedRobot() {
     }
 
     override fun autonomousInit() {
+        motion = motionCommand(automan.points)
         mRobot.removeAll()
-//        test.start()
+        mRobot.add(motion)
+        mRobot.add(WaitCommand(.1))
+        mRobot.add(DeliverCubeAuto())
         mRobot.enable()
     }
 
@@ -88,7 +95,7 @@ class Robot : TimedRobot() {
     override fun autonomousPeriodic() {
         RobotMap.COMP.start()
 //        motion.init(AutonomousManager().selection())
-        mRobot.add(drive())
+//        mRobot.add(drive())
 //        mRobot.add(drive())
         mRobot.run()
     }
