@@ -2,6 +2,7 @@ package frc.team4330.robot.Pathfinder
 
 import com.ctre.phoenix.motorcontrol.ControlMode
 import edu.wpi.first.wpilibj.command.Command
+import frc.team4330.robot.IO.Constants
 import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.subsystems.robotDrive
 import jaci.pathfinder.Pathfinder
@@ -41,8 +42,8 @@ class motionCommand : Command {
         right = modifier.rightTrajectory
         leftFollow = EncoderFollower(left)
         rightFollow = EncoderFollower(right)
-        leftFollow.configureEncoder(RobotMap.leftEncPos, 4096, .1016)
-        rightFollow.configureEncoder(RobotMap.rightEncPos, 4096, .1016)
+        leftFollow.configureEncoder(RobotMap.leftEncPos, 4096 * Constants.ENCODER.toInt(), .1016)
+        rightFollow.configureEncoder(RobotMap.rightEncPos, 4096 * Constants.ENCODER.toInt(), .1016)
         leftFollow.configurePIDVA(1.0, 0.0, .01, 1 / 1.8, 0.0)
         rightFollow.configurePIDVA(1.0, 0.0, .01, 1 / 1.8, 0.0)
     }
