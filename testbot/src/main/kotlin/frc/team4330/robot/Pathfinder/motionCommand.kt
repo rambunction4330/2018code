@@ -7,7 +7,6 @@ import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.subsystems.robotDrive
 import jaci.pathfinder.Pathfinder
 import jaci.pathfinder.Trajectory
-import jaci.pathfinder.Waypoint
 import jaci.pathfinder.followers.EncoderFollower
 import jaci.pathfinder.modifiers.TankModifier
 
@@ -16,9 +15,6 @@ class motionCommand : Command {
         return leftFollow.isFinished && rightFollow.isFinished
     }
 
-    var config: Trajectory.Config
-    var points: Array<Waypoint>
-    var trajectory: Trajectory
     var modifier: TankModifier
     var left: Trajectory
     var right: Trajectory
@@ -27,15 +23,12 @@ class motionCommand : Command {
     var mDrive: robotDrive
 
 
-    constructor(make: Array<Waypoint>) {
+    constructor(make: Trajectory) {
+
         mDrive = robotDrive()
-        config = Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.05, 1.5, 2.0, 60.0)
-        points = arrayOf(Waypoint(0.0, -0.0, 0.0), Waypoint(1.0, 0.0, 0.0), Waypoint(2.5, 0.0, 0.0))
-        if (make.size != 0 || make != null) {
-            points = make
-        }
-        trajectory = Pathfinder.generate(points, config)
-        modifier = TankModifier(trajectory).modify(.5)
+
+
+        modifier = TankModifier(make).modify(.5)
         left = modifier.leftTrajectory
         right = modifier.rightTrajectory
         left = modifier.leftTrajectory
@@ -47,6 +40,7 @@ class motionCommand : Command {
         leftFollow.configurePIDVA(1.0, 0.0, .01, 1 / 1.8, 0.0)
         rightFollow.configurePIDVA(1.0, 0.0, .01, 1 / 1.8, 0.0)
     }
+
 
     override fun execute() {
         var l = leftFollow.calculate(RobotMap.leftEncPos)
