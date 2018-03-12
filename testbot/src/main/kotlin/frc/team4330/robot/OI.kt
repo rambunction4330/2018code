@@ -13,15 +13,16 @@ class OI {
 
     //Drive Controls
     val shifter: Button = JoystickButton(x, 5)
-    val openCloseMouth3: Button = JoystickButton(x, 6)
+    //val shifterDown: Button = JoystickButton(x, 6)
     val openCloseMouthButton: Button = JoystickButton(x, 1)//a
     val openCloseMouth2Button: Button = JoystickButton(x, 2) //b
+    val openCLoseMouth3: Button = JoystickButton(x, 6)
     //Controller 2
     val succButton: Button = JoystickButton(y, 1)//a
     val spitButton: Button = JoystickButton(y, 3) //x
     val mouthmoveButton: Button = JoystickButton(y, 4) //y
     val stopLipsButton: Button = JoystickButton(y, 2) //b
-//    val spoolReel: Button = JoystickButton(y, 7) // back button          //*ALL climb controls already implemented in Climber subsystem.
+//    val spoolReel: Button = JoystickButton(y, 7) // back button
 //    val spoolReelReverse: Button = JoystickButton(y, 8) //start button
 //    val climberButton: Button = JoystickButton(y, 5) //left bumper
 //    val climberReverse: Button = JoystickButton(y, 6) //right bumper
@@ -32,7 +33,8 @@ class OI {
     constructor() {
         //Drive Controls
         shifter.toggleWhenPressed(shiftup())
-        openCloseMouth3.whenPressed(CloseOpenMouth())
+        //  shifterDown.whenPressed(shiftdown())
+        openCLoseMouth3.toggleWhenPressed(CloseOpenMouth())
         openCloseMouthButton.toggleWhenPressed(CloseOpenMouth())
         openCloseMouth2Button.toggleWhenPressed(CloseOpenMouth2())
 

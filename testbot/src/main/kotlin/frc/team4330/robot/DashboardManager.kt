@@ -9,6 +9,7 @@ class DashboardManager {
     val left = 1
     val middle = 2
     val right = 3
+    val default = 0
 
     fun getMethod() {
 
@@ -19,7 +20,8 @@ class DashboardManager {
     }
 
     init {
-        positionChooser.addDefault("Middle", middle)
+        positionChooser.addDefault("Default", default)
+        positionChooser.addObject("Middle", middle)
         positionChooser.addObject("Left", left)
         positionChooser.addObject("Right", right)
         SmartDashboard.putData("Autonomous Position", positionChooser)
