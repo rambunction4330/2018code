@@ -1,17 +1,20 @@
 package frc.team4330.robot.Commands
 
 import edu.wpi.first.wpilibj.command.Command
-import frc.team4330.robot.Robot
+import frc.team4330.robot.subsystems.Mouth
 
-class OutIntake : Command() {
-
+class LipsSpit : Command() {
+    val mouth: Mouth
     init {
-        requires(Robot.mouth)
-        setTimeout(6.0)
+
+        mouth = Mouth()
+        requires(mouth)
+        setTimeout(1.5)
     }
 
     override fun execute() {
-        Robot.mouth.moveMouthUp()
+        mouth.spit()
+
     }
 
     override fun isFinished(): Boolean {
@@ -19,7 +22,7 @@ class OutIntake : Command() {
     }
 
     override fun end() {
-        //  Robot.mouth.moveMouthDown()
-        //  Robot.mouth.openWide()
+        mouth.stopLips()
     }
+
 }
