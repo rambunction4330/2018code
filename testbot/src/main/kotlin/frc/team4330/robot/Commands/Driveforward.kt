@@ -25,7 +25,4 @@ class Driveforward : Command() {
         if (((RobotMap.leftEncPos + RobotMap.rightEncPos) / 2) * Constants.ENCODER * 4096 == 3.06)
             finished = true
     }
-
-
-
 }

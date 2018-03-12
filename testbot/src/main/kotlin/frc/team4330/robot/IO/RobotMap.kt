@@ -5,10 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX
 import com.kauailabs.navx.frc.AHRS
-import edu.wpi.first.wpilibj.Compressor
-import edu.wpi.first.wpilibj.SPI
-import edu.wpi.first.wpilibj.Solenoid
-import edu.wpi.first.wpilibj.XboxController
+import edu.wpi.first.wpilibj.*
 
 
 object RobotMap {
@@ -61,11 +58,11 @@ object RobotMap {
     val rightEncVel = RIGHT_TALON.getSelectedSensorVelocity(0)
     val leftEncVel = LEFT_TALON.getSelectedSensorVelocity(0)
 
+    //LED
+    val LEDS: Spark = Spark(0)
 
     val gyro: AHRS = AHRS(SPI.Port.kMXP)
 
     //Nidec Robot
 //    val nidecMotor: NidecBrushless = NidecBrushless(1, 0)
-
-
 }

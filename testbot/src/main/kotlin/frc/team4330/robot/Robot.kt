@@ -116,6 +116,6 @@ class Robot : TimedRobot() {
     }
 
     override fun testPeriodic() {
-
+        mRobot.run()
     }
 }

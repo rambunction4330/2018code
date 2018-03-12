@@ -16,7 +16,7 @@ class LipsSucc : Command() {
     }
 
     override fun isFinished(): Boolean {
-        return isTimedOut
+        return isTimedOut || isCanceled
     }
 
     override fun end() {

@@ -36,7 +36,6 @@ class DashboardManager {
 
         SmartDashboard.putNumber("Gyro", RobotMap.gyro.angle)
 
-
         SmartDashboard.putBoolean("Shifted", Robot.tank.shifted)
 
         SmartDashboard.putData("Autonomous Position", positionChooser)

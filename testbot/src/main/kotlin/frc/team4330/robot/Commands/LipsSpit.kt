@@ -5,8 +5,8 @@ import frc.team4330.robot.subsystems.Mouth
 
 class LipsSpit : Command() {
     val mouth: Mouth
-    init {
 
+    init {
         mouth = Mouth()
         requires(mouth)
         setTimeout(1.5)
@@ -14,11 +14,10 @@ class LipsSpit : Command() {
 
     override fun execute() {
         mouth.spit()
-
     }
 
     override fun isFinished(): Boolean {
-        return isTimedOut
+        return isTimedOut || isCanceled
     }
 
     override fun end() {
