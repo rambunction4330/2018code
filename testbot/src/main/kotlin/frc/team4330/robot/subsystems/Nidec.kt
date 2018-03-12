@@ -1,6 +1,8 @@
 package frc.team4330.robot.subsystems
 
-
+/*
+For useless nidec motor w/ camera.
+ */
 class Nidec {
 
     init {

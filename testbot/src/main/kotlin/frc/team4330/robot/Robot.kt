@@ -20,8 +20,10 @@ import openrio.powerup.MatchData
 class Robot : TimedRobot() {
     // a companion object is a little different than just using global variables as it can be called throughout the class easily in one organized block
     companion object {
-        val xbox2: XboxController = RobotMap.XBOX_INTAKE //mechanism controller
+
         val xboxOne: XboxController = RobotMap.XBOX_OI //Drive controller
+
+        val xbox2: XboxController = RobotMap.XBOX_INTAKE //mechanism controller
 
         var tank: robotDrive = robotDrive() //initializes drivetrain class
 
@@ -29,6 +31,7 @@ class Robot : TimedRobot() {
 
         val mouth: Mouth = Mouth() //ecks to the dee
         // it's the intake
+        // this mouth analogy is actually really bad but whatever
 
         val mRobot: Scheduler = Scheduler.getInstance() // this is the scheduluer; you add commands to it that it will execute, simple as that. Don't overthink it.
 
@@ -117,7 +120,7 @@ class Robot : TimedRobot() {
     }
 
     override fun testInit() {
-        
+
     }
 
 

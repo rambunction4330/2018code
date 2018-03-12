@@ -3,8 +3,12 @@ package frc.team4330.robot.Commands
 import edu.wpi.first.wpilibj.command.Command
 import frc.team4330.robot.subsystems.Mouth
 
+/*
+Command for taking in cube.
+ */
 class LipsSucc : Command() {
     val mouth: Mouth
+
     init {
         mouth = Mouth()
         requires(mouth)

@@ -3,6 +3,9 @@ package frc.team4330.robot.Commands
 import edu.wpi.first.wpilibj.command.Command
 import frc.team4330.robot.Robot
 
+/*
+Command for autonomous
+ */
 class OutIntake : Command() {
 
     init {

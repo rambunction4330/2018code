@@ -4,9 +4,13 @@ import edu.wpi.first.wpilibj.command.Command
 import frc.team4330.robot.Robot
 import frc.team4330.robot.subsystems.Mouth
 
+/*
+Toggles intake system between up/down positions.
+ */
 class MoveMouth : Command() {
 
     val mouth: Mouth
+
     init {
         mouth = Mouth()
         requires(mouth)

@@ -20,14 +20,13 @@ class Climber : SubsystemBase() {
     }
 
     fun move(xbox: XboxController) {
-
         when {
-            xbox.getBumper(GenericHID.Hand.kRight) -> RobotMap.CLIMB_LEFT.set(ControlMode.PercentOutput, Constants.CLIMB_SPEED)
+            xbox.getBumper(GenericHID.Hand.kRight) -> RobotMap.CLIMB_LEFT.set(ControlMode.PercentOutput, Constants.CLIMB_SPEED) //left and right bumpers
             xbox.getBumper(GenericHID.Hand.kLeft) -> RobotMap.CLIMB_LEFT.set(ControlMode.PercentOutput, -Constants.CLIMB_SPEED)
-            xbox.startButton -> {
+            xbox.startButton -> { //start button
                 RobotMap.SPOOL1.set(ControlMode.PercentOutput, Constants.SPOOL_SPEED)
             }
-            xbox.backButton -> {
+            xbox.backButton -> { //back button
                 RobotMap.SPOOL1.set(ControlMode.PercentOutput, -Constants.SPOOL_SPEED)
             }
             else -> {
@@ -36,5 +35,4 @@ class Climber : SubsystemBase() {
             }
         }
     }
-
 }
