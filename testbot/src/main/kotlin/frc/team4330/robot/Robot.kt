@@ -17,6 +17,12 @@ import frc.team4330.robot.subsystems.robotDrive
 import jaci.pathfinder.Trajectory
 import openrio.powerup.MatchData
 
+/**
+ * @author Sithija Dasun Gunasinghe
+ * @author Justin Lam
+ * 2018 FRC Power Up code for team 4330
+ */
+
 class Robot : TimedRobot() {
     // a companion object is a little different than just using global variables as it can be called throughout the class easily in one organized block
     companion object {
@@ -27,17 +33,17 @@ class Robot : TimedRobot() {
 
         var tank: robotDrive = robotDrive() //initializes drivetrain class
 
-        val dashManager: DashboardManager = DashboardManager()// initializes dashboard manager which displayes sensor data and selectors to shuffleboard
+        val dashManager: DashboardManager = DashboardManager()// initializes dashboard manager which displays sensor data and selectors to shuffleboard
 
         val mouth: Mouth = Mouth() //ecks to the dee
         // it's the intake
         // this mouth analogy is actually really bad but whatever
 
-        val mRobot: Scheduler = Scheduler.getInstance() // this is the scheduluer; you add commands to it that it will execute, simple as that. Don't overthink it.
+        val mRobot: Scheduler = Scheduler.getInstance() // this is the scheduler; you add commands to it that it will execute, simple as that. Don't overthink it.
 
         val climb: Climber = Climber() // what do you want from me
 
-        var motiongen: motion = motion() // motion profile generator class. It recieves an Array of Waypoints and returns a Trajectory
+        var motiongen: motion = motion() // motion profile generator class. It receives an Array of Waypoints and returns a Trajectory
         lateinit var motion: motionCommand // this is a command class that has an input of a Trajectory from above and executesa a motion profile after being initialized
 
         val automan: AutonomousManager = AutonomousManager() //works with dashboard manager to send data from shuffleboard to the robot
@@ -45,7 +51,7 @@ class Robot : TimedRobot() {
         lateinit var oi: OI // explained below
         // instantiated here so it can be initialized when the robot starts
         // lateinit means it will be set later on but is instantiated here
-        // trajectories are instantiated here so they can be initailzed later
+        // trajectories are instantiated here so they can be initialized later
         lateinit var leftpoints: Trajectory
         lateinit var rightpoints: Trajectory
         lateinit var center_left: Trajectory
@@ -60,7 +66,6 @@ class Robot : TimedRobot() {
     override fun robotInit() {
         camera1 = CameraServer.getInstance().startAutomaticCapture(0) //Instantiates camera1
         camera2 = CameraServer.getInstance().startAutomaticCapture(1) //does the same thing stop making me document everything
-
 
         oi = OI() // Instantiates OI class so that the commands that are associated with buttons actually do things
 
@@ -131,9 +136,6 @@ class Robot : TimedRobot() {
 
     override fun autonomousPeriodic() {
         RobotMap.COMP.start() // starts pneumatics and pressurizes the system, don't forget to close the release valve
-//        motion.init(AutonomousManager().selection())
-//        mRobot.add(drive())
-//        mRobot.add(drive())
         mRobot.run() //runs the scheduler commands set in autoinit
     }
 

@@ -10,6 +10,11 @@ import jaci.pathfinder.Trajectory
 import jaci.pathfinder.followers.EncoderFollower
 import jaci.pathfinder.modifiers.TankModifier
 
+/**
+ * @author Sithija Dasun Gunasinghe
+ * Motion Profiling command using Jaci's Pathfinder
+ * https://github.com/JacisNonsense/Pathfinder
+ */
 class motionCommand : Command {
     override fun isFinished(): Boolean {
         return leftFollow.isFinished && rightFollow.isFinished
