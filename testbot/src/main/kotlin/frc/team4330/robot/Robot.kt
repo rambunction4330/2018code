@@ -62,7 +62,7 @@ class Robot : TimedRobot() {
 //    private lateinit var scheduler: Scheduler
 
     override fun robotInit() {
-        dashManager.start()
+//        dashManager.start()
         camera1 = CameraServer.getInstance().startAutomaticCapture(0) //Instantiates camera1
 //        camera1.setVideoMode(VideoMode.PixelFormat.kMJPEG,360, 240, 30)
         camera1.setResolution(384, 216) // sets camera resolution
@@ -70,16 +70,16 @@ class Robot : TimedRobot() {
         camera2 = CameraServer.getInstance().startAutomaticCapture(1) //does the same thing stop making me document everything
         camera2.setFPS(30) // same as above
 
-        oi = OI() // Instantiates OI class so that the commands that are associated with buttons actually do things
+//        oi = OI() // Instantiates OI class so that the commands that are associated with buttons actually do things
 
         //Generates motion profiles when the robot is turned on so it doesn't take like 5 seconds during autonomous
-        println("generating points")
+//        println("generating points")
         leftpoints = motiongen.generate(automan.leftpoints)
         rightpoints = motiongen.generate(automan.rightpoints)
         center_left = motiongen.generate(automan.center_left)
         center_right = motiongen.generate(automan.center_right)
         default = motiongen.generate(automan.default)
-        println("generation finished")
+//        println("generation finished")
 
         oi = OI()
         // some settings for the drivetrain motor controllers, this is why we use TalonSRXs and VictorSPXs, if y'all don't keep using them I'll come back and haunt you.
@@ -91,6 +91,7 @@ class Robot : TimedRobot() {
         RobotMap.LEFT_TALON.configOpenloopRamp(.1, 10)
         RobotMap.RIGHT_TALON.setSelectedSensorPosition(0, 0, 10) //sets the encoders to 0 when the robot starts so i dont start with like 1 billion ticks
         RobotMap.LEFT_TALON.setSelectedSensorPosition(0, 0, 10)
+        dashManager.start()
     }
 
     override fun disabledInit() {
@@ -100,6 +101,7 @@ class Robot : TimedRobot() {
     }
 
     override fun autonomousInit() {
+
         RobotMap.gyro.reset() //resets gyro to 0 so the motion profiles execute correctly
 
         //selects profile to execute during autonomous depending on the position on the field and matchdata
@@ -153,7 +155,6 @@ class Robot : TimedRobot() {
         mRobot.removeAll() //same as above
         RobotMap.LEFT_TALON.set(0.0) // this is here so the motorcontrollers aren't in a disabled state during teleopperiodic
         RobotMap.RIGHT_TALON.set(0.0)
-        oi = OI()
 
     }
 
@@ -174,8 +175,8 @@ class Robot : TimedRobot() {
 
     override fun teleopPeriodic() {
 
-        dashManager.start()
-
+//        dashManager.start()
+        mRobot.run()
         RobotMap.COMP.start() // same as above
 
         tank.curveDrive(xboxOne) // this takes an xbox controller and makes the robot drive
