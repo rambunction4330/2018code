@@ -12,7 +12,7 @@ import openrio.powerup.MatchData
 class AutonomousManager : SubsystemBase() {
 
     var phase: AutonomousPhase = AutonomousPhase.ONE
-    var position = DashboardManager.positionChooser.selected
+//    var position = DashboardManager.ge
     var scheduler: Scheduler = Scheduler.getInstance()
     val side: MatchData.OwnedSide = MatchData.getOwnedSide(MatchData.GameFeature.SWITCH_NEAR)
 
@@ -40,15 +40,15 @@ class AutonomousManager : SubsystemBase() {
 
 
     init {
-        phase = AutonomousPhase.ONE
+//        phase = AutonomousPhase.ONE
 
 //        val group = CommandGroup()
 //        group.addSequential(ZeroPhaseCommand())
-        when (position) {
-            1 -> println("Going to the LEFT.")
-            2 -> println("Going to the RIGHT.")
-            3 -> println("Going to the MIDDLE.")
-        }
+//        when (position) {
+//            1 -> println("Going to the LEFT.")
+//            2 -> println("Going to the RIGHT.")
+//            3 -> println("Going to the MIDDLE.")
+//        }
 
 
 //        scheduler.add(group)
@@ -56,13 +56,7 @@ class AutonomousManager : SubsystemBase() {
     }
 
 
-    fun selection(): Int {
 
-
-        return position
-
-
-    }
 
 
 

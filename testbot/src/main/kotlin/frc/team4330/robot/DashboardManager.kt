@@ -10,13 +10,13 @@ class DashboardManager {
     val middle = 2
     val right = 3
     val default = 0
-
+    val positionChooser: SendableChooser<Int> = SendableChooser()
     fun getMethod() {
 
     }
 
     companion object {
-        val positionChooser: SendableChooser<Int> = SendableChooser()
+
     }
 
     init {

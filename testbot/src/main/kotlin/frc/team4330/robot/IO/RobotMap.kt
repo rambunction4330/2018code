@@ -64,5 +64,5 @@ object RobotMap {
     val gyro: AHRS = AHRS(SPI.Port.kMXP)
 
     //Nidec Robot
-//    val nidecMotor: NidecBrushless = NidecBrushless(1, 0)
+    val nidecMotor: NidecBrushless = NidecBrushless(1, 1)
 }

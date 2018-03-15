@@ -37,7 +37,7 @@ class OI {
         //Drive Controls
         shifter.toggleWhenPressed(shiftup())
         openCloseMouthButton.toggleWhenPressed(CloseOpenMouth())
-        openCloseMouth2Button.toggleWhenPressed(CloseOpenMouth())
+//        openCloseMouth2Button.toggleWhenPressed(CloseOpenMouth())
 
         //Controller 2
         spitButton.whenPressed(LipsSpit())

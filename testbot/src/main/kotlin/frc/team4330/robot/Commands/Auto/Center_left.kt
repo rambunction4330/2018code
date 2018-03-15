@@ -58,6 +58,7 @@ class Center_left : Command {
 
         RobotMap.RIGHT_TALON.set(ControlMode.PercentOutput, r - turn)
         RobotMap.LEFT_TALON.set(ControlMode.PercentOutput, -(l + turn))
+        println("center_left")
     }
 
     override fun end() {

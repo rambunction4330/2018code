@@ -6,7 +6,10 @@ import edu.wpi.first.wpilibj.CameraServer
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.XboxController
 import edu.wpi.first.wpilibj.command.Scheduler
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser
+import frc.team4330.robot.CommandGroups.DeliverCubeAuto
 import frc.team4330.robot.Commands.Auto.Forward
+import frc.team4330.robot.Commands.Driveforward
 import frc.team4330.robot.IO.RobotMap
 import frc.team4330.robot.Pathfinder.*
 import frc.team4330.robot.subsystems.AutonomousManager
@@ -25,6 +28,7 @@ import openrio.powerup.MatchData
 class Robot : TimedRobot() {
     // a companion object is a little different than just using global variables as it can be called throughout the class easily in one organized block
     companion object {
+//        val positionChooser: SendableChooser<Int> = SendableChooser()
 
         val xboxOne: XboxController = RobotMap.XBOX_OI //Drive controller
 
@@ -62,6 +66,7 @@ class Robot : TimedRobot() {
 //    private lateinit var scheduler: Scheduler
 
     override fun robotInit() {
+
 //        dashManager.start()
         camera1 = CameraServer.getInstance().startAutomaticCapture(0) //Instantiates camera1
 //        camera1.setVideoMode(VideoMode.PixelFormat.kMJPEG,360, 240, 30)
@@ -81,7 +86,7 @@ class Robot : TimedRobot() {
         default = motiongen.generate(automan.default)
 //        println("generation finished")
 
-        oi = OI()
+//        oi = OI()
         // some settings for the drivetrain motor controllers, this is why we use TalonSRXs and VictorSPXs, if y'all don't keep using them I'll come back and haunt you.
         RobotMap.RIGHT_TALON.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10) // sets encoder for the right drive talon
         RobotMap.LEFT_TALON.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10) // sets encoder for the other one
@@ -105,47 +110,47 @@ class Robot : TimedRobot() {
         RobotMap.gyro.reset() //resets gyro to 0 so the motion profiles execute correctly
 
         //selects profile to execute during autonomous depending on the position on the field and matchdata
-        when (automan.position) {
-            0 -> {
-                mRobot.removeAll() // removes all commands from scheduler
-                mRobot.add(Forward()) // adds drive straight
-                print("test0")
-            }
-            1 -> {
-                mRobot.removeAll()
-                mRobot.add(Left())
-            }
-            2 -> when (automan.side) {
-                MatchData.OwnedSide.LEFT -> {
-                    mRobot.removeAll()
-                    mRobot.add(Center_left())
-                    print("testcenterleft")
-                }
-                MatchData.OwnedSide.RIGHT -> {
-                    mRobot.removeAll()
-                    mRobot.add(Center_right())
-                    print("testcenterright")
-                }
-                else -> {
-                    mRobot.removeAll()
-                    mRobot.add(Forward())
-                }
-            }
-            3 -> {
-                mRobot.removeAll()
-                mRobot.add(Right())
-                print("test3")
-            }
-
-            else -> {
-                mRobot.removeAll()
-                mRobot.add(Forward())
-                print("testelse")
-            }
-
-        }
-        mRobot.removeAll() // makes sure nothing is in the scheduler already
-//        mRobot.add(Driveforward()) //drives forward to cross the auto line (Failsafe command)
+//        when (dashManager.getStart()) {
+//            0 -> {
+//                mRobot.removeAll() // removes all commands from scheduler
+//                mRobot.add(Forward()) // adds drive straight
+//                print("test0")
+//            }
+//            1 -> {
+//                mRobot.removeAll()
+//                mRobot.add(Left())
+//            }
+//            2 -> when (automan.side) {
+//                MatchData.OwnedSide.LEFT -> {
+//                    mRobot.removeAll()
+//                    mRobot.add(Center_left())
+//                    print("testcenterleft")
+//                }
+//                MatchData.OwnedSide.RIGHT -> {
+//                    mRobot.removeAll()
+//                    mRobot.add(Center_right())
+//                    print("testcenterright")
+//                }
+//                else -> {
+//                    mRobot.removeAll()
+//                    mRobot.add(Forward())
+//                }
+//            }
+//            3 -> {
+//                mRobot.removeAll()
+//                mRobot.add(Right())
+//                print("test3")
+//            }
+//
+//            else -> {
+//                mRobot.removeAll()
+//                mRobot.add(Forward())
+//                print("testelse")
+//            }
+//
+//        }
+//        mRobot.removeAll() // makes sure nothing is in the scheduler already
+        mRobot.add(Driveforward()) //drives forward to cross the auto line (Failsafe command)
 //        mRobot.add(motion) // adds motion command to the command scheduler for it to execute
 //        mRobot.add(DeliverCubeAuto())
         mRobot.enable() // enables the scheduler so it is primed for autonomous periodic
@@ -155,7 +160,7 @@ class Robot : TimedRobot() {
         mRobot.removeAll() //same as above
         RobotMap.LEFT_TALON.set(0.0) // this is here so the motorcontrollers aren't in a disabled state during teleopperiodic
         RobotMap.RIGHT_TALON.set(0.0)
-
+//        oi = OI()
     }
 
     override fun testInit() {
@@ -166,6 +171,45 @@ class Robot : TimedRobot() {
     override fun disabledPeriodic() {
         RobotMap.RIGHT_TALON.set(0.0) //same as above, no idea which one works but i dont care enough to test which one actually does stuff
         RobotMap.LEFT_TALON.set(0.0)
+//        when (dashManager.getStart()) {
+//            0 -> {
+//                mRobot.removeAll() // removes all commands from scheduler
+//                mRobot.add(Forward()) // adds drive straight
+//                print("test0")
+//            }
+//            1 -> {
+//                mRobot.removeAll()
+//                mRobot.add(Left())
+//            }
+//            2 -> when (automan.side) {
+//                MatchData.OwnedSide.LEFT -> {
+//                    mRobot.removeAll()
+//                    mRobot.add(Center_left())
+//                    print("testcenterleft")
+//                }
+//                MatchData.OwnedSide.RIGHT -> {
+//                    mRobot.removeAll()
+//                    mRobot.add(Center_right())
+//                    print("testcenterright")
+//                }
+//                else -> {
+//                    mRobot.removeAll()
+//                    mRobot.add(Forward())
+//                }
+//            }
+//            3 -> {
+//                mRobot.removeAll()
+//                mRobot.add(Right())
+//                print("test3")
+//            }
+//
+//            else -> {
+//                mRobot.removeAll()
+//                mRobot.add(Forward())
+//                print("testelse")
+//            }
+//
+//        }
     }
 
     override fun autonomousPeriodic() {
