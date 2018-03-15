@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode
 import edu.wpi.first.wpilibj.command.Command
 import frc.team4330.robot.IO.Constants
 import frc.team4330.robot.IO.RobotMap
+import frc.team4330.robot.Robot
 import frc.team4330.robot.subsystems.robotDrive
 import jaci.pathfinder.Pathfinder
 import jaci.pathfinder.Trajectory
@@ -15,7 +16,7 @@ import jaci.pathfinder.modifiers.TankModifier
  * Motion Profiling command using Jaci's Pathfinder
  * https://github.com/JacisNonsense/Pathfinder
  */
-class motionCommand : Command {
+class Center_left : Command {
     override fun isFinished(): Boolean {
         return leftFollow.isFinished && rightFollow.isFinished
     }
@@ -28,12 +29,12 @@ class motionCommand : Command {
     var mDrive: robotDrive
 
 
-    constructor(make: Trajectory) {
+    constructor() {
 
         mDrive = robotDrive()
 
 
-        modifier = TankModifier(make).modify(.5)
+        modifier = TankModifier(Robot.center_left).modify(.5)
         left = modifier.leftTrajectory
         right = modifier.rightTrajectory
         left = modifier.leftTrajectory

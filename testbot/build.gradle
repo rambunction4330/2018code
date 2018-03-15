@@ -14,7 +14,7 @@ plugins {
     id "java"
     id "eclipse"
     id "idea"
-    id "jaci.openrio.gradle.GradleRIO" version "2018.03.06"
+    id "jaci.openrio.gradle.GradleRIO" version "2018.02.17"
 }
 
 apply plugin: "kotlin"

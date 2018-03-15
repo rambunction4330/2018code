@@ -6,10 +6,9 @@ import edu.wpi.first.wpilibj.CameraServer
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.XboxController
 import edu.wpi.first.wpilibj.command.Scheduler
-import frc.team4330.robot.CommandGroups.DeliverCubeAuto
+import frc.team4330.robot.Commands.Auto.Forward
 import frc.team4330.robot.IO.RobotMap
-import frc.team4330.robot.Pathfinder.motion
-import frc.team4330.robot.Pathfinder.motionCommand
+import frc.team4330.robot.Pathfinder.*
 import frc.team4330.robot.subsystems.AutonomousManager
 import frc.team4330.robot.subsystems.Climber
 import frc.team4330.robot.subsystems.Mouth
@@ -44,11 +43,10 @@ class Robot : TimedRobot() {
         val climb: Climber = Climber() // what do you want from me
 
         var motiongen: motion = motion() // motion profile generator class. It receives an Array of Waypoints and returns a Trajectory
-        lateinit var motion: motionCommand // this is a command class that has an input of a Trajectory from above and executesa a motion profile after being initialized
 
         val automan: AutonomousManager = AutonomousManager() //works with dashboard manager to send data from shuffleboard to the robot
 
-        lateinit var oi: OI // explained below
+        var oi: OI = OI()// explained below
         // instantiated here so it can be initialized when the robot starts
         // lateinit means it will be set later on but is instantiated here
         // trajectories are instantiated here so they can be initialized later
@@ -64,18 +62,26 @@ class Robot : TimedRobot() {
 //    private lateinit var scheduler: Scheduler
 
     override fun robotInit() {
+        dashManager.start()
         camera1 = CameraServer.getInstance().startAutomaticCapture(0) //Instantiates camera1
+//        camera1.setVideoMode(VideoMode.PixelFormat.kMJPEG,360, 240, 30)
+        camera1.setResolution(384, 216) // sets camera resolution
+        camera1.setFPS(30) // sets fps
         camera2 = CameraServer.getInstance().startAutomaticCapture(1) //does the same thing stop making me document everything
+        camera2.setFPS(30) // same as above
 
         oi = OI() // Instantiates OI class so that the commands that are associated with buttons actually do things
 
         //Generates motion profiles when the robot is turned on so it doesn't take like 5 seconds during autonomous
+        println("generating points")
         leftpoints = motiongen.generate(automan.leftpoints)
         rightpoints = motiongen.generate(automan.rightpoints)
         center_left = motiongen.generate(automan.center_left)
         center_right = motiongen.generate(automan.center_right)
         default = motiongen.generate(automan.default)
+        println("generation finished")
 
+        oi = OI()
         // some settings for the drivetrain motor controllers, this is why we use TalonSRXs and VictorSPXs, if y'all don't keep using them I'll come back and haunt you.
         RobotMap.RIGHT_TALON.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10) // sets encoder for the right drive talon
         RobotMap.LEFT_TALON.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10) // sets encoder for the other one
@@ -98,22 +104,48 @@ class Robot : TimedRobot() {
 
         //selects profile to execute during autonomous depending on the position on the field and matchdata
         when (automan.position) {
-            0 -> motion = motionCommand(default)
-            1 -> motion = motionCommand(leftpoints)
-            2 -> when (automan.side) {
-                MatchData.OwnedSide.LEFT -> motion = motionCommand(center_left)
-                MatchData.OwnedSide.RIGHT -> motion = motionCommand(center_right)
-                else -> motion = motionCommand(default)
+            0 -> {
+                mRobot.removeAll() // removes all commands from scheduler
+                mRobot.add(Forward()) // adds drive straight
+                print("test0")
             }
-            3 -> motion = motionCommand(rightpoints)
+            1 -> {
+                mRobot.removeAll()
+                mRobot.add(Left())
+            }
+            2 -> when (automan.side) {
+                MatchData.OwnedSide.LEFT -> {
+                    mRobot.removeAll()
+                    mRobot.add(Center_left())
+                    print("testcenterleft")
+                }
+                MatchData.OwnedSide.RIGHT -> {
+                    mRobot.removeAll()
+                    mRobot.add(Center_right())
+                    print("testcenterright")
+                }
+                else -> {
+                    mRobot.removeAll()
+                    mRobot.add(Forward())
+                }
+            }
+            3 -> {
+                mRobot.removeAll()
+                mRobot.add(Right())
+                print("test3")
+            }
 
-            else -> motion = motionCommand(default)
+            else -> {
+                mRobot.removeAll()
+                mRobot.add(Forward())
+                print("testelse")
+            }
 
         }
         mRobot.removeAll() // makes sure nothing is in the scheduler already
 //        mRobot.add(Driveforward()) //drives forward to cross the auto line (Failsafe command)
-        mRobot.add(motion) // adds motion command to the command scheduler for it to execute
-        mRobot.add(DeliverCubeAuto())
+//        mRobot.add(motion) // adds motion command to the command scheduler for it to execute
+//        mRobot.add(DeliverCubeAuto())
         mRobot.enable() // enables the scheduler so it is primed for autonomous periodic
     }
 
@@ -121,6 +153,7 @@ class Robot : TimedRobot() {
         mRobot.removeAll() //same as above
         RobotMap.LEFT_TALON.set(0.0) // this is here so the motorcontrollers aren't in a disabled state during teleopperiodic
         RobotMap.RIGHT_TALON.set(0.0)
+        oi = OI()
 
     }
 
@@ -140,8 +173,11 @@ class Robot : TimedRobot() {
     }
 
     override fun teleopPeriodic() {
+
         dashManager.start()
+
         RobotMap.COMP.start() // same as above
+
         tank.curveDrive(xboxOne) // this takes an xbox controller and makes the robot drive
         climb.move(xbox2) // climber controls
     }
