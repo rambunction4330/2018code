@@ -8,4 +8,6 @@ object Constants {
     val SPOOL_SPEED: Double = 1.0 //Spool speed
 
     val LIP_SPEED: Double = 0.3 //Intake motor speed
+
+    val TURN = 1.2 * (-1.0/80)
 }

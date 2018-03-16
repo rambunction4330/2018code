@@ -31,7 +31,7 @@ class AutonomousManager : SubsystemBase() {
     var points = arrayOf(Waypoint(0.0, 20.0, 0.0), Waypoint(7.0, 23.0, 0.0), Waypoint(14.0, 20.0, Pathfinder.d2r(-90.0)))
 
 
-    var leftpoints = arrayOf(Waypoint(0.0, 0.0, 0.0), Waypoint(1.3, -0.5, 0.0), Waypoint(2.0, -.8, Pathfinder.d2r(90.0)))
+    var leftpoints = arrayOf(Waypoint(0.0, 0.0, 0.0), Waypoint(1.75, .5, Pathfinder.d2r(45.0)), Waypoint(3.0, 1.0, Pathfinder.d2r(90.0)))
     var center_left = arrayOf(Waypoint(0.0, 0.0, 0.0), Waypoint(3.0, .8, Pathfinder.d2r(45.0)), Waypoint(6.0, 1.2, 0.0))
     var center_right = arrayOf(Waypoint(0.0, 0.0, 0.0), Waypoint(1.3, -.8, Pathfinder.d2r(45.0)), Waypoint(2.0, 1.2, 0.0))
     var rightpoints = arrayOf(Waypoint(0.0, 0.0, 0.0), Waypoint(1.3, .5, 0.0), Waypoint(2.0, .8, Pathfinder.d2r(-90.0)))

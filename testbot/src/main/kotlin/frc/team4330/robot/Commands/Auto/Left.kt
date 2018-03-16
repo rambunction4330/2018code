@@ -54,7 +54,7 @@ class Left : Command {
         var gyro_heading = RobotMap.gyro.angle
         var desired_heading = Pathfinder.r2d(leftFollow.heading)
         var angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading)
-        var turn = 0.8 * (-1.0 / 80) * angleDifference
+        var turn = Constants.TURN * angleDifference
 
         RobotMap.RIGHT_TALON.set(ControlMode.PercentOutput, r - turn)
         RobotMap.LEFT_TALON.set(ControlMode.PercentOutput, -(l + turn))

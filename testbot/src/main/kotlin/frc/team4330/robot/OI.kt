@@ -15,12 +15,14 @@ class OI {
     val shifter: Button = JoystickButton(x, 5) //left bumper
     val openCloseMouthButton: Button = JoystickButton(x, 1)//a
     val openCloseMouth2Button: Button = JoystickButton(x, 6) //right bumper
+    val armbutton: Button = JoystickButton(x, 4)
 
     //Controller 2
     val succButton: Button = JoystickButton(y, 1)//a
     val spitButton: Button = JoystickButton(y, 3) //x
     val mouthmoveButton: Button = JoystickButton(y, 4) //y
     val stopLipsButton: Button = JoystickButton(y, 2) //b
+
 
     //Climb Controls - all implemented in Climber Class
 
@@ -37,6 +39,7 @@ class OI {
         //Drive Controls
         shifter.toggleWhenPressed(shiftup())
         openCloseMouthButton.toggleWhenPressed(CloseOpenMouth())
+
 //        openCloseMouth2Button.toggleWhenPressed(CloseOpenMouth())
 
         //Controller 2
